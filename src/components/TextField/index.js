@@ -1,25 +1,36 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import './textfield.scss';
 import { PropTypes } from 'prop-types';
-import { useForm } from "react-hook-form";
 
-function TextField({ fieldType, fieldName }) {
-    const { register, formState: { errors } } = useForm();
+function TextField({ fieldType, fieldName, label, register, errors, passwordValue }) {
+  let validation = { required: true };
   
+  if (fieldName === "ConfirmPassword") {
+    validation = {
+      ...validation,
+      pattern: {
+        value: new RegExp(`^${passwordValue}$`),
+        message: "Mot de passe différent"
+      }
+    };
+  }
+
     return (
-      <form>
-        <input type={fieldType} defaultValue={""} {...register(fieldName)} />
-        <input type={fieldType} {...register("Required Field", { required: true })} />
-        {errors["Required Field"] && <span>This field is required</span>}
-        <input type="submit" />
-      </form>
+      <Fragment>
+        {label && <label htmlFor={fieldName}>{label}</label>}
+        <input name={fieldName} type={fieldType} defaultValue={""} {...register(fieldName, validation)} />
+        {errors && errors[fieldName] && <span>{errors[fieldName].message}</span>}
+      </Fragment>
     );
   }
 
   TextField.propTypes = {
     fieldType: PropTypes.string.isRequired,
     fieldName: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    register: PropTypes.func,
+    errors: PropTypes.object,
+    passwordValue: PropTypes.string
   };
 
-  export default TextField;
-  
+export default TextField;

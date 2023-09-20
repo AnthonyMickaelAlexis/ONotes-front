@@ -1,13 +1,15 @@
 import React from 'react';
-import SignIn from '../../components/SignIn';
-import SignUp from '../../components/SignUp';
+import AuthTabs from '../../components/AuthTabs';
+import './auth.scss';
 
 function Auth() {
   
   return (
     <div className="App">
-      <SignIn />
-      <SignUp />
+      <p>Sign In</p>
+      <div className='BoxAroundConnectionTextfield'>
+      <AuthTabs />
+      </div>
     </div>
   );
 }
