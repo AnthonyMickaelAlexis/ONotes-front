@@ -1,6 +1,7 @@
 import React from 'react';
 import TextField from '../TextField';
 import Button from '../Button';
+import { useSignUpMutation } from "../../data/auth";
 import { useForm } from 'react-hook-form';
 
 function SignUp() {
@@ -8,11 +9,24 @@ function SignUp() {
 
   const passwordValue = watch("Password");
 
+  const [send] = useSignUpMutation();
   const onSubmit = (e) => {
-    console.log(e);
+    send({
+      firstName: e.FirstName,
+      lastName: e.LastName,
+      username: e.Username,
+      email: e.Email,
+      password: e.Password
+    })
+    .unwrap()
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    }); 
   }
   
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <TextField label="Prénom :" fieldType="text" fieldName={"FirstName"} register={register} errors={errors} />

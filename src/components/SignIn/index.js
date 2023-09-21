@@ -1,24 +1,24 @@
 import React from 'react';
 import TextField from '../TextField';
 import Button from '../Button';
-// import { useSigninMutation } from "../../data/auth";
+import { useSignInMutation } from "../../data/auth";
 import { useForm } from 'react-hook-form';
 
 function SignIn() {
   const { handleSubmit, register, errors } = useForm();
-  // const [send, error, isLoading] = useSigninMutation();
-  const onSubmit = () => {
-    // send({
-    //   email: e.Email,
-    //   password: e.Password
-    // })
-    // .unwrap()
-    // .then(data => {
-    //   console.log(data);
-    // })
-    // .catch(error => {
-    //   console.log(error);
-    // }); 
+  const [send] = useSignInMutation();
+  const onSubmit = (e) => {
+    send({
+      email: e.Email,
+      password: e.Password
+    })
+    .unwrap()
+    .then(data => {
+      console.log(data);
+    })
+    .catch(error => {
+      console.log(error);
+    }); 
   }
 
   return (
