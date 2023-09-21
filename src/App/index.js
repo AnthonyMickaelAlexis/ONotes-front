@@ -1,16 +1,14 @@
 import React from 'react';
-import { Link, Routes, Route } from "react-router-dom"
+import { Routes, Route } from "react-router-dom"
 import Auth from "../views/Auth";
+import Homepage from '../views/Homepage';
 
 function App() {
 
   return (
     <div className="App">
-      <Link to="/authentication">
-        Auth
-      </Link>
-
       <Routes>
+        <Route path="/" element={ <Homepage /> } />
         <Route path="/authentication" element={ <Auth /> } />
       </Routes>
     </div>

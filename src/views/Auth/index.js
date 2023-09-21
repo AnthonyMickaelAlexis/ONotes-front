@@ -1,5 +1,5 @@
 import React from 'react';
-import AuthTabs from '../../components/AuthTabs';
+import AuthTabsComponent from '../../components/AuthTabsComponent';
 import './auth.scss';
 
 function Auth() {
@@ -8,7 +8,7 @@ function Auth() {
     <div className="App">
       <p>Sign In</p>
       <div className='BoxAroundConnectionTextfield'>
-      <AuthTabs />
+      <AuthTabsComponent />
       </div>
     </div>
   );

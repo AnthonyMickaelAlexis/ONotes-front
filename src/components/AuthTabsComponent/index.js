@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import SignIn from '../SignIn';
-import SignUp from '../SignUp';
-import './tab.scss';
+import SignInComponent from '../SignInComponent';
+import SignUpComponent from '../SignUpComponent';
+import './authtabscomponent.scss';
 
-function AuthTabs() {
+function AuthTabsComponent() {
     const [selectedTab, setSelectedTab] = useState('signIn');
 
     return (
@@ -12,10 +12,10 @@ function AuthTabs() {
         <button className={selectedTab === 'signIn' ? 'active' : ''} onClick={() => setSelectedTab('signIn')}>Connexion</button>
         <button className={selectedTab === 'signUp' ? 'active' : ''} onClick={() => setSelectedTab('signUp')}>Inscription</button>
         </div>
-        {selectedTab === 'signIn' && <SignIn />}
-        {selectedTab === 'signUp' && <SignUp />}
+        {selectedTab === 'signIn' && <SignInComponent />}
+        {selectedTab === 'signUp' && <SignUpComponent />}
       </div>
     );
   }
 
-export default AuthTabs;
+export default AuthTabsComponent;

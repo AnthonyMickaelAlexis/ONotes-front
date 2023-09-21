@@ -1,16 +1,16 @@
 import React from 'react';
-import './button.scss';
+import './buttoncomponent.scss';
 import { PropTypes } from 'prop-types';
 
-function Button({ buttonShowText }) {
+function ButtonComponent({ buttonShowText }) {
   
     return (
       <button type="submit">{buttonShowText}</button>
     );
   }
 
-  Button.propTypes = {
+  ButtonComponent.propTypes = {
     buttonShowText: PropTypes.string.isRequired,
   };
 
-export default Button;
+export default ButtonComponent;
