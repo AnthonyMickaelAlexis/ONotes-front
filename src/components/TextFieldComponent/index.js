@@ -1,10 +1,10 @@
 import React, { Fragment } from 'react';
-import './textfield.scss';
+import './textfieldcomponent.scss';
 import { PropTypes } from 'prop-types';
 import { ErrorMessage } from "@hookform/error-message";
 import { useFormContext } from "react-hook-form";
 
-function TextField({ fieldType, fieldName, label, passwordValue }) {
+function TextFieldComponent({ fieldType, fieldName, label, passwordValue }) {
   const { formState: {errors}, register } = useFormContext();
   let validation = { required: true };
   
@@ -58,11 +58,11 @@ function TextField({ fieldType, fieldName, label, passwordValue }) {
     );
   }
 
-  TextField.propTypes = {
+  TextFieldComponent.propTypes = {
     fieldType: PropTypes.string.isRequired,
     fieldName: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     passwordValue: PropTypes.string
   };
 
-export default TextField;
+export default TextFieldComponent;

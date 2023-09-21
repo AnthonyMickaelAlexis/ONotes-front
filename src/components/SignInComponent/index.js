@@ -1,10 +1,10 @@
 import React from 'react';
-import TextField from '../TextField';
-import Button from '../Button';
+import TextFieldComponent from '../TextFieldComponent';
+import ButtonComponent from '../ButtonComponent';
 import { useSignInMutation } from "../../data/auth";
 import { useForm, FormProvider } from 'react-hook-form';
 
-function SignIn() {
+function SignInComponent() {
   const methods = useForm();
   const { handleSubmit } = methods;
 
@@ -20,12 +20,12 @@ function SignIn() {
   return (
     <FormProvider {...methods}>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField label="Email :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} />
-      <TextField label="Password :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} />
-      <Button buttonShowText="Se connecter"/>
+      <TextFieldComponent label="Email :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} />
+      <TextFieldComponent label="Password :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} />
+      <ButtonComponent buttonShowText="Se connecter"/>
     </form>
     </FormProvider>
   )
 }
 
-export default SignIn;
+export default SignInComponent;

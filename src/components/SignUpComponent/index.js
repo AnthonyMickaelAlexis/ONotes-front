@@ -1,10 +1,10 @@
 import React from 'react';
-import TextField from '../TextField';
-import Button from '../Button';
+import TextField from '../TextFieldComponent';
+import Button from '../ButtonComponent';
 import { useSignUpMutation } from "../../data/auth";
 import { useForm, FormProvider } from 'react-hook-form';
 
-function SignUp() {
+function SignUpComponent() {
   const methods = useForm();
   const { handleSubmit, watch } = methods;
 
@@ -37,4 +37,4 @@ function SignUp() {
   )
 }
 
-export default SignUp;
+export default SignUpComponent;
