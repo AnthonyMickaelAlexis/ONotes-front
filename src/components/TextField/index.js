@@ -4,41 +4,47 @@ import { PropTypes } from 'prop-types';
 import { ErrorMessage } from "@hookform/error-message";
 import { useFormContext } from "react-hook-form";
 
-function TextField({ fieldType, fieldName, label, register, passwordValue }) {
-  const { formState: {errors}, value, watch } = useFormContext();
+function TextField({ fieldType, fieldName, label, passwordValue }) {
+  const { formState: {errors}, register } = useFormContext();
   let validation = { required: true };
   
-  if (fieldName === "Password") {
-    validation = 
-      { required: "required", minLength: {
-        value: 3,
-        message: "Le mot de passe doit contenir au moins 3 caractères"
-      }
-    }
-  } else if (fieldName === "Email") {
-    validation = {
-      ...validation,
-      pattern: {
-        value: /\S+@\S+\.\S+/,
-        message: "Adresse email invalide"
-      }
-    }
-  } else if (fieldName === "ConfirmPassword") {
-    validation = {
-      ...validation,
-      pattern: {
-        value: new RegExp(`^${passwordValue}$`),
-        message: "Mot de passe différent"
-      }
-    };
-  } else {
-    validation = {
-      ...validation,
-      pattern: {
-        value: 1,
-        message: "Veuillez remplir ce champ"
-      }
-    }
+  switch(fieldName) {
+    case "Password":
+      validation = { 
+        required: "required", 
+        minLength: { 
+          value: 3, 
+          message: "Le mot de passe doit contenir au moins 3 caractères" 
+        } 
+      };
+      break;
+    case "Email":
+      validation = {
+        ...validation,
+        pattern: {
+          value: /\S+@\S+\.\S+/,
+          message: "Adresse email invalide"
+        }
+      };
+      break;
+    case "ConfirmPassword":
+      validation = {
+        ...validation,
+        pattern: {
+          value: new RegExp(`^${passwordValue}$`),
+          message: "Mot de passe différent"
+        }
+      };
+      break;
+    default:
+      validation = {
+        ...validation,
+        pattern: {
+          value: 1,
+          message: "Veuillez remplir ce champ"
+        }
+      };
+      break;
   }
 
     return (
@@ -56,7 +62,6 @@ function TextField({ fieldType, fieldName, label, register, passwordValue }) {
     fieldType: PropTypes.string.isRequired,
     fieldName: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    register: PropTypes.func,
     passwordValue: PropTypes.string
   };
 

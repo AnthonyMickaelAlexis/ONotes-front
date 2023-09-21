@@ -2,10 +2,12 @@ import React from 'react';
 import TextField from '../TextField';
 import Button from '../Button';
 import { useSignInMutation } from "../../data/auth";
-import { useForm } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 
 function SignIn() {
-  const { handleSubmit, register, errors } = useForm();
+  const methods = useForm();
+  const { handleSubmit } = methods;
+
   const [send] = useSignInMutation();
   const onSubmit = (e) => {
     send({
@@ -13,22 +15,17 @@ function SignIn() {
       password: e.Password
     })
     .unwrap()
-    .then(data => {
-      console.log(data);
-    })
-    .catch(error => {
-      console.log(error);
-    }); 
   }
 
   return (
+    <FormProvider {...methods}>
     <form onSubmit={handleSubmit(onSubmit)}>
-      <TextField label="Email :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} register={register} errors={errors} />
-      <TextField label="Password :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} register={register} errors={errors} />
+      <TextField label="Email :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} />
+      <TextField label="Password :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} />
       <Button buttonShowText="Se connecter"/>
     </form>
+    </FormProvider>
   )
 }
-
 
 export default SignIn;
