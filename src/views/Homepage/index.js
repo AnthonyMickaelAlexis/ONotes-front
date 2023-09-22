@@ -10,6 +10,7 @@ import CarouselContainer from '../../utils/carouselContainer';
 
 
 function Homepage() {
+    
   const fallingTags = [
     {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
     {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
