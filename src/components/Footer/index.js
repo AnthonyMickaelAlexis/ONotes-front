@@ -1,26 +1,17 @@
-import React, { Fragment } from "react";
-import { PropTypes } from 'prop-types';
-import './tagComponent.scss';
-
+import React from 'react';
+import './footer.scss';
 
 function Footer() {
-    <div className="footer"> 
-
-    </div>
-  }
-
   return (
-<Fragment>
-
-</Fragment>
-  )
+    <div className="footer">
+      <div className="footer-content">
+        <a href="/mentions-legales">Mentions légales</a>
+        {/* eslint-disable-next-line react/no-unescaped-entities */}
+        <a href="/conditions">Conditions générales d'utilisation</a>
+        <a href="/equipe">Équipe</a>
+      </div>
+    </div>
+  );
 }
-
-// Footer.propTypes = {
-//   icon: PropTypes.string,
-//   text: PropTypes.string.isRequired,
-//   textColor: PropTypes.string.isRequired,
-//   bgColor: PropTypes.string.isRequired,
-// };
 
 export default Footer;

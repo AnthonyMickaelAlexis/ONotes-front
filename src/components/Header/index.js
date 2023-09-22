@@ -1,26 +1,19 @@
-import React, { Fragment } from "react";
-import { PropTypes } from 'prop-types';
-import './tagComponent.scss';
-
+import React from "react";
+import './header.scss';
+import logo from '../../assets/images/logo_onotes.png';
 
 function Header() {
-    <div className="header"> 
-    
-    </div>
-  }
 
   return (
-<Fragment>
-
-</Fragment>
+    <div className="header">
+      <div className="left-section">
+        <img src={logo}  alt="Logo" className="logo"/>
+      </div>
+      <div className="right-section">
+        <button className="login-button">Connexion/Inscription</button>
+      </div>
+    </div>
   )
 }
 
-// Header.propTypes = {
-//   icon: PropTypes.string,
-//   text: PropTypes.string.isRequired,
-//   textColor: PropTypes.string.isRequired,
-//   bgColor: PropTypes.string.isRequired,
-// };
-
-export default Footer;
+export default Header;
