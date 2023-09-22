@@ -1,11 +1,34 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import './homepage.scss';
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
+import Tag from '../../components/TagComponent';
+import Icon from '../../assets/images/logo192.png';
+import startAnimation from '../../utils/fallingTags';
 
 function Homepage() {
-  
+  const fallingTags = [
+    {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
+    {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
+    {key: 2, icon: Icon, text: 'React', textColor: 'white', bgColor: 'green'},
+    {key: 3, icon: Icon, text: 'React', textColor: 'white', bgColor: 'black'},
+    {key: 4, icon: Icon, text: 'React', textColor: 'white', bgColor: 'purple'},
+  ]
+
+  const canvas = useRef();
+  const alreadyStarted = useRef(false);
+  useEffect(() => {
+    if (alreadyStarted.current === false) {
+      startAnimation(canvas.current);
+    }
+    alreadyStarted.current = true;
+  }, [])
+
   return (
     <div className="homepage">
+      {fallingTags.map(tagElement =>
+        <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} />
+      )}
+      <div ref={canvas} className='home-falling-tags'></div>
       <Link to="/authentication">
         Auth
       </Link>

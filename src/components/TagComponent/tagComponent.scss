@@ -1,0 +1,15 @@
+.tag-component {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: .5em;
+  width: fit-content;
+  height: 1.5em;
+  border-radius: 30px;
+  padding: .3em .5em .3em .5em;
+  cursor: pointer;
+
+  &>img {
+    width: 25px;
+  }
+}
