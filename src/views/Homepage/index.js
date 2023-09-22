@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Fragment } from 'react';
 import './homepage.scss';
 import { Link } from "react-router-dom";
 import Tag from '../../components/TagComponent';
@@ -8,8 +8,8 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import CarouselContainer from '../../utils/carouselContainer';
 
-
 function Homepage() {
+    
   const fallingTags = [
     {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
     {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
@@ -28,6 +28,7 @@ function Homepage() {
   }, [])
 
   return (
+    <Fragment>
     <div className="homepage">
       {fallingTags.map(tagElement =>
         <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} />
@@ -37,8 +38,7 @@ function Homepage() {
         Auth
       </Link>
       {/* HEADER */}
-      <div>logo</div>
-      <div> login button</div>
+
       {/* HEADER END */}
       <div>title</div>
         <div>subtitle</div>
@@ -68,6 +68,7 @@ function Homepage() {
         </div>
         {/* FOOTER */}
         </div>
+        </Fragment>
   );
 }
 
