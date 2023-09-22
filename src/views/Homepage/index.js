@@ -1,6 +1,10 @@
 import React from 'react';
 import './homepage.scss';
 import { Link } from "react-router-dom"
+import 'swiper/css';
+import 'swiper/css/pagination';
+import CarouselContainer from '../../utils/Carousel/CarouselContainer';
+
 
 function Homepage() {
   
@@ -18,7 +22,11 @@ function Homepage() {
         <div>button discover</div>
         <div>components matterjs qui tombent</div>
         <div> titre au-dessus d&#39;article </div>
-        <div>carrousel articles</div>
+        {/* carousel */}
+    
+        <CarouselContainer />
+
+{/* carousel end*/}
         <div> les chiffres qui font parler</div>
         
         <div> box autour de image communauté
