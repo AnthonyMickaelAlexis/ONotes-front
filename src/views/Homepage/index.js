@@ -3,7 +3,7 @@ import './homepage.scss';
 import { Link } from "react-router-dom"
 import 'swiper/css';
 import 'swiper/css/pagination';
-import CarouselContainer from '../../utils/Carousel/CarouselContainer';
+import CarouselContainer from '../../utils/carouselContainer';
 
 
 function Homepage() {
