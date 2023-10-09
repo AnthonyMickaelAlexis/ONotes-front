@@ -1,0 +1,89 @@
+.box {
+    background-color: #f5f5f5;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 50em;
+    margin: 3rem 0;
+    gap: 3rem;
+}
+
+.content span p {
+    overflow: disabled;
+    width: 8rem;
+    // height: 8rem;
+    white-space: normal;
+}
+
+.boxparagraph {
+    flex: 1;
+    margin: 0 1rem;
+    font-size: 1.2rem;
+}
+
+.boxparagraph strong {
+    font-weight: bold;
+    font-size: 1.05em;
+}
+
+.boxparagraph b {
+    font-weight: bold;
+}
+
+.playstorelogo {
+    width: 8.49rem;
+}
+
+.content span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+}
+
+h1, h2 {
+    margin-bottom: 0.2rem;
+}
+
+#appimage {
+    width: 45%;
+}
+
+.store-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;   
+}
+
+@media (min-width: 600px) {
+    .content span {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 2.5rem;
+    }
+
+    h1, h2 {
+        margin-bottom: 1rem;
+    }
+
+    #appimage {
+        width: 75%;
+    }
+
+    .store-logos {
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        margin-bottom: 1rem;   
+    }
+}

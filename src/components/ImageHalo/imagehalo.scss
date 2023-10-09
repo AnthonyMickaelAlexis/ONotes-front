@@ -1,0 +1,36 @@
+.image-container {
+  position: relative;
+  width: 35%;
+}
+
+.application-images {
+border-radius: 10%;
+width: 85%;
+z-index: 2;
+}
+
+.class-1 {
+padding-right: 3rem;
+}
+
+.class-2 {
+padding-left: 1.5rem;
+}
+
+@media (min-width: 600px) {
+  .application-images {
+    width: 100%;
+  }
+  
+  .image-container {
+    width: 65%;
+  }
+  
+  .class-1 {
+    padding-right: 8rem;
+  }
+  
+  .class-2 {
+    padding-left: 3.5rem;
+  }
+}
