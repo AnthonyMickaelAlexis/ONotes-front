@@ -40,8 +40,8 @@
     @include halo;
     border-radius:25%;
     background-color: #000AFF;
-    width: 350px;
-    height: 350px;
+    width: 75px;
+    height: 35px;
     right: 150px;
     top: 40px;
     z-index: 1;
@@ -128,7 +128,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (min-width: 600px) {
   .homepage {
     &-title-and-cta {
       &>h1 {
@@ -152,12 +152,13 @@
         margin: 4em 5em 2em 5em;
       }
     }
+    
     &-halo4 {
       @include halo;
       border-radius:25%;
       background-color: #000AFF;
-      width: 75px;
-      height: 35px;
+      width: 350px;
+      height: 350px;
       right: 150px;
       top: 40px;
       z-index: 1;
