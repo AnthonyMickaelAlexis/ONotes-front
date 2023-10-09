@@ -1,0 +1,26 @@
+.navigation-button {
+  border: 2px solid black;
+  border-radius: 25px;
+
+  &-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .8em;
+    border-radius: 25px;
+    gap: .5em;
+    cursor: pointer;
+
+    &>p {
+      font-weight: 600;
+    }
+
+    &>img {
+      max-width: 1em;
+    }
+
+    &:hover {
+      filter: invert(1);
+    }
+  }
+}
