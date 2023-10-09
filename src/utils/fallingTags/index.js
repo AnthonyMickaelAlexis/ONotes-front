@@ -1,10 +1,5 @@
 import Matter from 'matter-js';
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+import getRandomInt from '../getRandomInt';
 
 function startAnimation(scene) {
   const sceneWidth = scene.clientWidth;
@@ -25,8 +20,8 @@ function startAnimation(scene) {
     element: scene,
     engine: engine,
     options: {
-      sceneWidth,
-      sceneHeight,
+      width: sceneWidth,
+      height: sceneHeight,
       wireframes: false,
       background: 'transparent'
     }
@@ -57,17 +52,19 @@ function startAnimation(scene) {
       elem: tag,
       render() {
         const { x, y } = this.body.position;
-        this.elem.style.top = `${y - 20}px`;
+        this.elem.style.top = `${y - tagHeight / 2}px`;
         this.elem.style.left = `${x - tagWidth / 2}px`;
         this.elem.style.transform = `rotate(${this.body.angle}rad) translateY(3px)`;
       }
     };
   });
 
+  const leftWall = Bodies.rectangle(0, 0, 1, sceneHeight * 2, {isStatic: true, render: { opacity: 0 }});
+  const rightWall = Bodies.rectangle(sceneWidth, 0, 1, sceneHeight * 2, {isStatic: true, render: { opacity: 0 }});
   const ground = Bodies.rectangle(0, sceneHeight, sceneWidth * 2, 1, { isStatic: true, render: { opacity: 0 }});
 
   // add all of the bodies to the world
-  Composite.add(engine.world, [...tagBodies.map((box) => box.body), ground]);
+  Composite.add(engine.world, [...tagBodies.map((box) => box.body), leftWall, rightWall, ground]);
 
   // run the renderer
   Render.run(render);
