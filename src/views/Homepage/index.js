@@ -7,6 +7,7 @@ import startAnimation from '../../utils/fallingTags';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import CarouselContainer from '../../utils/carouselContainer';
+import Box from '../../utils/boxHomePageContainer';
 
 function Homepage() {
     
@@ -52,13 +53,7 @@ function Homepage() {
 {/* carousel end*/}
         <div> les chiffres qui font parler</div>
         
-        <div> box autour de image communauté
-        <div> component image</div>
-        <div> component image</div>
-        <div>on a même notre application</div>
-        <div> component image</div>
-        <div> logo playstore appstore</div>
-        </div>
+        <Box />
 
         {/* FOOTER */}
         <div>box du bas 
