@@ -128,7 +128,7 @@
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media (max-width: 600px) {
   .homepage {
     &-title-and-cta {
       &>h1 {
