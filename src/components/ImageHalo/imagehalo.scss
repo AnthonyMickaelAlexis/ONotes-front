@@ -1,59 +1,37 @@
+.application-images {
+  border-radius: 10%;
+  width: 85%;
+  z-index: 2;
+}
+
 .image-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    margin: 0 0.5rem;
-    width: 15rem;
-}      
-      .halo {
-        background-color: #f5f5f5;
-        padding: 1rem 1rem;
-        position: relative;
-        border-radius: 1rem;
-        box-shadow: 0 0 0 1px rgba(0,0,0,.01);
-        z-index: 0;
-      
-        &::after {
-          position: absolute;
-          content: "";
-          top: 0;
-          left: 0;
-          right: 0;
-          z-index: -1;
-          height: 100%;
-          width: 100%;
-          filter: blur(15px);
-          animation: rotateHalo 5s infinite linear;
-          background: linear-gradient(
-            to left,
-            #ff5770,
-            #e4428d,
-            #c42da8,
-            #9e16c3,
-            #6501de,
-            #9e16c3,
-            #c42da8,
-            #e4428d,
-            #ff5770
-          );
-          background-size: 200% 200%;
-          animation: animateGlow 1.25s linear infinite;
-        }
-      }
-      
-      @keyframes animateGlow {
-        0% {
-          background-position: 0% 50%;
-        }
-        100% {
-          background-position: 200% 50%;
-        }
-        // from {
-        //     transform: rotate(0deg);
-        //   }
-        //   to {
-        //     transform: rotate(360deg);
-        //   }
-      }
+  position: relative;
+}
+
+.class-1 {
+  padding-right: 8rem;
+}
+
+.class-2 {
+  padding-left: 3.5rem;
+}
+
+@media only screen and (max-width: 600px) {
+  .image-container {
+      width: 35%;
+  }
+
+  .application-images {
+    border-radius: 10%;
+    width: 100%;
+    z-index: 2;
+  }
+
+  .class-1 {
+    padding-right: 3rem;
+  }
   
+  .class-2 {
+    padding-left: 1.5rem;
+  }
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, Fragment } from 'react';
 import './homepage.scss';
-import { Link } from "react-router-dom";
 import Tag from '../../components/TagComponent';
 import Icon from '../../assets/images/logo192.png';
 import startAnimation from '../../utils/fallingTags';
@@ -58,9 +57,6 @@ function Homepage() {
         <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} />
       )}
       <div ref={canvas} className='homepage-falling-tags-canvas'></div>
-      <Link to="/authentication">
-        Auth
-      </Link>
       {/* HEADER */}
 
       {/* HEADER END */}
@@ -94,13 +90,8 @@ function Homepage() {
         <Box />
 
         {/* FOOTER */}
-        <div>box du bas 
-        <div> page equipe</div>
-        <div> page mentions légales</div>
-        <div> page cgu </div>
         </div>
         {/* FOOTER */}
-        </div>
         </Fragment>
   );
 }

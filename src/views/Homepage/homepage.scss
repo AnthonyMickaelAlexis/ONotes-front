@@ -36,6 +36,17 @@
     top: 250px;
   }
 
+  &-halo4 {
+    @include halo;
+    border-radius:25%;
+    background-color: #000AFF;
+    width: 350px;
+    height: 350px;
+    right: 150px;
+    top: 40px;
+    z-index: 1;
+  }
+
   &-falling-tags-canvas {
     position: absolute;
     width: 100%;
@@ -117,7 +128,7 @@
   }
 }
 
-@media (min-width: 600px) {
+@media only screen and (max-width: 600px) {
   .homepage {
     &-title-and-cta {
       &>h1 {
@@ -140,6 +151,16 @@
         justify-content: space-between;
         margin: 4em 5em 2em 5em;
       }
+    }
+    &-halo4 {
+      @include halo;
+      border-radius:25%;
+      background-color: #000AFF;
+      width: 75px;
+      height: 35px;
+      right: 150px;
+      top: 40px;
+      z-index: 1;
     }
   }
 }

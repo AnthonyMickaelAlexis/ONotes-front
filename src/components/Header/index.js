@@ -1,6 +1,6 @@
 import React from "react";
 import './header.scss';
-import logo from '../../assets/images/logo_onotes.png';
+import logo from '../../assets/images/logo-black.svg';
 
 function Header() {
 
