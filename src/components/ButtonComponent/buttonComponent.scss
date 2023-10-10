@@ -1,0 +1,24 @@
+.submit-button-container {
+  border: 2px solid black;
+  border-radius: 25px;
+  margin-top: 1rem;
+}
+
+.submit-button {
+  background-color: black;
+  color: white;
+  width: 100%;
+  max-width: 25rem;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: .8em;
+  font-weight: 600;
+
+  &:active {
+    filter: invert(1);
+  }
+
+  &:hover {
+    cursor: pointer;
+  }
+}

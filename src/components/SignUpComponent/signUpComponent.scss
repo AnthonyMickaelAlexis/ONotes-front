@@ -1,0 +1,19 @@
+.authentication-signup-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+
+  &>span {
+    font-size: .9rem;
+    color: red;
+    top: -.2rem;
+    margin-bottom: .5rem;
+    margin-top: -.3rem;
+  }
+
+  &-button {
+    text-align: center;
+    width: 100%;
+  }
+}
