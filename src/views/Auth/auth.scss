@@ -1,10 +1,68 @@
-.BoxAroundConnectionTextfield {
-    background-color: white;
-    height: 30vh;
-    width: 25vh;
-    border: 1px solid #ccc;
-    padding: .2vh;
-    margin: 0 auto;
+.authentication {
+
+  &-image>img {
+    max-width: 100%;
+  }
+
+  &-main {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    padding: 1rem;
+
+    & h1 {
+      margin-bottom: 1rem;
+    }
+
+    & p {
+      font-size: .9rem;
+      line-height: 1.3rem;
+
+      & strong {
+        font-weight: 600;
+        text-decoration: underline;
+      }
+    }
+
+    &-back {
+      display: flex;
+      gap: .5rem;
+      padding: 1rem;
+      margin: 1rem 1rem 1rem -1rem;
+      width: fit-content;
+      font-weight: 500;
+
+      &>img {
+        rotate: -180deg;
+        filter: invert(1);
+        width: 16px;
+      }
+    }
+  }
+}
+
+@media (min-width: 600px) {
+  .authentication {
+    display: flex;
+    justify-content: center;
+    gap: 5rem;
+    padding: 5rem;
+
+    &-image>img {
+      max-height: calc(100vh - 9rem);
+    }
+
+    &-main {
+      width: 25rem;
+      padding: 0;
+
+      &-back {
+        margin-top: 0;
+        padding-top: 0;
+      }
+
+      &>p>strong:hover {
+        cursor: pointer;
+      }
+    }
+  }
 }
