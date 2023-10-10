@@ -6,18 +6,13 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './carouselcontainer.scss';
-// import { useArticleQuery } from "../../../data/articles";
+// import { useSelector } from 'react-redux';
+import { useGetArticlesQuery } from '../../data/articles';
 
 function CarouselContainer() {
-    // const { data: articles, isError, isLoading } = useArticleQuery({ id: 'tonId' });
-    
-    // if (isLoading) {
-    //     return <p>Chargement...</p>;
-    // }
-
-    // if (isError) {
-    //     return <p>Erreur lors de la récupération des articles</p>;
-    // }
+    const { data: articles } = useGetArticlesQuery();
+console.log(useGetArticlesQuery())
+    // const articles = useSelector(state => state.articles);
 
     return (
         <div className="swiper">
@@ -33,7 +28,7 @@ function CarouselContainer() {
             modules={[FreeMode, Pagination, Autoplay]}
             className="mySwiper"
             >
-                        <SwiperSlide>Slide 1</SwiperSlide>
+                        {/* <SwiperSlide>Slide 1</SwiperSlide>
         <SwiperSlide>Slide 2</SwiperSlide>
         <SwiperSlide>Slide 3</SwiperSlide>
         <SwiperSlide>Slide 4</SwiperSlide>
@@ -41,14 +36,14 @@ function CarouselContainer() {
         <SwiperSlide>Slide 6</SwiperSlide>
         <SwiperSlide>Slide 7</SwiperSlide>
         <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide>
-        {/* {articles.map((article) => (
+        <SwiperSlide>Slide 9</SwiperSlide> */}
+        {articles?.map((article) => (
             <SwiperSlide key={article.id}>
                 <h2>{article.title}</h2>
                 <p>{article.subtitle}</p>
                 <img src={article.banner} alt={article.title} /> 
-            </SwiperSlide> */}
-        {/* ))} */}
+            </SwiperSlide>
+         ))} 
             </Swiper>
         </div>
 )
