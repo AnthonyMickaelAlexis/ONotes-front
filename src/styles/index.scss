@@ -22,8 +22,34 @@ code {
     monospace;
 }
 
+.boxparagraph {
+  font-size: 1.2rem;
+}
+
 h1 {
   font-size: 1.5rem;
   font-weight: 1000;
   line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+@media (min-width: 600px) {
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
 }

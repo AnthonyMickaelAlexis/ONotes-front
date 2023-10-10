@@ -1,0 +1,41 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    margin: 0.2rem 0.5rem 2.5rem;
+  }
+  
+  .left-section {
+    display: flex;
+    align-items: center;
+  
+    .logo {
+      width: 8rem;
+      margin-top: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  }
+  
+  .right-section {
+    .login-button,
+    .signup-button {
+      margin-left: 0.5rem;
+    }
+  }
+  
+  .login-button {
+    margin-left: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+  
+    &:hover {
+      background-color: black;
+      color: white;
+    }
+  }

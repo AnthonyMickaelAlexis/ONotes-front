@@ -1,18 +1,19 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, Fragment } from 'react';
 import './homepage.scss';
-import { Link } from "react-router-dom";
 import Tag from '../../components/TagComponent';
 import Icon from '../../assets/images/logo192.png';
 import startAnimation from '../../utils/fallingTags';
 import 'swiper/css';
 import 'swiper/css/pagination';
 import CarouselContainer from '../../utils/carouselContainer';
+import Box from '../../utils/boxHomePageContainer';
 import ArrowRight from '../../assets/images/arrow-right.svg';
 import NavigationButtonComponent from '../../components/NavigationButtonComponent';
 import { ModifyHalo } from '../../utils/haloModifier';
 
 
 function Homepage() {
+    
   const fallingTags = [
     {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
     {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
@@ -47,6 +48,7 @@ function Homepage() {
   }, [])
 
   return (
+    <Fragment>
     <div className="homepage">
       <div ref={halo1} className='homepage-halo1'></div>
       <div ref={halo2} className='homepage-halo2'></div>
@@ -55,12 +57,8 @@ function Homepage() {
         <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} />
       )}
       <div ref={canvas} className='homepage-falling-tags-canvas'></div>
-      <Link to="/authentication">
-        Auth
-      </Link>
       {/* HEADER */}
-      <div>logo</div>
-      <div> login button</div>
+
       {/* HEADER END */}
       <section className='homepage-title-and-cta'>
         <h1>Une application pour tout savoir sur tout !</h1>
@@ -89,22 +87,12 @@ function Homepage() {
         </div>
       </section>
         
-        <div> box autour de image communauté
-        <div> component image</div>
-        <div> component image</div>
-        <div>on a même notre application</div>
-        <div> component image</div>
-        <div> logo playstore appstore</div>
-        </div>
+        <Box />
 
         {/* FOOTER */}
-        <div>box du bas 
-        <div> page equipe</div>
-        <div> page mentions légales</div>
-        <div> page cgu </div>
         </div>
         {/* FOOTER */}
-        </div>
+        </Fragment>
   );
 }
 
