@@ -1,68 +1,67 @@
 import React, { Fragment } from 'react';
 import './textfieldcomponent.scss';
 import { PropTypes } from 'prop-types';
-import { ErrorMessage } from "@hookform/error-message";
 import { useFormContext } from "react-hook-form";
 
 function TextFieldComponent({ fieldType, fieldName, label, passwordValue }) {
   const { formState: {errors}, register } = useFormContext();
-  let validation = { required: true };
+  let validation;
   
   switch(fieldName) {
-    case "Password":
-      validation = { 
-        required: "required", 
-        minLength: { 
-          value: 3, 
-          message: "Le mot de passe doit contenir au moins 3 caractères" 
-        } 
-      };
-      break;
     case "Email":
       validation = {
-        ...validation,
+        required: "Vous n'avez pas renseigné votre email.",
         pattern: {
           value: /\S+@\S+\.\S+/,
-          message: "Adresse email invalide"
+          message: "Adresse email invalide."
         }
+      };
+      break;
+    case "FirstName":
+      validation = {
+        required: "Vous n'avez pas renseigné votre prénom.",
+      };
+      break;
+    case "LastName":
+      validation = {
+        required: "Vous n'avez pas renseigné votre nom.",
+      };
+      break;
+    case "Password":
+      validation = { 
+        required: "Vous n'avez pas renseigné votre mot de passe.", 
+        minLength: { 
+          value: 8, 
+          message: "Le mot de passe doit contenir au moins 8 caractères." 
+        } 
       };
       break;
     case "ConfirmPassword":
       validation = {
-        ...validation,
         pattern: {
           value: new RegExp(`^${passwordValue}$`),
-          message: "Mot de passe différent"
-        }
-      };
-      break;
-    default:
-      validation = {
-        ...validation,
-        pattern: {
-          value: 1,
-          message: "Veuillez remplir ce champ"
+          message: "Le mot de passe de confirmation ne correspond pas."
         }
       };
       break;
   }
 
-    return (
-      <Fragment>
+  return (
+    <>
+      <div className='text-field'>
         {label && <label htmlFor={fieldName}>{label}</label>}
-        <input name={fieldName} type={fieldType} defaultValue={""} {...register(fieldName, validation)} />
-        <ErrorMessage errors={errors} name="ErrorInput" />
-        <ErrorMessage errors={errors} name="ErrorInput" render={({ message}) => <p>{message}</p>} />
-        {errors && errors[fieldName] && <span>{errors[fieldName].message}</span>}
-      </Fragment>
-    );
-  }
+        <input name={fieldName} type={fieldType} defaultValue={""} {...register(fieldName, validation )} />
+      </div>
+      {errors && errors[fieldName] && <span>{errors[fieldName].message}</span>}
+    </>
+  );
+}
 
-  TextFieldComponent.propTypes = {
-    fieldType: PropTypes.string.isRequired,
-    fieldName: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    passwordValue: PropTypes.string
-  };
+TextFieldComponent.propTypes = {
+  fieldType: PropTypes.string.isRequired,
+  fieldName: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  passwordValue: PropTypes.string
+};
 
 export default TextFieldComponent;
