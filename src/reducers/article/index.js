@@ -12,6 +12,6 @@ export const articleSlice = createSlice({
     }
 });
 
-export const { setArticle } = articleSlice.actions;
-
 export default articleSlice.reducer;
+
+export const setArticle = state => state.article;

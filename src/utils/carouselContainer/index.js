@@ -6,13 +6,11 @@ import 'swiper/css/free-mode';
 import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './carouselcontainer.scss';
-// import { useSelector } from 'react-redux';
 import { useGetArticlesQuery } from '../../data/articles';
 
+
 function CarouselContainer() {
-    const { data: articles } = useGetArticlesQuery();
-console.log(useGetArticlesQuery())
-    // const articles = useSelector(state => state.articles);
+    const { data: articles, loading: articlesLoading, error: articlesError } = useGetArticlesQuery();
 
     return (
         <div className="swiper">
@@ -28,22 +26,14 @@ console.log(useGetArticlesQuery())
             modules={[FreeMode, Pagination, Autoplay]}
             className="mySwiper"
             >
-                        {/* <SwiperSlide>Slide 1</SwiperSlide>
-        <SwiperSlide>Slide 2</SwiperSlide>
-        <SwiperSlide>Slide 3</SwiperSlide>
-        <SwiperSlide>Slide 4</SwiperSlide>
-        <SwiperSlide>Slide 5</SwiperSlide>
-        <SwiperSlide>Slide 6</SwiperSlide>
-        <SwiperSlide>Slide 7</SwiperSlide>
-        <SwiperSlide>Slide 8</SwiperSlide>
-        <SwiperSlide>Slide 9</SwiperSlide> */}
-        {articles?.map((article) => (
+        {articlesLoading ? (<h1>Loading...</h1>) : articlesError ? ( <h1>Error...</h1>) : (
+        articles?.data.map((article) => (
             <SwiperSlide key={article.id}>
                 <h2>{article.title}</h2>
                 <p>{article.subtitle}</p>
                 <img src={article.banner} alt={article.title} /> 
             </SwiperSlide>
-         ))} 
+         )))} 
             </Swiper>
         </div>
 )
