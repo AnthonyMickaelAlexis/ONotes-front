@@ -46,6 +46,13 @@ function TextFieldComponent({ fieldType, fieldName, label, passwordValue }) {
       break;
   }
 
+  console.log("Field Name: ", fieldName, "Field Type: ", fieldType);
+  console.log("Validation rules for ", fieldName, ": ", validation);
+
+  if (errors && errors[fieldName]) {
+    console.log("Error in field ", fieldName, ": ", errors[fieldName].message);
+  }
+  
   return (
     <>
       <div className='text-field'>

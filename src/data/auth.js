@@ -6,16 +6,16 @@ export const authApi = createApi({
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: ({ email, password }) => ({
-        url: 'user',
+        url: 'login',
         method: 'POST',
         body: { email, password }
       }),
     }),
     signUp: builder.mutation({
-      query: ({ firstName, lastName, username, email, password }) => ({
-        url: 'newuser',
+      query: ({ firstname, lastname, pseudo, email, password, password_confirmation }) => ({
+        url: 'register',
         method: 'POST',
-        body: { firstName, lastName, username, email, password }
+        body: { firstname, lastname, pseudo, email, password, password_confirmation }
       }),
     }),
   }),
