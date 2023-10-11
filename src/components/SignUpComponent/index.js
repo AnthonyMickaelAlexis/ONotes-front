@@ -13,7 +13,6 @@ function SignUpComponent() {
 
   const [send] = useSignUpMutation();
   const onSubmit = (e) => {
-    console.log("Sign up form submitted: ", e);
     send({
       firstname: e.FirstName,
       lastname: e.LastName,
