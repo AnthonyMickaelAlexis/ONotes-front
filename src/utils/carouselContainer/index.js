@@ -8,15 +8,17 @@ import 'swiper/css/autoplay';
 import './carouselcontainer.scss';
 import { useGetArticlesQuery } from '../../data/articles';
 
-
 function CarouselContainer() {
     const { data: articles, loading: articlesLoading, error: articlesError } = useGetArticlesQuery();
 
     return (
         <div className="swiper">
             <Swiper
-            slidesPerView={3}
-            autoplay={3000}
+            slidesPerView={4}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+              }}
             loop={true}
             spaceBetween={30}
             freeMode={true}
@@ -27,10 +29,11 @@ function CarouselContainer() {
             className="mySwiper"
             >
         {articlesLoading ? (<h1>Loading...</h1>) : articlesError ? ( <h1>Error...</h1>) : (
-        articles?.data.map((article) => (
+            articles?.data.map((article) => (
             <SwiperSlide key={article.id}>
+                
+                <p className='author-carousel'>{article.subtitle}</p>
                 <h2>{article.title}</h2>
-                <p>{article.subtitle}</p>
                 <img src={article.banner} alt={article.title} /> 
             </SwiperSlide>
          )))} 
