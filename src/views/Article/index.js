@@ -15,7 +15,9 @@ function Article() {
   if (articleLoading) return <h2>Loading...</h2>;
   if (articleError) return <h2>Error...</h2>;
 
-  const { title, banner, author, created_at, text_content } =
+//   article.data.tag.map((tg) => console.log(tg.name));
+
+  const { title, banner, user, created_at, tag, text_content } =
     article?.data || {};
 
   return (
@@ -27,11 +29,11 @@ function Article() {
       <div className="article-container">
         <div className="article-header">
           <div className="article-tag">
-            <div>TODO article tag</div>
+            <div>{tag?.map((tg) => {tg.name})|| "TODO article tag"}</div>
           </div>
         </div>
         <div className="article-author-date">
-          <div className="article-author">{author || "TODO author"}</div>
+          <div className="article-author">{user?.pseudo || "TODO author"}</div>
           <div className="article-date">
             {formatIsoDate(created_at) || "Date not found"}
           </div>
