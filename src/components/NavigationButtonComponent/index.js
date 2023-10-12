@@ -9,7 +9,6 @@ function NavigationButtonComponent({ text, icon, textColor, bgColor, link, isMen
     navigate(link);
   }
 
-  console.log(isMenuOpen);
   return (
     <div className='navigation-button'>
       <div className='navigation-button-content' style={{color: textColor, backgroundColor: bgColor}} onClick={goToPage}>
