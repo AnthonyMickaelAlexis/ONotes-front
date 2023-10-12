@@ -20,49 +20,57 @@ function CategoriesPage() {
             id: 1,
             title: 'Category 1',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#5B6CFF'
         },
         {
             id: 2,
             title: 'Category 2',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#FF5B5B'
         },
         {
             id: 3,
             title: 'Category 3',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#5BFF5B'
         },
         {
             id: 4,
             title: 'Category 4',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#FF5BFF'
         },
         {
             id: 5,
             title: 'Category 5',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#5B6CFF'
         },
         {
             id: 6,
             title: 'Category 6',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#FF5B5B'
         },
         {
             id: 7,
             title: 'Category 7',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#5BFF5B'
         },
         {
             id: 8,
             title: 'Category 8',
             subTitle: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet.',
-            banner: 'https://picsum.photos/200/300'
+            banner: 'https://picsum.photos/200/300',
+            bgColor: '#FF5BFF'
         }
     ];
 
@@ -85,7 +93,8 @@ function CategoriesPage() {
                             id={category.id}
                             banner={category.banner}
                             title={category.title}
-                            subTitle={category.subTitle} 
+                            subTitle={category.subTitle}
+                            bgColor={category.bgColor} 
                         />
                     ))}
                 </article>
