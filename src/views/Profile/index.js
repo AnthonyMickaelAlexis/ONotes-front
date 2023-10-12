@@ -12,7 +12,6 @@ function ProfileView() {
     const canvas = useRef();
     useEffect(() => {
         startAnimation(canvas.current);
-        console.log(canvas);
     }, [])
     const fallingTags = [
         {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
@@ -28,9 +27,8 @@ function ProfileView() {
         {key: 2, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
         {key: 3, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
       ]
-    const token = localStorage.getItem('token');
-    console.log(token);
-  return (
+
+    return (
     <div className="profile-view">
         <NavigationMenuComponent />
         <section className='profile-view--profile_card'>
