@@ -1,9 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import env from "react-dotenv";
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: env.API_URL }),
+  baseQuery: fetchBaseQuery({ baseUrl: 'http://o-notes-api.laravel-sail.site:8080/api/' }),
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: ({ email, password }) => ({
