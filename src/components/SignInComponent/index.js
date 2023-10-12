@@ -4,10 +4,15 @@ import ButtonComponent from '../ButtonComponent';
 import { useSignInMutation } from "../../data/auth";
 import { useForm, FormProvider } from 'react-hook-form';
 import './signInComponent.scss';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router';
 
 function SignInComponent() {
   const methods = useForm();
+  const navigate = useNavigate();
   const { handleSubmit } = methods;
+
+  const [cookies, setCookie] = useCookies(['token']);
 
   const [send] = useSignInMutation();
   const onSubmit = (e) => {
@@ -16,7 +21,18 @@ function SignInComponent() {
       password: e.Password
     })
     .unwrap()
-  }
+    .then((data) => {
+      setCookie('token', data.access_token);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      if (cookies.token) {
+      navigate('/profile');
+      }
+    })
+}
 
   return (
     <FormProvider {...methods}>

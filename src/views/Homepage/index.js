@@ -10,8 +10,9 @@ import Box from '../../utils/boxHomePageContainer';
 import ArrowRight from '../../assets/images/arrow-right.svg';
 import NavigationButtonComponent from '../../components/NavigationButtonComponent';
 import { ModifyHalo } from '../../utils/haloModifier';
+import PropTypes from 'prop-types';
 
-function Homepage() {
+function Homepage({ isLogged }) {
     
   const fallingTags = [
     {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
@@ -62,7 +63,7 @@ function Homepage() {
       <section className='homepage-title-and-cta'>
         <h1>Une application pour tout savoir sur tout !</h1>
         <p>O&apos;Notes est une plateforme dynamique conçue pour les étudiants passionnés par l&apos;apprentissage collaboratif et la maîtrise des technologies.</p>
-        <NavigationButtonComponent text='DECOUVRIR' icon={ArrowRight} textColor='white' bgColor='black' link='/authentication' />
+        <NavigationButtonComponent text='DECOUVRIR' icon={ArrowRight} textColor='white' bgColor='black' link={!isLogged ? '/authentication' : '/profile'} />
       </section>
       <section className='homepage-part-2'>
         <div className='homepage-part-2-title'>
@@ -94,5 +95,9 @@ function Homepage() {
         </Fragment>
   );
 }
+
+Homepage.propTypes = {
+  isLogged: PropTypes.bool,
+};
 
 export default Homepage;
