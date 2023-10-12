@@ -33,6 +33,10 @@ function ProfileView() {
   return (
     <div className="profile-view">
         <NavigationMenuComponent />
+        <section className='profile-view--profile_card'>
+            <img src='https://picsum.photos/200/300' alt='profile' />
+            <h3>UserName</h3>
+        </section>
         <section className='profile-view--left_section'>
             <article ref={canvas} className='profile-view--tag_container'>
                 <h2>VOS TAGS
@@ -58,10 +62,7 @@ function ProfileView() {
                 )}
             </article>
         </section>
-        <section className='profile-view--profile_card'>
-            <img src='https://picsum.photos/200/300' alt='profile' />
-            <h3>UserName</h3>
-        </section>
+
     </div>
   );
 }
