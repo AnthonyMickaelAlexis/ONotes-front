@@ -1,14 +1,13 @@
 .navigation-button {
-  border: 2px solid black;
-  border-radius: 25px;
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
 
   &-content {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     padding: .8em;
-    border-radius: 25px;
-    gap: .5em;
+    border-radius: 1rem;
+    gap: 1rem;
     cursor: pointer;
 
     &>p {
@@ -20,7 +19,7 @@
     }
 
     &:hover {
-      filter: invert(1);
+      filter: invert(90%);
     }
   }
 }
