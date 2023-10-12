@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import idashboard from '../../assets/icons/dashboard-icon.svg';
 import icatgeories from '../../assets/icons/categories-icon.svg';
 import itags from '../../assets/icons/tags-icon.svg';
@@ -46,6 +46,9 @@ function NavigationMenuComponent() {
     window.addEventListener('resize', () => {
         window.innerWidth > 600 ? setIsMenuOpen(true) : setIsMenuOpen(false);
     })
+    useEffect(() => {
+        window.innerWidth > 600 ? setIsMenuOpen(true) : setIsMenuOpen(false);
+    }, [])
 
     return (
         <div className="navigation-menu">
