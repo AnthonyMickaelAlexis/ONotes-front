@@ -10,7 +10,6 @@ import Box from '../../utils/boxHomePageContainer';
 import ArrowRight from '../../assets/images/arrow-right.svg';
 import NavigationButtonComponent from '../../components/NavigationButtonComponent';
 import { ModifyHalo } from '../../utils/haloModifier';
-import env from "react-dotenv";
 
 function Homepage() {
     
