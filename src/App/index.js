@@ -4,6 +4,7 @@ import Auth from "../views/Auth";
 import Homepage from '../views/Homepage';
 import Layout from '../utils/layout';
 import ProfileView from '../views/Profile';
+import CategoriesPage from '../views/Categories';
 
 function App() {
   const location = useLocation();
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage /> } />
           <Route path="/authentication" element={ <Auth /> } />
+          <Route path="/categories" element={ <CategoriesPage /> } />
           <Route path="/profile" element={ <ProfileView /> } />
         </Routes>
       </Layout>
