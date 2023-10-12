@@ -1,8 +1,8 @@
 .profile-view {
     display: flex;
     height: calc(100vh - 20rem);
-    padding-left: 15rem;
-    padding-right: 2rem;
+    padding-left: 12rem;
+    padding-right: 5rem;
     flex-direction: row-reverse;
     @media screen and (max-width: 900px) {
         align-items: center;
@@ -119,6 +119,7 @@ button {
     outline: none;
     background: none;
     border-radius: 0.5rem;
+    padding: 0.5rem;
     &:hover {
         background-color: #999999;
         cursor: pointer;

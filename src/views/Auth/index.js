@@ -4,9 +4,11 @@ import SignUpComponent from '../../components/SignUpComponent';
 import { Link } from "react-router-dom";
 import ArrowBack from '../../assets/images/arrow-right.svg';
 import './auth.scss';
+import LoaderComponent from '../../components/LoaderComponent';
 
 function Auth() {
   const [authType, setAuthType] = useState('signIn');
+  const [isLoading, setIsLoading] = useState(false);
 
   let Image;
   if (window.innerWidth < 600 || window.innerHeight < 600) {
@@ -17,6 +19,7 @@ function Auth() {
 
   return (
     <div className="authentication">
+      {isLoading && <LoaderComponent />}
       <div className='authentication-image'>
         <img src={Image} />
       </div>
@@ -31,13 +34,13 @@ function Auth() {
         { authType === 'signIn' &&
           <>
             <p onClick={() => setAuthType('signUp')}><strong>Créez un compte gratuitement</strong> si vous n&apos;en avez pas déjà un&nbsp;!</p>
-            <SignInComponent />
+            <SignInComponent setIsLoading={setIsLoading}  isLoading={isLoading} />
           </>
         }
         { authType === 'signUp' &&
           <>
             <p onClick={() => setAuthType('signIn')}><strong>Connectez-vous ici</strong> si vous avez déjà un compte&nbsp;!</p>
-            <SignUpComponent />
+            <SignUpComponent setIsLoading={setIsLoading} isLoading={isLoading} />
           </>
         }
         

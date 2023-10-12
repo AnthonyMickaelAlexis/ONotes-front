@@ -12,6 +12,7 @@ function App() {
   const isHomePage = location.pathname === '/';
   const [cookie] = useCookies(['token']);
   const [isLogged, setIsLogged] = React.useState(false);
+  
   useEffect(() => {
     if (cookie.token === undefined || cookie.token === 'undefined') {
       setIsLogged(false);

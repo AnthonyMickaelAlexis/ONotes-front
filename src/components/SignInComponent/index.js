@@ -6,8 +6,9 @@ import { useForm, FormProvider } from 'react-hook-form';
 import './signInComponent.scss';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router';
+import PropTypes from 'prop-types';
 
-function SignInComponent() {
+function SignInComponent({ setIsLoading, isLoading }) {
   const methods = useForm();
   const navigate = useNavigate();
   const { handleSubmit } = methods;
@@ -16,6 +17,7 @@ function SignInComponent() {
 
   const [send] = useSignInMutation();
   const onSubmit = (e) => {
+    setIsLoading(!isLoading)
     send({
       email: e.Email,
       password: e.Password
@@ -28,6 +30,7 @@ function SignInComponent() {
       console.log(error);
     })
     .finally(() => {
+      setIsLoading(!isLoading)
       if (cookies.token) {
       navigate('/profile');
       }
@@ -48,4 +51,8 @@ function SignInComponent() {
   )
 }
 
+SignInComponent.propTypes = {
+  setIsLoading: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired
+};
 export default SignInComponent;
