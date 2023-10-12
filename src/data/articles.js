@@ -5,7 +5,7 @@ export const articleApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://o-notes-api.laravel-sail.site:8080/api/' }),
   endpoints: (builder) => ({
     getArticle: builder.query({
-      query: (id) => ({ url:`article/${id}` }),
+      query: (id) => `article/${id}`,
     }),
   }),
 });
