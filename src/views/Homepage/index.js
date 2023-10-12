@@ -11,7 +11,6 @@ import ArrowRight from '../../assets/images/arrow-right.svg';
 import NavigationButtonComponent from '../../components/NavigationButtonComponent';
 import { ModifyHalo } from '../../utils/haloModifier';
 
-
 function Homepage() {
     
   const fallingTags = [

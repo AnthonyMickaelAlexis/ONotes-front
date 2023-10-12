@@ -1,21 +1,22 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import env from "react-dotenv";
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'http://127.0.0.1/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: env.API_URL }),
   endpoints: (builder) => ({
     signIn: builder.mutation({
       query: ({ email, password }) => ({
-        url: 'user',
+        url: 'login',
         method: 'POST',
         body: { email, password }
       }),
     }),
     signUp: builder.mutation({
-      query: ({ firstName, lastName, username, email, password }) => ({
-        url: 'newuser',
+      query: ({ firstname, lastname, pseudo, email, password, password_confirmation }) => ({
+        url: 'register',
         method: 'POST',
-        body: { firstName, lastName, username, email, password }
+        body: { firstname, lastname, pseudo, email, password, password_confirmation }
       }),
     }),
   }),
