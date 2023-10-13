@@ -44,10 +44,10 @@ function NavigationMenuComponent() {
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
     window.addEventListener('resize', () => {
-        window.innerWidth > 600 ? setIsMenuOpen(true) : setIsMenuOpen(false);
+        window.innerWidth > 900 ? setIsMenuOpen(true) : setIsMenuOpen(false);
     })
     useEffect(() => {
-        window.innerWidth > 600 ? setIsMenuOpen(true) : setIsMenuOpen(false);
+        window.innerWidth > 900 ? setIsMenuOpen(true) : setIsMenuOpen(false);
     }, [])
 
     return (
