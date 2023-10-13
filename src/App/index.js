@@ -5,6 +5,7 @@ import Homepage from '../views/Homepage';
 import Layout from '../utils/layout';
 import Article from '../views/Article';
 import ProfileView from '../views/Profile';
+import CategoriesPage from '../views/Categories';
 import { useCookies } from 'react-cookie';
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
+          <Route path="/categories" element={ <CategoriesPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
