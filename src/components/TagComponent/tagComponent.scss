@@ -1,5 +1,4 @@
 .tag-component {
-  position: absolute;
   display: flex;
   align-items: center;
   gap: .5em;
@@ -10,6 +9,7 @@
   cursor: pointer;
 
   &>img {
-    width: 25px;
+    max-width: 25px;
+    max-height: 25px;
   }
 }
