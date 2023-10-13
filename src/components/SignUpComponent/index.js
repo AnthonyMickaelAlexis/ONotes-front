@@ -4,9 +4,11 @@ import Button from '../ButtonComponent';
 import { useSignUpMutation } from "../../data/auth";
 import { useForm, FormProvider } from 'react-hook-form';
 import './signUpComponent.scss';
+import { useCookies } from 'react-cookie';
 
 function SignUpComponent() {
   const methods = useForm();
+  const [cookies, setCookie] = useCookies(['token']);
   const { handleSubmit, watch } = methods;
 
   const passwordValue = watch("Password");
@@ -22,6 +24,17 @@ function SignUpComponent() {
       password_confirmation: e.ConfirmPassword
     })
     .unwrap()
+    .then((data) => {
+      setCookie('token', data.access_token);
+    })
+    .catch((error) => {
+      console.log(error);
+    })
+    .finally(() => {
+      if (cookies.token) {
+        window.location.href = "/profile";
+      }
+    })
   }
   
   return (
