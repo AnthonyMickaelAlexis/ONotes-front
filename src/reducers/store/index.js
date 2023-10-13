@@ -4,20 +4,21 @@ import articleReducer from '../article';
 import { authApi } from "../../data/auth";
 import userProfileReducer from "../user";
 import { userProfileApi } from "../../data/user";
-import { carouselArticlesApi } from "../../data/articles";
+import { articlesApi } from "../../data/articles";
+
 
 const store = configureStore({
   reducer: {
     [authApi.reducerPath]: authApi.reducer,
     auth: authReducer,
-    [carouselArticlesApi.reducerPath]: carouselArticlesApi.reducer,
+    [articlesApi.reducerPath]: articlesApi.reducer,
     article: articleReducer,
     [userProfileApi.reducerPath]: userProfileApi.reducer,
     userProfile: userProfileReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
-      .concat(authApi.middleware, carouselArticlesApi.middleware, userProfileApi.middleware)
+      .concat(authApi.middleware, articlesApi.middleware, userProfileApi.middleware)
 });
 
 export default store;
