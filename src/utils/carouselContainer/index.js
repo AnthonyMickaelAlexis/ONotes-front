@@ -8,6 +8,7 @@ import "swiper/css/autoplay";
 import "./carouselcontainer.scss";
 import { useGetArticlesQuery } from "../../data/articles";
 import { formatIsoDate } from "../../utils/date";
+import { useNavigate } from "react-router";
 
 function CarouselContainer() {
   const {
@@ -17,6 +18,7 @@ function CarouselContainer() {
   } = useGetArticlesQuery();
   const [slidesPerView, setSlidesPerView] = useState(4);
   const [showPagination, setShowPagination] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleResize = () => {
@@ -64,7 +66,7 @@ function CarouselContainer() {
           <h1>Error...</h1>
         ) : (
           articles?.data.map((article) => (
-            <SwiperSlide key={article.id}>
+            <SwiperSlide key={article.id}onClick={() => navigate(`article/${article.id}`)}>
               <div className="author-date-line">
                 <p className="author-carousel">{article.user.pseudo}</p>
                 <p className="date-carousel">
