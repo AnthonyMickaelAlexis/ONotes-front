@@ -1,3 +1,3 @@
 window.env = {
-  "API_URL": "http://o-notes-api.laravel-sail.site:8080/api/"
+  "API_URL": "https://kin-onotes-back.rover.ingeeniex.com/api/"
 };
