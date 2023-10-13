@@ -23,8 +23,9 @@
     }
     &_categories {
         display: flex;
-        height: 60%;
+        height: 50%;
         overflow-x: auto;
+        margin-bottom: 2rem;
         &::-webkit-scrollbar {
             display: none;
           }
