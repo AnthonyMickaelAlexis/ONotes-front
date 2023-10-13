@@ -11,6 +11,4 @@ export const carouselArticlesApi = createApi({
   }),
 })
 
-console.log(carouselArticlesApi);
-
 export const { useGetArticlesQuery } = carouselArticlesApi;
