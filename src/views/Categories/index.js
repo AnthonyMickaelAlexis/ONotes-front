@@ -6,13 +6,16 @@ import TagComponent from "../../components/TagComponent";
 import startAnimation from '../../utils/fallingTags';
 import Icon from '../../assets/images/logo192.png';
 import { useGetCategoriesQuery } from "../../data/categories";
+import { useGetHomePageArticlesQuery } from "../../data/articles";
+import { useNavigate } from "react-router-dom";
 
 function CategoriesPage() {
     const canvas = useRef();
+    const navigate = useNavigate();
 
-    const {data} = useGetCategoriesQuery();
+    const {data: categories} = useGetCategoriesQuery();
+    const {data: articles } = useGetHomePageArticlesQuery();
 
-    console.log(data);
     useEffect(() => {
         startAnimation(canvas.current);
     }, [])
@@ -30,19 +33,46 @@ function CategoriesPage() {
             <section className="categories-container">
                 <h2>CATEGORIES</h2>
                 <article className="categories-container_categories">
-                    {data && data?.data.map(category => (
+                    {categories && categories?.data.map(category => (
                         <CategoryCardComponent
                             key={category.id}
                             id={category.id}
                             banner={category.banner}
                             title={category.name}
-                            subTitle={category.subTitle}
+                            subTitle={category.subtitle}
                             bgColor="#5B6CFF"
                         />
                     ))}
                 </article>
+                <h2>ARTICLES</h2>
                 <article className="categories-container_articles">
-                    <h2>ARTICLES</h2>
+                    {articles && articles?.data.map(article =>
+                        <div className='profile-view--articles_container__article' 
+                            style={{padding: '0.5rem', cursor: 'pointer'}}
+                            key={article.id} 
+                            onClick={() => {
+                           navigate(`/article/${article.id}`) 
+                        }}>
+                        <div style={{
+                            width: '50px',
+                            height: '50px',
+                            borderRadius: '50%',
+                            backgroundColor: '#ccc'
+                            }}>
+                            <img src={article.user.avatar} 
+                                style={{
+                                width: '50px',
+                                height: '50px',
+                                borderRadius: '50%',
+                                border: '1px solid #ccc',
+                                backgroundColor: '#ccc'
+                                }} 
+                            />
+                        </div>
+                            <h3>{article.title}</h3>
+                            <p>{article.subtitle} <span>{article.updated_at}</span></p>
+                        </div>
+                    )}
                 </article>
             </section>
             <section className="categories-right">

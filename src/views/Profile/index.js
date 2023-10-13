@@ -23,13 +23,6 @@ function ProfileView() {
     return (
     <div className="profile-view">
         <NavigationMenuComponent />
-        {data &&    ( 
-            <section className='profile-view--profile_card'>
-                <img src={data.data[0].avatar ? data.data[0].avatar : 'https://picsum.photos/200/300'} alt='profile' />
-                <h3>{data.data[0].pseudo}</h3>
-            </section>
-            )
-        }
         <section className='profile-view--left_section'>
             <article ref={canvas} className='profile-view--tag_container'>
                 <h2>VOS TAGS
@@ -59,11 +52,19 @@ function ProfileView() {
                        navigate(`/article/${article.id}`) 
                     }}>
                         <h3>{article.title}</h3>
-                        <p>{article.subTitle} <span>{article.updated_at}</span></p>
+                        <p>{article.subtitle} <span>{article.updated_at}</span></p>
                     </div>
                 )}
             </article>
         </section>
+
+        {data &&    ( 
+            <section className='profile-view--profile_card'>
+                <img src={data.data[0].avatar ? data.data[0].avatar : 'https://picsum.photos/200/300'} alt='profile' />
+                <h3>{data.data[0].pseudo}</h3>
+            </section>
+            )
+        }
 
     </div>
   );

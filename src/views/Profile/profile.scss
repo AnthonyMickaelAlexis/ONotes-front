@@ -1,15 +1,13 @@
 .profile-view {
     display: flex;
     height: calc(100vh - 20rem);
-    padding-left: 12rem;
+    padding-left: 18rem;
     padding-right: 5rem;
-    flex-direction: row-reverse;
     @media screen and (max-width: 900px) {
         align-items: center;
-        padding-left: 2.5rem;
+        padding: 5rem 2rem;
         width: 100%;
-        flex-direction: column;
-        padding-right: 2rem;
+        flex-direction: column-reverse;
     }
 
     &--left_section {
@@ -52,7 +50,7 @@
         &__article {
             padding: 0.8rem;
             margin-bottom: 0.5rem;
-            width: 100%;
+            width: 95%;
             display: flex;
             align-items: center;
             gap: 2rem;
@@ -88,7 +86,7 @@
         padding: 0 1rem 2rem 1rem;
         @media screen and (max-width: 900px) {
             width: 75%;
-            padding: 1rem;
+            padding: 2rem 2rem;
             margin-bottom: 1rem;
             display: flex;
         }

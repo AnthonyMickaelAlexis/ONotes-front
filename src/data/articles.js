@@ -11,8 +11,11 @@ export const articlesApi = createApi({
     getArticles: builder.query({
       query: () => 'articles'
     }),
+    getHomePageArticles: builder.query({
+      query: () => 'articles/homepage'
+    }),
   }),
 });
 
 
-export const { useGetArticleQuery, useGetArticlesQuery } = articlesApi;
+export const { useGetArticleQuery, useGetArticlesQuery, useGetHomePageArticlesQuery } = articlesApi;
