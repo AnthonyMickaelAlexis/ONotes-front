@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-export const articleApi = createApi({
-  reducerPath: "articleApi",
-  baseQuery: fetchBaseQuery({ baseUrl: window.env.API_URL }),
+export const articlesApi = createApi({
+  reducerPath: "articlesApi",
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://kin-onotes-back.rover.ingeeniex.com/api/' }),
   endpoints: (builder) => ({
     getArticle: builder.query({
       query: (id) => `article/${id}`,
@@ -13,4 +13,4 @@ export const articleApi = createApi({
   }),
 });
 
-export const { useGetArticleQuery, useGetArticlesQuery } = articleApi;
+export const { useGetArticleQuery, useGetArticlesQuery } = articlesApi;
