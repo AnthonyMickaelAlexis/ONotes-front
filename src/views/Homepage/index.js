@@ -11,7 +11,6 @@ import ArrowRight from '../../assets/images/arrow-right.svg';
 import NavigationButtonComponent from '../../components/NavigationButtonComponent';
 import { ModifyHalo } from '../../utils/haloModifier';
 
-
 function Homepage() {
     
   const fallingTags = [
@@ -54,7 +53,7 @@ function Homepage() {
       <div ref={halo2} className='homepage-halo2'></div>
       <div ref={halo3} className='homepage-halo3'></div>
       {fallingTags.map(tagElement =>
-        <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} />
+        <Tag key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} position={'absolute'} />
       )}
       <div ref={canvas} className='homepage-falling-tags-canvas'></div>
       {/* HEADER */}
