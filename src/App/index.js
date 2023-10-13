@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from "react-router-dom"
 import Auth from "../views/Auth";
 import Homepage from '../views/Homepage';
 import Layout from '../utils/layout';
+import Article from '../views/Article';
 import ProfileView from '../views/Profile';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage /> } />
           <Route path="/authentication" element={ <Auth /> } />
+          <Route path="/article/:id" element={ <Article /> } />
           <Route path="/profile" element={ <ProfileView /> } />
         </Routes>
       </Layout>
