@@ -1,7 +1,19 @@
+.author-date-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .author-carousel {
   align-items: flex-start;
   font-size: 0.7rem;
   background-color: #eee;
+  margin-left: 1rem;
+}
+
+.date-carousel {
+  font-size: 0.7rem;
+  color : #D3D3D3;
 }
 
 .swiper-pagination {
@@ -40,13 +52,46 @@
   }
 }
 
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 900px) {
+  .author-date-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .author-carousel {
+    margin-top: .5rem;
     align-items: flex-start;
-    font-size: 1.5rem;
+    font-size: 1rem;
     background-color: #eee;
+    margin-left: 0.8rem;
+  }
+
+  .article-title {
+    font-size: 1.2rem;
+  }
+}
+
+@media (min-width: 600px) {
+  .author-date-line {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+ 
+  .author-carousel {
+    margin-top: .5rem;
+    align-items: flex-start;
+    font-size: 1.2rem;
+    background-color: #eee;
+    margin-left: 0.8rem;
+    
   }
   
+  .date-carousel {
+    margin-top: .5rem;
+    font-size: 1.2rem;
+  }
   .swiper {
       padding-top: 0.8rem;
       padding-bottom: 0.8rem;

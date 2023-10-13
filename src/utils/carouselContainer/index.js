@@ -7,6 +7,7 @@ import 'swiper/css/pagination';
 import 'swiper/css/autoplay';
 import './carouselcontainer.scss';
 import { useGetArticlesQuery } from '../../data/articles';
+import { formatIsoDate } from "../../utils/date";
 
 function CarouselContainer() {
     const { data: articles, loading: articlesLoading, error: articlesError } = useGetArticlesQuery();
@@ -17,6 +18,9 @@ function CarouselContainer() {
         const handleResize = () => {
           if (window.innerWidth <= 600) {
             setSlidesPerView(2);
+            setShowPagination(false);
+          } else if (window.innerWidth <= 900)  {
+            setSlidesPerView(3);
             setShowPagination(false);
           } else {
             setSlidesPerView(4);
@@ -50,9 +54,11 @@ function CarouselContainer() {
                 {articlesLoading ? (<h1>Loading...</h1>) : articlesError ? ( <h1>Error...</h1>) : (
                     articles?.data.map((article) => (
                     <SwiperSlide key={article.id}>
-                        
-                        <p className='author-carousel'>{article.subtitle}</p>
-                        <h2>{article.title}</h2>
+                        <div className='author-date-line' >
+                        <p className='author-carousel'>{article.user.pseudo}</p>
+                        <p className='date-carousel'>{formatIsoDate(article.created_at) || "Date not found"}</p>
+                        </div>
+                        <h2 className='article-title'>{article.title}</h2>
                         <img src={article.banner} alt={article.title} /> 
                     </SwiperSlide>
                 )))} 
