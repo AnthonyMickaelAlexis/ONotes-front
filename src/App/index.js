@@ -6,6 +6,7 @@ import Auth from "../views/Auth";
 import Homepage from '../views/Homepage';
 import NewPost from '../views/NewPost';
 import Layout from '../utils/layout';
+import ProfileView from '../views/Profile';
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage /> } />
           <Route path="/authentication" element={ <Auth /> } />
+          <Route path="/profile" element={ <ProfileView /> } />
           <Route path="/new-post/:id" element={ <NewPost /> } />
           <Route path="/new-post/" element={ <NewPost /> } />
         </Routes>

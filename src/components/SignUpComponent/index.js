@@ -14,11 +14,12 @@ function SignUpComponent() {
   const [send] = useSignUpMutation();
   const onSubmit = (e) => {
     send({
-      firstName: e.FirstName,
-      lastName: e.LastName,
-      username: e.Username,
+      firstname: e.FirstName,
+      lastname: e.LastName,
+      pseudo: e.Username,
       email: e.Email,
-      password: e.Password
+      password: e.Password,
+      password_confirmation: e.ConfirmPassword
     })
     .unwrap()
   }

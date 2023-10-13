@@ -1,18 +1,14 @@
-// import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-// export const carouselArticlesApi = createApi({
-//   reducerPath: 'authApi',
-//   baseQuery: fetchBaseQuery({ baseUrl: '127.0.0.1:80/api/' }),
-//   endpoints: (builder) => ({
-//     carousel: builder.query({
-//       query: ({ id }) => ({
-//         url: 'get',
-//         method: 'GET',
-//         body: { id }
-//       }),
-//     }),
+export const carouselArticlesApi = createApi({
+  reducerPath: 'carouselArticlesApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://kin-onotes-back.rover.ingeeniex.com/api/' }),
+  endpoints: (builder) => ({
+    getArticles: builder.query({
+      query: () => 'articles'
+    }),
 
-//   }),
-// })
+  }),
+})
 
-// export const { useArticleQuery } = carouselArticlesApi;
+export const { useGetArticlesQuery } = carouselArticlesApi;
