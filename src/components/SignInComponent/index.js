@@ -25,14 +25,15 @@ function SignInComponent({ setIsLoading, isLoading }) {
     .unwrap()
     .then((data) => {
       setCookie('token', data.access_token);
+      console.log(cookies);
+      setIsLoading(!isLoading)
+      navigate('/profile');
     })
     .catch((error) => {
-      console.log(error);
-    })
-    .finally(() => {
-      setIsLoading(!isLoading)
-      if (cookies.token) {
-      navigate('/profile');
+      if (error.status === 401) {
+        alert('Email ou mot de passe incorrect')
+        setIsLoading(!isLoading)
+        navigate('/');
       }
     })
 }

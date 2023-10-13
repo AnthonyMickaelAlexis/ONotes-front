@@ -4,15 +4,21 @@ import NavigationMenuComponent from '../../components/NavigationMenuComponent';
 import TagComponent from '../../components/TagComponent';
 import Icon from '../../assets/images/logo192.png';
 import startAnimation from '../../utils/fallingTags';
-
-
+import { useGetUserProfileQuery } from '../../data/user';
+import { useCookies } from 'react-cookie';
 
 function ProfileView() {
-
+    const [cookies] = useCookies(['token']);
+    const getProfile = useGetUserProfileQuery({ token: cookies.token });
+    
     const canvas = useRef();
     useEffect(() => {
+        getProfile && (
+            console.log(getProfile.data)
+        )
         startAnimation(canvas.current);
-    }, [])
+    }, [startAnimation, getProfile])
+
     const fallingTags = [
         {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
         {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
