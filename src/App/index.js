@@ -28,8 +28,9 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
-          
+          {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
+          )}
         </Routes>
       </Layout>
     </div>
