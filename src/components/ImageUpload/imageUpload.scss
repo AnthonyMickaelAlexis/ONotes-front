@@ -20,7 +20,7 @@
     border-radius: 1rem;
     border-style: dashed;
     border-color: #cbd5e1;
-    background-color: #f8fafc;
+    background-color: #eef5fb;
 
     &-drag-active {
       background-color: white;
@@ -34,7 +34,8 @@
   }
 
   &-text {
-    background-color: rgba(248, 250, 252, .5);
+    // background-color: rgba(248, 250, 252, .5);
+    background-color: rgba(238, 245, 251, .5);
     padding: .5rem;
     border-radius: 20px;
     z-index: 1;

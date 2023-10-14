@@ -4,7 +4,9 @@
   justify-content: center;
   align-items: center;
   background-color: #eee;
+  left: 0;
   top: 50%;
+  width: 22rem;
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
@@ -41,7 +43,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: .5rem;
+  padding: .5rem .5rem .5rem 3.5rem;
+
+  &>h1 {
+    text-align: center;
+  }
 
   &-categories-and-tags {
     display: flex;
@@ -147,9 +153,10 @@
   &-actions {
     position: fixed;
     bottom: 0;
+    left: 0;
     display: flex;
     justify-content: space-evenly;
-    background-color: #eee;
+    background-color: #f6f6f6;
     border-top: 1px solid #ccc;
     width: 100%;
     padding: .5rem;
@@ -165,10 +172,8 @@
 
   &-new-tag {
     @include popup;
-    width: calc(100% - 2rem);
-    max-width: 25rem;
     height: 30rem;
-    transform: translateY(-15rem);
+    transform: translate(calc(50vw - 11rem), -15rem);
 
     &-container {
       @include popup-container;
@@ -234,9 +239,8 @@
   &-save-confirmation {
     @include popup;
     opacity: 1;
-    width: 22rem;
     height: 5rem;
-    transform: translateY(-2.5rem);
+    transform: translate(calc(50vw - 11rem), -2.5rem);
 
     &-container {
       @include popup-container;
@@ -245,12 +249,15 @@
 
   &-publish-confirmation {
     @include popup;
-    width: 22rem;
     height: 10rem;
-    transform: translateY(-5rem);
+    transform: translate(calc(50vw - 11rem), -5rem);
 
     &-container {
       @include popup-container;
+
+      &>p {
+        text-align: center;
+      }
 
       &-actions {
         display: flex;
@@ -267,11 +274,21 @@
       }
     }
   }
+
+  &-loader {
+    position: fixed;
+    left: 0;
+    transform: translateX(calc(50vw - 11rem));
+    width: 22rem;
+    height: 22rem;
+    filter: invert(1);
+    z-index: 4;
+  }
 }
 
 @media (min-width: 700px) {
   .new-post {
-    padding: 0;
+    padding: 0 0 0 3.5rem;
 
     &-categories-and-tags {
       display: grid;
@@ -317,5 +334,11 @@
         }
       }
     }
+  }
+}
+
+@media (min-width: 900px) {
+  .new-post {
+    padding: 0 0 0 15.5rem;
   }
 }

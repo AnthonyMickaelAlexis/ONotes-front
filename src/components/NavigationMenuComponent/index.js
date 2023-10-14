@@ -14,7 +14,7 @@ function NavigationMenuComponent() {
             "icon": idashboard,
             "textColor": "#000",
             "bgColor": "#fff",
-            "link": "/"
+            "link": "/profile"
         },
         {
             "key": 1,

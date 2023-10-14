@@ -2,14 +2,21 @@ import React, { useEffect, useState, useRef } from 'react';
 import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-import { saveDraft } from '../../reducers/drafts';
+import { useGetCategoriesQuery } from '../../data/categories';
+import { useGetSubCategoriesQuery } from '../../data/subCategories';
+import { useGetTagsQuery } from '../../data/tags';
+import { saveDraft, deleteDraft } from '../../reducers/drafts';
+import { useSendNewArticleMutation } from '../../data/articles';
+import NavigationMenuComponent from '../../components/NavigationMenuComponent';
 import Selector from '../../components/Selector';
 import ImageUpload from '../../components/ImageUpload';
 import ReactQuill from 'react-quill';
 import 'quill/dist/quill.snow.css';
 import sanitizeHtml from 'sanitize-html';
 import Tag from '../../components/TagComponent';
-
+import { useGetUserProfileQuery } from '../../data/user';
+import { useCookies } from 'react-cookie';
+import LoaderComponent from '../../components/LoaderComponent';
 import './newPost.scss';
 
 function NewPost() {
@@ -18,7 +25,6 @@ function NewPost() {
   const dispatch = useDispatch();
   const drafts = useSelector(state => state.drafts);
   const device = useSelector(state => state.misc.device);
-  const draftIndex = useRef();
   const postId = useRef();
   const draftId = useRef();
   const [draftData, setDraftData] = useState({
@@ -45,11 +51,11 @@ function NewPost() {
   // Find the draft id and load it or give new draft id
   useEffect(() => {
     if (id) {
-      draftIndex.current = drafts.findIndex(e => e.draftId.toString() === id);
-      if (draftIndex.current === -1) return navigate('/');
-      postId.current = drafts[draftIndex.current].postId;
-      draftId.current = drafts[draftIndex.current].draftId;
-      setDraftData(drafts[draftIndex.current]);
+      const draftIndex = drafts.findIndex(e => e.draftId.toString() === id);
+      if (draftIndex === -1) return navigate('/new-post');
+      postId.current = drafts[draftIndex].postId;
+      draftId.current = drafts[draftIndex].draftId;
+      setDraftData(drafts[draftIndex]);
     } else {
       let newDraftId = 0;
       drafts.forEach(draft => {
@@ -61,6 +67,16 @@ function NewPost() {
     }
   }, [])
 
+  // Get categories
+  const {data: categoriesList} = useGetCategoriesQuery();
+
+  // Get subCategories
+  const {data: subCategoriesList} = useGetSubCategoriesQuery();
+
+  // Get tags
+  const {data: tagsList} = useGetTagsQuery();
+
+  // Store the draft in redux
   const saveDraftFunction = () => {
     dispatch(saveDraft({
       postId: postId.current,
@@ -128,10 +144,31 @@ function NewPost() {
     action === 'open' ? publishPopup.current.style.display = "flex" : publishPopup.current.style.display = "none";
   }
 
+  // Send draft to API
+  const [cookies] = useCookies(['token']);
+  const profile = useGetUserProfileQuery({ token: cookies.token });
+  const [sendArticle, {isLoading: sendArticleLoading, isSuccess: sendArticleSuccess, isError: sendArticleError}] = useSendNewArticleMutation();
   const publish = () => {
-    handlePublishPopup('close');
+    const profileData = profile.data.data[0];
+    sendArticle({
+      authorId: profileData.id,
+      title: draftData.title,
+      ...(draftData.subtitle !== '') && {subtitle: draftData.subtitle},
+      content: draftData.content,
+      ...(draftData.banner !== '') && {banner: draftData.banner},
+      subCategory: draftData.subCategory.value,
+      token: cookies.token,
+    })
   }
 
+  useEffect(() => {
+    if (sendArticleSuccess) {
+      dispatch(deleteDraft(draftId.current));
+      navigate('/profile');
+    }
+  }, [sendArticleSuccess])
+
+  // Quill toolbar description
   const  modules  = {
     toolbar: [
       [{ font: [] }],
@@ -146,36 +183,15 @@ function NewPost() {
       ["clean"],
     ],
   };
-
-  const options = [
-    { label: "Grapes 🍇", value: "grapes" },
-    { label: "Mango 🥭", value: "mango" },
-    { label: "Strawberry 🍓", value: "strawberry" },
-    { label: "Choix1", value: "choix1" },
-    { label: "Choix2", value: "choix2" },
-    { label: "Choix3", value: "choix3" },
-    { label: "Choix4", value: "choix4" },
-    { label: "Choix5", value: "choix5" },
-  ];
-
-  useEffect(() => {
-    options.sort((a, b) => {
-      if (a.label.toLowerCase() < b.label.toLowerCase()) {
-        return -1;
-      } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-        return 1;
-      }
-      return 0;
-    })
-  }, [])
   
   return (
     <div className='new-post'>
+      <NavigationMenuComponent />
       <h1>Rédigez votre meilleur article !</h1>
       <div className='new-post-categories-and-tags'>
         <div className='new-post-categories-and-tags-category'>
           <Selector
-            items={options}
+            items={categoriesList}
             alreadySelected={[draftData.category]}
             label={'Catégorie'}
             creatable={false}
@@ -186,7 +202,7 @@ function NewPost() {
         </div>
         <div className='new-post-categories-and-tags-subcategory'>
           <Selector
-            items={options}
+            items={subCategoriesList}
             alreadySelected={[draftData.subCategory]}
             label={'Sous-catégorie'}
             creatable={false}
@@ -197,7 +213,7 @@ function NewPost() {
         </div>
         <div className='new-post-categories-and-tags-tags'>
           <Selector
-            items={options}
+            items={tagsList}
             alreadySelected={draftData.tags}
             label={'Tags'}
             creatable={true}
@@ -230,7 +246,7 @@ function NewPost() {
         text={
           device === 'mobile' || device === 'portraitTablet'
           ? 'Ajouter une bannière.'
-          : 'Glissez déposez ou cliquez pour ajouter une bannière.'
+          : `Glissez déposez ou cliquez pour ${draftData.banner === '' ? 'ajouter une' : 'changer de'} bannière.`
         }
         setImage={draftData.banner}
         getImage={banner => setDraftData({...draftData, banner})}
@@ -287,13 +303,40 @@ function NewPost() {
       </div>
       <div ref={publishPopup} className='new-post-publish-confirmation'>
         <div className='new-post-publish-confirmation-container'>
-          <p>Votre article est prêt ? Publiez-le !</p>
-          <div className='new-post-publish-confirmation-container-actions'>
-            <button onClick={() => handlePublishPopup('close')}>Annuler</button>
-            <button onClick={publish}>Publier</button>
-          </div>
+          {draftData.title !== '' && draftData.content !== '' && Object.keys(draftData.subCategory).length !== 0 && sendArticleError !== true &&
+            <>
+              <p>Votre article est prêt ? Publiez-le !</p>
+              <div className='new-post-publish-confirmation-container-actions'>
+                <button onClick={() => handlePublishPopup('close')}>Annuler</button>
+                <button onClick={publish}>Publier</button>
+              </div>
+            </>
+          }
+          {(draftData.title === '' || draftData.content === '' || Object.keys(draftData.subCategory).length === 0) &&
+            <>
+              {draftData.title === '' && <p>Il manque un titre à votre article !</p>}
+              {draftData.content === '' && <p>Vous n&apos;avez tapé aucun texte !</p>}
+              {Object.keys(draftData.subCategory).length === 0 && <p>Vous devez sélectionner une sous catégorie !</p>}
+              <div className='new-post-publish-confirmation-container-actions'>
+                <button onClick={() => handlePublishPopup('close')}>Ok compris !</button>
+              </div>
+            </>
+          }
+          {sendArticleError === true && 
+            <>
+              <p>Mince ! Une erreur s&apos;est produite ! Pas grave, je réessaierai plus tard...</p>
+              <div className='new-post-publish-confirmation-container-actions'>
+                <button onClick={() => handlePublishPopup('close')}>Ok compris !</button>
+              </div>
+            </>
+          }
         </div>
       </div>
+      {sendArticleLoading && 
+        <div className='new-post-loader'>
+          <LoaderComponent />
+        </div>
+      }
     </div>
   );
 }

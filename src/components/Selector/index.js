@@ -15,8 +15,36 @@ const Selector = ({
   getSelectedItems
 }) => {
   const [selected, setSelected] = useState([]);
-  const [itemsList, setItemsList] = useState(items);
+  const [itemsList, setItemsList] = useState([]);
   const isInitialized = useRef(false);
+
+  // Sorting function
+  const sort = (items) => {
+    return items.sort((a, b) => {
+      if (a.label.toLowerCase() < b.label.toLowerCase()) {
+        return -1;
+      } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
+        return 1;
+      }
+      return 0;
+    })
+  }
+
+  // Set items list
+  useEffect(() => {
+    if (!items || typeof items !== 'object') return;
+    if (Object.prototype.hasOwnProperty.call(items, 'data') &&
+        Array.isArray(items.data) &&
+        items.data.length !== 0
+    ) {
+      const formattedItems = items.data.map(item => {
+        return {label: item.name, value: item.id}
+      })
+      setItemsList(sort(formattedItems));
+      return;
+    }
+    setItemsList(sort(items));
+  }, [items])
 
   // Set values already selected
   useEffect(() => {
@@ -107,7 +135,7 @@ const Selector = ({
 }
 
 Selector.propTypes = {
-  items: PropTypes.array.isRequired,
+  items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
   alreadySelected: PropTypes.array,
   label: PropTypes.string.isRequired,
   creatable: PropTypes.bool,

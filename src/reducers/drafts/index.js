@@ -6,9 +6,6 @@ export const draftsSlice = createSlice({
   name: 'drafts',
   initialState,
   reducers: {
-    setDrafts: (state, action) => {
-      state.push(action.payload)
-    },
     saveDraft: (state, action) => {
       const index = state.findIndex(e => e.draftId === action.payload.draftId);
       if (index === -1) {
@@ -16,10 +13,16 @@ export const draftsSlice = createSlice({
       } else {
         state[index] = action.payload;
       }
-    }
+    },
+    deleteDraft: (state, action) => {
+      const index = state.findIndex(e => e.draftId === action.payload);
+      if (index !== -1) {
+        delete state[index];
+      }
+    },
   }
 })
 
-export const { setDraft, saveDraft } = draftsSlice.actions;
+export const { saveDraft, deleteDraft } = draftsSlice.actions;
 
 export default draftsSlice.reducer;
