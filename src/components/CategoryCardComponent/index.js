@@ -13,10 +13,10 @@ function CategoryCardComponent({ banner, title, id, bgColor }) {
 }
 
 CategoryCardComponent.propTypes = {
-    banner: propTypes.string,
+    banner: propTypes.string.isRequired,
     title: propTypes.string.isRequired,
-    subTitle: propTypes.string,
-    id: propTypes.number.isRequired,
+    subTitle: propTypes.string.isRequired,
+    id: propTypes.string.isRequired,
     bgColor: propTypes.string.isRequired,
 }
 
