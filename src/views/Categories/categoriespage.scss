@@ -13,24 +13,31 @@
 }
 .categories-container {
     width: 60%;
+    height: 100%;
     background-color: #fff;
     padding: 1.5rem;
     border-radius: 1rem;
     &>h2 {
         font-size: 1.5rem;
         font-weight: 700;
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
     }
     &_categories {
         display: flex;
-        height: 60%;
+        height: 50%;
         overflow-x: auto;
+        margin-bottom: 2rem;
         &::-webkit-scrollbar {
             display: none;
           }
     }
 
     &_articles {
+        max-height: 35%;
+        overflow-y: scroll;
+        &::-webkit-scrollbar {
+            display: none;
+          }
         &>h2 {
             font-size: 1.5rem;
             font-weight: 700;
