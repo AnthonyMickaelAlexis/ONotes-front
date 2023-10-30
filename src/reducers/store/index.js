@@ -6,7 +6,7 @@ import userProfileReducer from "../user";
 import { userProfileApi } from "../../data/user";
 import { articlesApi } from "../../data/articles";
 import { categoriesApi } from "../../data/categories";
-
+import { subcategoriesApi } from "../../data/subcategories";
 
 const store = configureStore({
   reducer: {
@@ -18,6 +18,8 @@ const store = configureStore({
     userProfile: userProfileReducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
     categories: categoriesApi.reducer,
+    [subcategoriesApi.reducerPath]: subcategoriesApi.reducer,
+    subcategories: subcategoriesApi.reducer,
     
   },
   middleware: (getDefaultMiddleware) =>
@@ -27,6 +29,7 @@ const store = configureStore({
         articlesApi.middleware,
         userProfileApi.middleware,
         categoriesApi.middleware,
+        subcategoriesApi.middleware,
         )
 });
 
