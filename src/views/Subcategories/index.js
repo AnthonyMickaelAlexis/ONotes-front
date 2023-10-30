@@ -1,25 +1,26 @@
 import React, { useEffect, useRef } from "react";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
-import './categoriespage.scss';
+import './subcategoriespage.scss';
 import CategoryCardComponent from "../../components/CategoryCardComponent";
 import TagComponent from "../../components/TagComponent";
 import startAnimation from '../../utils/fallingTags';
 import Icon from '../../assets/images/logo192.png';
-import { useGetCategoriesQuery } from "../../data/categories";
+import { useGetSubcategoriesQuery } from "../../data/subcategories";
 import { useGetHomePageArticlesQuery } from "../../data/articles";
 import { useNavigate } from "react-router-dom";
 
-function CategoriesPage() {
+function SubcategoriesPage() {
     const canvas = useRef();
     const navigate = useNavigate();
 
-    const {data: categories} = useGetCategoriesQuery();
+    const {data: subcategories} = useGetSubcategoriesQuery();
     const {data: articles } = useGetHomePageArticlesQuery();
 
     useEffect(() => {
         startAnimation(canvas.current);
     }, [])
-    
+    console.log(subcategories)
+    console.log(articles)
     const fallingTags = [
         {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
         {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
@@ -31,16 +32,14 @@ function CategoriesPage() {
         <div className="categories-view">
             <NavigationMenuComponent/>
             <section className="categories-container">
-                <h2>CATEGORIES</h2>
+                <h2>SUBCATEGORIES</h2>
                 <article className="categories-container_categories">
-                    {categories && categories?.data.map(category => (
+                    {subcategories && subcategories?.data.map(subcategory => (
                         <CategoryCardComponent
-                            key={category.id}
-                            id={category.id}
-                            banner={category.banner}
-                            bannerBoolean={true}
-                            title={category.name}
-                            subTitle={category.subtitle}
+                            key={subcategory.id}
+                            id={subcategory.id}
+                            bannerBoolean={false}
+                            title={subcategory.name}
                             bgColor="#5B6CFF"
                         />
                     ))}
@@ -91,4 +90,4 @@ function CategoriesPage() {
     );
 }
 
-export default CategoriesPage;
+export default SubcategoriesPage;
