@@ -6,15 +6,12 @@ export const useSubcategoriesSlice = createSlice({
   name: "useSubcategories",
   initialState,
   reducers: {
-    setSubcategories: (state, action) => {
-      state.token = action.payload;
-    },
     setSubcategory: (state, action) => {
       state.token = action.payload;
     },
   },
 });
 
-export const { setSubcategories, setSubcategory } = useSubcategoriesSlice.actions;
+export const { setSubcategory } = useSubcategoriesSlice.actions;
 
 export default useSubcategoriesSlice.reducer;
