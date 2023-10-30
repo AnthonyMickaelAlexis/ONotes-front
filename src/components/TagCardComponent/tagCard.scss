@@ -1,0 +1,16 @@
+.tag-icon {
+    width: 100px;
+    height: 100px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  
+    .tag-symbol {
+      font-size: 2em;
+    }
+  }
+  
