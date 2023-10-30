@@ -19,8 +19,7 @@ function SubcategoriesPage() {
     useEffect(() => {
         startAnimation(canvas.current);
     }, [])
-    console.log(subcategories)
-    console.log(articles)
+
     const fallingTags = [
         {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
         {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
