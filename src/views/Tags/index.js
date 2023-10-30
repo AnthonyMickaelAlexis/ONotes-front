@@ -1,14 +1,12 @@
-import React, { useRef } from "react";
+import React from "react";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
 import "./tagspage.scss";
 import TagCardComponent from "../../components/TagCardComponent";
-import Icon from "../../assets/images/logo192.png";
 import { useGetTagsQuery } from "../../data/tags";
 import { useGetHomePageArticlesQuery } from "../../data/articles";
 import { useNavigate } from "react-router-dom";
 
 function TagsPage() {
-  const canvas = useRef();
   const navigate = useNavigate();
 
   const { data: tags } = useGetTagsQuery();
@@ -22,13 +20,7 @@ function TagsPage() {
         <article className="categories-container_categories">
           {tags &&
             tags?.data.map((tag) => (
-              <TagCardComponent
-                key={tag.id}
-                id={tag.id}
-                bannerBoolean={true}
-                title={tag.name}
-                logo={tag.logo}
-              />
+              <TagCardComponent key={tag.id} tag={tag} />
             ))}
         </article>
         <h2>ARTICLES</h2>

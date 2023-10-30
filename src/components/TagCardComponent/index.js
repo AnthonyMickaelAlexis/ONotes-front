@@ -4,9 +4,11 @@ import React from "react";
 import "./tagCard.scss";
 
 const TagCardComponent = ({ tag }) => (
-  <div>
-    <div className="tag-symbol">{tag.logo}</div>
-    <div>{tag.name}</div>
+  <div className="tag-card">
+    <div className="tag-symbol">
+      <img src={tag.logo} alt={tag.name} />
+    </div>
+    <div className="tag-name">{tag.name.toUpperCase()}</div>
   </div>
 );
 
