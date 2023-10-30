@@ -33,6 +33,7 @@ function App() {
           <Route path="/authentication" element={ <Auth /> } />
           <Route path="/categories" element={ <CategoriesPage /> } />
           <Route path="/subcategories" element={ <SubcategoriesPage /> } />
+          <Route path="/category/:id" element={ <SubcategoriesPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
