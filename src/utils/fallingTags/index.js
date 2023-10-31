@@ -7,14 +7,14 @@ function startAnimation(scene) {
 
   // module aliases
   const Engine = Matter.Engine,
-        Render = Matter.Render,
-        Runner = Matter.Runner,
-        Bodies = Matter.Bodies,
-        Composite = Matter.Composite;
-
+  Render = Matter.Render,
+  Runner = Matter.Runner,
+  Bodies = Matter.Bodies,
+  Composite = Matter.Composite;
+  
   // create an engine
   const engine = Engine.create();
-
+  
   // create a renderer
   const render = Render.create({
     element: scene,

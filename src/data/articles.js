@@ -11,6 +11,9 @@ export const articlesApi = createApi({
     getArticles: builder.query({
       query: () => 'articles'
     }),
+    getHomePageArticles: builder.query({
+      query: () => 'articles?limit=20'
+    }),
     sendArticle: builder.mutation({
       query: (data) => ({
         url: `article/${data.postId !== undefined ? data.postId : ''}`,
@@ -36,4 +39,5 @@ export const articlesApi = createApi({
   }),
 });
 
-export const { useGetArticleQuery, useGetArticlesQuery, useSendArticleMutation } = articlesApi;
+
+export const { useGetArticleQuery, useGetArticlesQuery, useGetHomePageArticlesQuery, useSendArticleMutation } = articlesApi;

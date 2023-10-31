@@ -1,17 +1,32 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import env from "react-dotenv";
 
+
 export const tagsApi = createApi({
-  reducerPath: "tagsApi",
-  baseQuery: fetchBaseQuery({ baseUrl: env.API_URL }),
+  reducerPath: 'tagsApi',
+  baseQuery: fetchBaseQuery({ 
+    baseUrl: env.API_URL,
+  }),
   endpoints: (builder) => ({
     getTags: builder.query({
-      query: () => 'tags',
+      query: () => ({
+        url: 'tags',
+        method: 'GET'
+      }),
     }),
-    getHomepageTags: builder.query({
-      query: () => 'tags/homepage',
+    getTag: builder.query({
+      query: (id) => ({
+        url: `tag/${id}`,
+        method: 'GET'
+      }),
+    }),
+    getTagsHomepage: builder.query({
+      query: () => ({
+        url: 'tags/homepage',
+        method: 'GET'
+      }),
     }),
   }),
-});
+})
 
-export const { useGetTagsQuery, useGetHomepageTagsQuery } = tagsApi;
+export const { useGetTagsQuery, useGetTagQuery, useGetTagsHomepageQuery } = tagsApi;

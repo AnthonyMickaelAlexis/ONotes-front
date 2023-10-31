@@ -1,46 +1,28 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import './profile.scss';
 import NavigationMenuComponent from '../../components/NavigationMenuComponent';
 import TagComponent from '../../components/TagComponent';
-import Icon from '../../assets/images/logo192.png';
 import startAnimation from '../../utils/fallingTags';
 import { useGetUserProfileQuery } from '../../data/user';
 import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router-dom';
 
 function ProfileView() {
-    const [cookies] = useCookies(['token']);
-    const getProfile = useGetUserProfileQuery({ token: cookies.token });
-    
     const canvas = useRef();
+    const navigate = useNavigate();
+    const [cookies] = useCookies(['token']);
+    const {data} = useGetUserProfileQuery({ token: cookies.token })
+    
+    const articles = data?.data[1];
+    const fallingTags = data?.data[2];
+    
     useEffect(() => {
-        getProfile && (
-            console.log(getProfile.data)
-        )
         startAnimation(canvas.current);
-    }, [startAnimation, getProfile])
-
-    const fallingTags = [
-        {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
-        {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
-        {key: 2, icon: Icon, text: 'React', textColor: 'white', bgColor: 'green'},
-        {key: 3, icon: Icon, text: 'React', textColor: 'white', bgColor: 'black'},
-        {key: 4, icon: Icon, text: 'React', textColor: 'white', bgColor: 'purple'},
-      ]
-
-      const articles = [
-        {key: 0, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
-        {key: 1, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
-        {key: 2, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
-        {key: 3, title: 'React', subTitle: 'A short react\'s description', date: '22/10/2023'},
-      ]
+    }, [startAnimation])
 
     return (
     <div className="profile-view">
         <NavigationMenuComponent />
-        <section className='profile-view--profile_card'>
-            <img src='https://picsum.photos/200/300' alt='profile' />
-            <h3>UserName</h3>
-        </section>
         <section className='profile-view--left_section'>
             <article ref={canvas} className='profile-view--tag_container'>
                 <h2>VOS TAGS
@@ -49,7 +31,14 @@ function ProfileView() {
                     </button>
                 </h2>
                 {fallingTags && fallingTags.map(tagElement =>
-                    <TagComponent key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} position={'absolute'} />
+                    <TagComponent 
+                        key={`tag${tagElement.key}`}
+                        icon={tagElement.icon}
+                        text={tagElement.text}
+                        textColor={tagElement.textColor}
+                        bgColor={tagElement.bgColor}
+                        position={'absolute'}
+                />
                 )}
             </article>
             <article className='profile-view--articles_container'>
@@ -59,13 +48,23 @@ function ProfileView() {
                     </button>
                 </h2>
                 {articles && articles.map(article =>
-                    <div className='profile-view--articles_container__article' key={article.key}>
+                    <div className='profile-view--articles_container__article' key={article.id} onClick={() => {
+                       navigate(`/article/${article.id}`) 
+                    }}>
                         <h3>{article.title}</h3>
-                        <p>{article.subTitle} <span>{article.date}</span></p>
+                        <p>{article.subtitle} <span>{article.updated_at}</span></p>
                     </div>
                 )}
             </article>
         </section>
+
+        {data &&    ( 
+            <section className='profile-view--profile_card'>
+                <img src={data.data[0].avatar ? data.data[0].avatar : 'https://picsum.photos/200/300'} alt='profile' />
+                <h3>{data.data[0].pseudo}</h3>
+            </section>
+            )
+        }
 
     </div>
   );
