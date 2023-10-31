@@ -30,6 +30,7 @@ function SubcategoriesPage() {
               bannerBoolean={false}
               title={subcategory.name}
               bgColor="#5B6CFF"
+              categoryBoolean={false}
             />
           ))}
         </article>
