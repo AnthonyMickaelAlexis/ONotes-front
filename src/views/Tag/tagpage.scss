@@ -1,4 +1,4 @@
-.categories-view {
+.tag-view {
     display: flex;
     height: calc(100vh - 20rem);
     padding-left: 18rem;
@@ -11,8 +11,8 @@
     }
 
 }
-.categories-container {
-    width: 60%;
+.tag-container {
+    width: 95%;
     height: 100%;
     background-color: #fff;
     padding: 1.5rem;
@@ -21,8 +21,10 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        display: flex;
+        justify-content: center;
     }
-    &_categories {
+    &_tag {
         display: flex;
         height: 50%;
         overflow-x: auto;
@@ -46,7 +48,7 @@
     }
 }
 
-.categories-right {
+.tag-right {
     margin-left: 1rem;
     width: 60%;
 

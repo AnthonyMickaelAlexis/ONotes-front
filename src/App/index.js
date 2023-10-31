@@ -6,7 +6,11 @@ import Layout from '../utils/layout';
 import Article from '../views/Article';
 import ProfileView from '../views/Profile';
 import CategoriesPage from '../views/Categories';
+import TagsPage from '../views/Tags';
 import { useCookies } from 'react-cookie';
+import SubcategoriesPage from '../views/Subcategories';
+import NotFound from '../views/Notfound';
+import TagPage from '../views/Tag';
 
 function App() {
   const location = useLocation();
@@ -31,11 +35,15 @@ function App() {
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
           <Route path="/categories" element={ <CategoriesPage /> } />
+          <Route path="/subcategory/:id" element={ <SubcategoriesPage /> } />
+          <Route path="/tags" element={ <TagsPage /> } />
+          <Route path="/tag/:id" element={ <TagPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
           <Route path="/article/:id" element={ <Article /> } />
           <Route path="/profile" element={ <ProfileView /> } />
+          <Route path="*" element={<NotFound />} /> 
         </Routes>
       </Layout>
     </div>

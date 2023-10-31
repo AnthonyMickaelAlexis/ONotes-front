@@ -1,8 +1,9 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import env from "react-dotenv";
 
 export const articlesApi = createApi({
   reducerPath: "articlesApi",
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://kin-onotes-back.rover.ingeeniex.com/api/' }),
+  baseQuery: fetchBaseQuery({ baseUrl: env.API_URL }),
   endpoints: (builder) => ({
     getArticle: builder.query({
       query: (id) => `article/${id}`,
@@ -10,7 +11,11 @@ export const articlesApi = createApi({
     getArticles: builder.query({
       query: () => 'articles'
     }),
+    getHomePageArticles: builder.query({
+      query: () => 'articles?limit=20'
+    }),
   }),
 });
 
-export const { useGetArticleQuery, useGetArticlesQuery } = articlesApi;
+
+export const { useGetArticleQuery, useGetArticlesQuery, useGetHomePageArticlesQuery } = articlesApi;
