@@ -7,7 +7,7 @@ function CategoryCardComponent({ banner, title, id, bannerBoolean }) {
   const navigate = useNavigate();
 
   const navigateToSubcategory = () => {
-    navigate(`/category/${id}`);
+    navigate(`/subcategory/${id}`);
   };
   return (
     <div

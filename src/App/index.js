@@ -9,6 +9,7 @@ import CategoriesPage from '../views/Categories';
 import TagsPage from '../views/Tags';
 import { useCookies } from 'react-cookie';
 import SubcategoriesPage from '../views/Subcategories';
+import NotFound from '../views/Notfound';
 import TagPage from '../views/Tag';
 
 function App() {
@@ -34,7 +35,7 @@ function App() {
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
           <Route path="/categories" element={ <CategoriesPage /> } />
-          <Route path="/subcategories/:id" element={ <SubcategoriesPage /> } />
+          <Route path="/subcategory/:id" element={ <SubcategoriesPage /> } />
           <Route path="/tags" element={ <TagsPage /> } />
           <Route path="/tag/:id" element={ <TagPage /> } />
           {isLogged && (
@@ -42,6 +43,7 @@ function App() {
           )}
           <Route path="/article/:id" element={ <Article /> } />
           <Route path="/profile" element={ <ProfileView /> } />
+          <Route path="*" element={<NotFound />} /> 
         </Routes>
       </Layout>
     </div>
