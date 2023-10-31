@@ -19,8 +19,6 @@ function TagPage() {
 
   const tagInfo = response.data[0];
   const articles = response.data[1];
-  console.log("Tags:", tagInfo, "id", id);
-  console.log("articles", articles);
 
   return (
     <div className="tag-view">
