@@ -13,18 +13,20 @@ function TagsPage() {
   const { data: articles } = useGetHomePageArticlesQuery();
 
   return (
-    <div className="categories-view">
+    <div className="tags-view">
       <NavigationMenuComponent />
-      <section className="categories-container">
+      <section className="tags-container">
         <h2>TOUS LES TAGS</h2>
-        <article className="categories-container_categories">
+        <article className="tags-container_tags">
           {tags &&
             tags?.data.map((tag) => (
               <TagCardComponent key={tag.id} tag={tag} />
             ))}
         </article>
-        <h2>ARTICLES</h2>
-        <article className="categories-container_articles">
+      </section>
+      <section className="tags-right-articles-container">
+        <article className="tags-container_articles">
+          <h2>ARTICLES</h2>
           {articles &&
             articles?.data.map((article) => (
               <div
