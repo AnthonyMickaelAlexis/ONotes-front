@@ -9,8 +9,6 @@ import draftsReducer from '../drafts';
 import miscReducer from '../misc';
 import { categoriesApi } from "../../data/categories";
 import { subcategoriesApi } from "../../data/subcategories";
-import { tagsApi } from "../../data/tags";import { categoriesApi } from "../../data/categories";
-import { subcategoriesApi } from "../../data/subcategories";
 import { tagsApi } from "../../data/tags";
 
 const store = configureStore({
