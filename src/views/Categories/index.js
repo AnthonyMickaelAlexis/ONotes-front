@@ -42,6 +42,7 @@ function CategoriesPage() {
                             title={category.name}
                             subTitle={category.subtitle}
                             bgColor="#5B6CFF"
+                            categoryBoolean={true}
                         />
                     ))}
                 </article>
