@@ -32,7 +32,7 @@ function App() {
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
           <Route path="/categories" element={ <CategoriesPage /> } />
-          <Route path="/subcategories" element={ <SubcategoriesPage /> } />
+          <Route path="/subcategories/:id" element={ <SubcategoriesPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
