@@ -9,6 +9,7 @@ import CategoriesPage from '../views/Categories';
 import TagsPage from '../views/Tags';
 import { useCookies } from 'react-cookie';
 import SubcategoriesPage from '../views/Subcategories';
+import TagPage from '../views/Tag';
 
 function App() {
   const location = useLocation();
@@ -35,6 +36,7 @@ function App() {
           <Route path="/categories" element={ <CategoriesPage /> } />
           <Route path="/subcategories/:id" element={ <SubcategoriesPage /> } />
           <Route path="/tags" element={ <TagsPage /> } />
+          <Route path="/tag/:id" element={ <TagPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
