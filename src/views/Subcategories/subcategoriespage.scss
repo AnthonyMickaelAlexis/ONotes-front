@@ -1,4 +1,4 @@
-.categories-view {
+.subcategories-view {
     display: flex;
     height: calc(100vh - 20rem);
     padding-left: 18rem;
@@ -11,7 +11,7 @@
     }
 
 }
-.categories-container {
+.subcategories-container {
     width: 60%;
     height: 100%;
     background-color: #fff;
@@ -22,7 +22,7 @@
         font-weight: 700;
         margin-bottom: 1rem;
     }
-    &_categories {
+    &_subcategories {
         display: flex;
         height: 50%;
         overflow-x: auto;
@@ -46,7 +46,7 @@
     }
 }
 
-.categories-right {
+.subcategories-right {
     margin-left: 1rem;
     width: 60%;
 

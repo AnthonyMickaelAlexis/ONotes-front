@@ -17,12 +17,12 @@ function SubcategoriesPage() {
   const { data: articles } = useGetHomePageArticlesQuery();
 
   return (
-    <div className="categories-view">
+    <div className="subcategories-view">
       <NavigationMenuComponent />
-      <section className="categories-container">
+      <section className="subcategories-container">
         <h2>SUBCATEGORIES {subcategories?.data[0].name.toUpperCase()}</h2>
 
-        <article className="categories-container_categories">
+        <article className="subcategories-container_subcategories">
           {subcategories?.data[1].map((subcategory) => (
             <CategoryCardComponent
               key={subcategory.id}
@@ -34,7 +34,7 @@ function SubcategoriesPage() {
           ))}
         </article>
         <h2>ARTICLES</h2>
-        <article className="categories-container_articles">
+        <article className="subcategories-container_articles">
           {articles &&
             articles?.data.map((article) => (
               <div
@@ -72,11 +72,11 @@ function SubcategoriesPage() {
             ))}
         </article>
       </section>
-      <section className="categories-right">
-        <article className="categories-right--tags">
+      <section className="subcategories-right">
+        <article className="subcategories-right--tags">
           <h2>TOP TAGS</h2>
         </article>
-        <article className="categories-right--write">
+        <article className="subcategories-right--write">
           <h2>WRITE AN ARTICLE</h2>
         </article>
       </section>
