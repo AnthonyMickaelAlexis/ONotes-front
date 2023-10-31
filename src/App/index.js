@@ -6,6 +6,7 @@ import Layout from '../utils/layout';
 import Article from '../views/Article';
 import ProfileView from '../views/Profile';
 import CategoriesPage from '../views/Categories';
+import TagsPage from '../views/Tags';
 import { useCookies } from 'react-cookie';
 import SubcategoriesPage from '../views/Subcategories';
 
@@ -33,6 +34,7 @@ function App() {
           <Route path="/authentication" element={ <Auth /> } />
           <Route path="/categories" element={ <CategoriesPage /> } />
           <Route path="/subcategories/:id" element={ <SubcategoriesPage /> } />
+          <Route path="/tags" element={ <TagsPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}
