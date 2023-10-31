@@ -2,10 +2,11 @@ import React from "react";
 import { PropTypes } from 'prop-types';
 import './tagComponent.scss';
 import { useNavigate } from "react-router-dom";
-function TagComponent({ icon, text, textColor, bgColor, link, position }) {
+
+function TagComponent({ id, icon, text, textColor, bgColor, link, position }) {
   const navigate = useNavigate();
   const goToRoute = () => {
-    link ? navigate(link) : navigate('/');
+    link ? navigate(link) : navigate(`/tag/${id}`);
   }
   return (
     <div className='tag-component falling-tag' style={{backgroundColor: bgColor, position: `${position ? position : 'relative'}`}} onClick={goToRoute}>
@@ -15,6 +16,7 @@ function TagComponent({ icon, text, textColor, bgColor, link, position }) {
   )
 }
 TagComponent.propTypes = {
+  id: PropTypes.number,
   icon: PropTypes.string,
   text: PropTypes.string.isRequired,
   textColor: PropTypes.string.isRequired,

@@ -20,7 +20,13 @@ export const tagsApi = createApi({
         method: 'GET'
       }),
     }),
+    getTagsHomepage: builder.query({
+      query: () => ({
+        url: 'tags/homepage',
+        method: 'GET'
+      }),
+    }),
   }),
 })
 
-export const { useGetTagsQuery, useGetTagQuery } = tagsApi;
+export const { useGetTagsQuery, useGetTagQuery, useGetTagsHomepageQuery } = tagsApi;

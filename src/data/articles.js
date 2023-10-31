@@ -12,7 +12,7 @@ export const articlesApi = createApi({
       query: () => 'articles'
     }),
     getHomePageArticles: builder.query({
-      query: () => 'articles/homepage'
+      query: () => 'articles?limit=20'
     }),
   }),
 });
