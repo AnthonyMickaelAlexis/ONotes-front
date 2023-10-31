@@ -11,10 +11,13 @@ export const useTagsSlice = createSlice({
     },
     setTag: (state, action) => {
         state.token = action.payload
-    }
+    },
+    setTagsHomepage: (state, action) => {
+        state.token = action.payload
+    },
   }
 })
 
-export const { setTags, setTag } = useTagsSlice.actions;
+export const { setTags, setTag, setTagsHomepage } = useTagsSlice.actions;
 
 export default useTagsSlice.reducer;
