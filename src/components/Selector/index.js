@@ -32,18 +32,11 @@ const Selector = ({
 
   // Set items list
   useEffect(() => {
-    if (!items || typeof items !== 'object') return;
-    if (Object.prototype.hasOwnProperty.call(items, 'data') &&
-        Array.isArray(items.data) &&
-        items.data.length !== 0
-    ) {
-      const formattedItems = items.data.map(item => {
-        return {label: item.name, value: item.id}
-      })
-      setItemsList(sort(formattedItems));
-      return;
-    }
-    setItemsList(sort(items));
+    if (!items || !Array.isArray(items) || items.length === 0) return;
+    const formattedItems = items.map(item => {
+      return {label: item.name, value: item.id}
+    })
+    setItemsList(sort(formattedItems)); 
   }, [items])
 
   // Set values already selected
@@ -83,15 +76,7 @@ const Selector = ({
       if (createdTag === true) {
         created(selected[selected.length-1].label);
         const newItemsList = [...itemsList, selected[selected.length-1]];
-        newItemsList.sort((a, b) => {
-          if (a.label.toLowerCase() < b.label.toLowerCase()) {
-            return -1;
-          } else if (a.label.toLowerCase() > b.label.toLowerCase()) {
-            return 1;
-          }
-          return 0;
-        })
-        setItemsList(newItemsList);
+        setItemsList(sort(newItemsList));
       }
     }
   }, [selected])
@@ -99,6 +84,8 @@ const Selector = ({
   // Remove value from selected values list
   useEffect(() => {
     if (deleteItem && deleteItem[0] !== 0) {
+      let newList = itemsList.filter(item => item.label !== deleteItem[1]);
+      setItemsList(newList);
       let newSelected = selected.filter(item => item.label !== deleteItem[1]);
       setSelected(newSelected);
     }
@@ -135,7 +122,7 @@ const Selector = ({
 }
 
 Selector.propTypes = {
-  items: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
+  items: PropTypes.oneOfType([PropTypes.bool, PropTypes.array]),
   alreadySelected: PropTypes.array,
   label: PropTypes.string.isRequired,
   creatable: PropTypes.bool,

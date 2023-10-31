@@ -11,18 +11,29 @@ export const articlesApi = createApi({
     getArticles: builder.query({
       query: () => 'articles'
     }),
-    sendNewArticle: builder.mutation({
-      query: ({ authorId, title, subtitle, content, banner, subCategory, token }) => ({
-        url: 'article',
-        method: 'POST',
-        body: { user_id: authorId, title, subtitle, text_content: content, banner, subcategory_id: subCategory },
+    sendArticle: builder.mutation({
+      query: (data) => ({
+        url: `article/${data.postId !== undefined ? data.postId : ''}`,
+        method: data.method,
+        body: {
+          user_id: data.authorId,
+          title: data.title,
+          ...(data.subtitle !== undefined) && {subtitle: data.subtitle},
+          ...(data.excerpt !== undefined) && {resume: data.excerpt},
+          text_content: data.content,
+          ...(data.banner !== undefined) && {banner: data.banner},
+          subcategory_id: data.subCategory,
+          ...(data.tags !== undefined) && {tags: data.tags},
+          ...(data.newTags !== undefined) && {new_tags: data.newTags},
+          status: data.status
+        },
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${data.token}`
         }
       }),
     }),
   }),
 });
 
-export const { useGetArticleQuery, useGetArticlesQuery, useSendNewArticleMutation } = articlesApi;
+export const { useGetArticleQuery, useGetArticlesQuery, useSendArticleMutation } = articlesApi;

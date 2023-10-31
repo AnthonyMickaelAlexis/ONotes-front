@@ -56,8 +56,14 @@ function App() {
           )}
           <Route path="/article/:id" element={ <Article /> } />
           <Route path="/profile" element={ <ProfileView /> } />
-          <Route path="/new-post/:id" element={ <NewPost /> } />
-          <Route path="/new-post/" element={ <NewPost /> } />
+          {[
+            "/new-post",
+            "/new-post/draft/:draftId",
+            "/new-post/post/:postId",
+            "/new-post/draft/:draftId/post/:postId"
+          ].map((path, index) => (
+            <Route key={index} path={path} element={<NewPost />} />
+          ))}
         </Routes>
       </Layout>
     </div>

@@ -8,7 +8,19 @@ export const categoriesApi = createApi({
     getCategories: builder.query({
       query: () => 'categories',
     }),
+    getCategory: builder.query({
+      query: id => ({
+        url: `category/${id}`,
+        method: 'GET'
+      })
+    }),
+    getSubcategoriesByCategory: builder.query({
+      query: param => ({
+        url: `category/${param}`,
+        method: 'GET'
+      })
+    }),
   }),
 });
 
-export const { useGetCategoriesQuery } = categoriesApi;
+export const { useGetCategoriesQuery, useGetCategoryQuery, useGetSubcategoriesByCategoryQuery } = categoriesApi;

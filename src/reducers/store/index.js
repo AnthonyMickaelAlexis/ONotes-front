@@ -8,7 +8,7 @@ import { articlesApi } from "../../data/articles";
 import draftsReducer from '../drafts';
 import miscReducer from '../misc';
 import { categoriesApi } from "../../data/categories";
-import { subCategoriesApi } from "../../data/subCategories";
+import { subcategoriesApi } from "../../data/subcategories";
 import { tagsApi } from "../../data/tags";
 
 const store = configureStore({
@@ -22,7 +22,7 @@ const store = configureStore({
     drafts: draftsReducer,
     misc: miscReducer,
     [categoriesApi.reducerPath]: categoriesApi.reducer,
-    [subCategoriesApi.reducerPath]: subCategoriesApi.reducer,
+    [subcategoriesApi.reducerPath]: subcategoriesApi.reducer,
     [tagsApi.reducerPath]: tagsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -32,7 +32,7 @@ const store = configureStore({
         articlesApi.middleware,
         userProfileApi.middleware,
         categoriesApi.middleware,
-        subCategoriesApi.middleware,
+        subcategoriesApi.middleware,
         tagsApi.middleware,
       )
 });
