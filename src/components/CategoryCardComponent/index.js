@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import propTypes from "prop-types";
 import "./categorycard.scss";
 
-function CategoryCardComponent({ banner, title, id, bgColor, bannerBoolean }) {
+function CategoryCardComponent({ banner, title, id, bannerBoolean }) {
   const navigate = useNavigate();
 
   const navigateToSubcategory = () => {
@@ -12,7 +12,6 @@ function CategoryCardComponent({ banner, title, id, bgColor, bannerBoolean }) {
   return (
     <div
       className="category-card"
-      style={{ backgroundColor: bgColor }}
       onClick={navigateToSubcategory}
     >
       {bannerBoolean && <img src={banner} />}
@@ -27,7 +26,6 @@ CategoryCardComponent.propTypes = {
   title: propTypes.string.isRequired,
   subTitle: propTypes.string,
   id: propTypes.number.isRequired,
-  bgColor: propTypes.string.isRequired,
   bannerBoolean: propTypes.bool.isRequired,
 };
 

@@ -1,35 +1,36 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
-import "./tagspage.scss";
+import "./tagpage.scss";
 import TagCardComponent from "../../components/TagCardComponent";
-import { useGetTagsQuery } from "../../data/tags";
-import { useGetHomePageArticlesQuery } from "../../data/articles";
+import { useGetTagQuery } from "../../data/tags";
 import { useNavigate } from "react-router-dom";
 import { formatIsoDate } from "../../utils/date";
 
-function TagsPage() {
+function TagPage() {
+  const { id } = useParams();
+  const { data: response } = useGetTagQuery(id);
+
   const navigate = useNavigate();
 
-  const { data: tags } = useGetTagsQuery();
-  const { data: articles } = useGetHomePageArticlesQuery();
+  if (!response || !response.data || response.data.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const tagInfo = response.data[0];
+  const articles = response.data[1];
 
   return (
-    <div className="tags-view">
+    <div className="tag-view">
       <NavigationMenuComponent />
-      <section className="tags-container">
-        <h2>TOUS LES TAGS</h2>
-        <article className="tags-container_tags">
-          {tags &&
-            tags?.data.map((tag) => (
-              <TagCardComponent key={tag.id} tag={tag} />
-            ))}
-        </article>
-      </section>
-      <section className="tags-right-articles-container">
-        <article className="tags-container_articles">
+      <section className="tag-container">
+        <h2>
+          <TagCardComponent key={tagInfo.id} tag={tagInfo} />
+        </h2>
+        <article className="tag-container_articles">
           <h2>ARTICLES</h2>
-          {articles &&
-            articles?.data.map((article) => (
+          {articles ? (
+            articles.map((article) => (
               <div
                 className="profile-view--articles_container__article"
                 style={{ padding: "0.5rem", cursor: "pointer" }}
@@ -46,27 +47,20 @@ function TagsPage() {
                     backgroundColor: "#ccc",
                   }}
                 >
-                  <img
-                    src={article.user.avatar}
-                    style={{
-                      width: "50px",
-                      height: "50px",
-                      borderRadius: "50%",
-                      border: "1px solid #ccc",
-                      backgroundColor: "#ccc",
-                    }}
-                  />
                 </div>
                 <h3>{article.title}</h3>
                 <p>
                   {article.subtitle} <span>{formatIsoDate(article.updated_at)}</span>
                 </p>
               </div>
-            ))}
+            ))
+          ) : (
+            <div>No articles available.</div>
+          )}
         </article>
       </section>
     </div>
   );
 }
 
-export default TagsPage;
+export default TagPage;
