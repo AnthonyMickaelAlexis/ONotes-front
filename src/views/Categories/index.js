@@ -33,12 +33,11 @@ function CategoriesPage() {
         }))
       : [];
 
-      useEffect(() => {
-        if (fallingTags.length > 0) {
-          startAnimation(canvas.current);
-        }
-      }, [fallingTags]);
-      
+  useEffect(() => {
+    if (fallingTags.length > 0) {
+      startAnimation(canvas.current);
+    }
+  }, [fallingTags]);
   return (
     <div className="categories-view">
       <NavigationMenuComponent />
