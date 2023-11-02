@@ -1,0 +1,348 @@
+@mixin popup {
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+  left: 0;
+  top: 50%;
+  width: 22rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  z-index: 3;
+}
+
+@mixin popup-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+}
+
+@mixin button {
+  background-color: black;
+  color: white;
+  font-family: inherit;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 25px;
+  padding: .8em;
+}
+
+@mixin button-interaction {
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+.new-post {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem .5rem .5rem 3.5rem;
+
+  &>h1 {
+    text-align: center;
+  }
+
+  &-unauthorized>h1 {
+    text-align: center;
+  }
+
+  &-categories-and-tags {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+    width: 100%;
+    margin: 2rem 0 1rem 0;
+    z-index: 3;
+  }
+
+  &-titles {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 1rem;
+    z-index: 2;
+
+    &-field {
+      border: 1px solid lightgrey;
+      box-sizing: border-box; 
+      width: 100%;
+      height: 2rem;
+      padding: 0 .5rem 0 .5rem;
+      margin-bottom: .5rem;
+      border-radius: 50px;
+      font-size: .9rem;
+      box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+      &::placeholder {
+        color: #767676;
+      }
+
+      &:focus {
+        border: 1px solid black;
+        outline: 0;
+      }
+    }
+  }
+
+  &-excerpt {
+    width: 100%;
+    margin-top: 1rem;
+
+     
+    &-field {
+      box-sizing: border-box;
+      width: 100%;
+      border: 1px solid lightgrey;
+      height: 6rem;
+      padding: .5rem;
+      border-radius: 10px;
+      font-size: .9rem;
+      align-self: flex-start;
+      resize: none;
+      font-family: inherit;
+      box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  
+      &::placeholder {
+        color: #767676;
+      }
+
+      &:focus {
+        border: 1px solid black;
+        outline: 0;
+      }
+    }
+  }
+
+  &-editor-container {
+    width: 100%;
+    height: 40rem;
+    margin: 1rem 0 4rem 0;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    &>.quill {
+      height: 100%;
+
+      &>.ql-toolbar {
+        background-color: #f3f3f3;
+        border: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 10px 10px 0 0;
+      }
+
+      &>.ql-container {
+        height: calc(100% - 90px);
+        border: none;
+
+        &>.ql-editor {
+          & strong {
+            font-weight: bold;
+          }
+          & em {
+            font-style: italic;
+          }
+        }
+      }
+    }
+  }
+
+  &-actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    justify-content: space-evenly;
+    background-color: #f6f6f6;
+    border-top: 1px solid #ccc;
+    width: 100%;
+    padding: .5rem;
+
+    &-button {
+      @include button;
+
+      &:hover, &:active {
+        @include button-interaction;
+      }
+    }
+  }
+
+  &-new-tag {
+    @include popup;
+    height: 30rem;
+    transform: translate(calc(50vw - 11rem), -15rem);
+
+    &-container {
+      @include popup-container;
+      width: calc(100% - 4rem);
+      height: calc(100% - 4rem);
+      padding: 1rem;
+
+      &-title {
+        font-weight: 500;
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+      }
+
+      &-body {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        margin: 1rem 0 1rem 0;
+        padding: 1rem;
+        width: 100%;
+
+        &-element {
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+        }
+
+        & hr {
+          background-color: #ccc;
+          width: 80%;
+          height: 1px;
+          border: none;
+        }
+
+        &-icon {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          gap: 1rem;
+          width: 100%;
+        }
+      }
+
+      &-buttons {
+        display: flex;
+        gap: 2rem;
+        
+        &>button {
+          @include button;
+    
+          &:hover, &:active {
+            @include button-interaction;
+          }
+        }
+      }
+    }
+  }
+
+  &-save-confirmation {
+    @include popup;
+    opacity: 1;
+    height: 5rem;
+    transform: translate(calc(50vw - 11rem), -2.5rem);
+
+    &-container {
+      @include popup-container;
+    }
+  }
+
+  &-publish-confirmation {
+    @include popup;
+    height: 10rem;
+    transform: translate(calc(50vw - 11rem), -5rem);
+
+    &-container {
+      @include popup-container;
+
+      &>p {
+        text-align: center;
+      }
+
+      &-actions {
+        display: flex;
+        margin-top: 2rem;
+        gap: 3rem;
+
+        &>button {
+          @include button;
+    
+          &:hover, &:active {
+            @include button-interaction;
+          }
+        }
+      }
+    }
+  }
+
+  &-loader {
+    position: fixed;
+    left: 0;
+    transform: translateX(calc(50vw - 11rem));
+    width: 22rem;
+    height: 22rem;
+    filter: invert(1);
+    z-index: 4;
+  }
+}
+
+@media (min-width: 700px) {
+  .new-post {
+    padding: 0 0 0 3.5rem;
+
+    &-categories-and-tags {
+      display: grid;
+      grid-template-columns:
+        minmax(auto, calc(2 / 7 * 100%))
+        minmax(auto, calc(2 / 7 * 100%))
+        minmax(auto, calc(3 / 7 * 100%));
+      gap: 2rem;
+      width: 80%;
+      max-width: 80%;
+    }
+
+    &-titles {
+      width: initial;
+      margin-bottom: -1.8rem;
+
+      &-field {
+        width: 40rem;
+        padding: 0 1rem 0 1rem;
+        margin-bottom: .7rem;
+      }
+    }
+
+    &-excerpt {
+      width: 80%;
+
+      &-field {
+        box-sizing: content-box;
+        width: calc(100% - 2rem);
+        padding: 1rem;
+      }
+    }
+
+    &-editor-container {
+      width: 80%;
+      height: 60rem;
+      margin: 1rem 0 5rem 0;
+
+      &>.quill {
+        &>.ql-container {
+          height: calc(100% - 40px);
+          ;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 900px) {
+  .new-post {
+    padding: 0 0 0 15.5rem;
+  }
+}

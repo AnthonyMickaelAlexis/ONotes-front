@@ -6,7 +6,7 @@ export const tagsApi = createApi({
   reducerPath: 'tagsApi',
   baseQuery: fetchBaseQuery({ 
     baseUrl: env.API_URL,
-}),
+  }),
   endpoints: (builder) => ({
     getTags: builder.query({
       query: () => ({
