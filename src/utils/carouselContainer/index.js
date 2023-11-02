@@ -65,7 +65,7 @@ function CarouselContainer() {
         ) : articlesError ? (
           <h1>Error...</h1>
         ) : (
-          articles?.data.map((article) => (
+          articles?.data.data.map((article) => (
             <SwiperSlide key={article.id}onClick={() => navigate(`article/${article.id}`)}>
               <div className="author-date-line">
                 <p className="author-carousel">{article.user.pseudo}</p>
