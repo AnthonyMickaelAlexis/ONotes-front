@@ -1,4 +1,3 @@
-/* eslint-disable */
 context("Add new user and log to his account ", () => {
   beforeEach(() => {
     cy.visit("authentication");
