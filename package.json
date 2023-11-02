@@ -30,7 +30,13 @@
     "start": "react-dotenv && react-scripts start",
     "build": "react-dotenv && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:alle2eTest": "start-server-and-test start http://localhost:3000 \"cypress run --e2e\"",
+    "cy:login": "start-server-and-test start http://localhost:3000 \"cypress run --spec 'cypress/e2e/login.cy.ts'\"",
+    "cy:logindev": "cypress run --config-file cypress.config.js --spec 'cypress/e2e/login.cy.js'\""
+
   },
   "eslintConfig": {
     "extends": [
