@@ -1,4 +1,3 @@
-/* eslint-disable */
 import React, { useEffect, useRef, Fragment } from "react";
 import "./homepage.scss";
 import Tag from "../../components/TagComponent";
@@ -12,10 +11,8 @@ import ArrowRight from "../../assets/images/arrow-right.svg";
 import NavigationButtonComponent from "../../components/NavigationButtonComponent";
 import { ModifyHalo } from "../../utils/haloModifier";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
 
 function Homepage({ isLogged }) {
-  const navigate = useNavigate();
   const { data: tags } = useGetTagsHomepageQuery();
 
   const fallingTags =
