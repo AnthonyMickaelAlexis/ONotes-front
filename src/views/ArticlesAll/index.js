@@ -1,38 +1,53 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./articles.scss";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
-import { useGetArticlesQuery } from "../../data/articles";
+// import { useGetArticlesQuery } from "../../data/articles";
 import { useNavigate } from "react-router-dom";
 import TagComponent from "../../components/TagComponent";
 import startAnimation from "../../utils/fallingTags";
-import Icon from '../../assets/images/logo192.png';
+// import Icon from '../../assets/images/logo192.png';
 import { formatIsoDate } from "../../utils/date";
+import InfiniteScroll from "react-infinite-scroll-component";
+import LoaderComponent from "../../components/LoaderComponent";
+import axios from "axios";
+import { useGetTagsHomepageQuery } from "../../data/tags";
 
 function ArticlesPage() {
-//   const { id } = useParams();
-  const {
-    data: articles,
-    loading: articlesLoading,
-    error: articlesError,
-  } = useGetArticlesQuery();
-  const navigate = useNavigate();
-  const canvas = useRef();
+    const [page, setPage] = useState(1);
+    // const { data: articlesResult } = useGetArticlesQuery({page: page});
+    const [articles, setArticles] = useState([]);
 
-  if (articlesLoading) return <h2>Loading...</h2>;
-  if (articlesError) return <h2>Error...</h2>;
+    const fetchFirst = async () => {
+        axios.get(`https://kin-onotes-back.rover.ingeeniex.com/api/articles?page=${page}`)
+        .then((response) => {
+            setArticles(response.data.data.data);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+    const fetchMore = () => {
+        setPage(page + 1);
+        axios.get(`https://kin-onotes-back.rover.ingeeniex.com/api/articles?page=${page}`)
+        .then((response) => {
+            setArticles((articles) => [...articles, ...response.data.data.data]);
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+    
+    const navigate = useNavigate();
+    const canvas = useRef();
+ 
 
 
   useEffect(() => {
-      startAnimation(canvas.current);
+        fetchFirst();
+        startAnimation(canvas.current);
   }, [])
   
-  const fallingTags = [
-      {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
-      {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
-      {key: 2, icon: Icon, text: 'React', textColor: 'white', bgColor: 'green'},
-      {key: 3, icon: Icon, text: 'React', textColor: 'white', bgColor: 'black'},
-      {key: 4, icon: Icon, text: 'React', textColor: 'white', bgColor: 'purple'},
-    ]
+  const {data: fallingTags, isLoading } = useGetTagsHomepageQuery();
 
   return (
     <div className="articles-view">
@@ -40,26 +55,36 @@ function ArticlesPage() {
         <section className="articles-view_container">
             <h2>Tous les articles</h2>
             <ul className="articles-view_container--list">
-                {articles && articles?.data.map((article) => (
-                    <li className="articles-view_container--list_item" key={article.id} 
-                        onClick={() => {
-                            navigate(`/article/${article.id}`)
-                        }}>
-                        <img src={article.banner} />
-                        <div className="articles-view_container--list_content">
-                            <h3>{article.title}<span> par {article.user.pseudo}</span></h3>
-                            <h4>{article.subtitle}</h4>
-                            <p className="articles-view_container--list_content-text">{article.text_content.length >= 100 ? article.text_content.substring(0,100) + '...' : article.text_content}</p>
-                            <p className="articles-view_container--list_content-date">{formatIsoDate(article.updated_at)}</p>
-                        </div>
-                    </li>
-                ))}
+                {articles && (
+                    <InfiniteScroll
+                        dataLength={articles?.length}
+                        next={fetchMore}
+                        hasMore={true}
+                        loader={<LoaderComponent />}
+                    >
+                    {articles?.map((article) => (
+                            <li className="articles-view_container--list_item" key={article.id} 
+                                onClick={() => {
+                                    navigate(`/article/${article.id}`)
+                                }}>
+                                <img src={article.banner} />
+                                <div className="articles-view_container--list_content">
+                                    <h3>{article.title}<span> par {article.user.pseudo}</span></h3>
+                                    <h4>{article.subtitle}</h4>
+                                    <p className="articles-view_container--list_content-text">{article.text_content.length >= 100 ? article.text_content.substring(0,100) + '...' : article.text_content}</p>
+                                    <p className="articles-view_container--list_content-date">{formatIsoDate(article.updated_at)}</p>
+                                </div>
+                            </li>
+                    ))}
+                    </InfiniteScroll>
+                )}
             </ul>
         </section>
         <section className="articles-view_container-tags" ref={canvas}>
             <h2>TOP TAGS</h2>
-            {fallingTags && fallingTags.map(tagElement =>
-                <TagComponent key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} position={'absolute'} />
+            {isLoading && <LoaderComponent />}
+            {fallingTags?.data && fallingTags?.data.map(tagElement =>
+                <TagComponent key={`tag${tagElement.id}`} icon={tagElement.logo} text={tagElement.name} textColor={tagElement.color} bgColor={tagElement.bg_color} position={'absolute'} />
             )}
         </section>
     </div>

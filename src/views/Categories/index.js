@@ -4,32 +4,26 @@ import "./categoriespage.scss";
 import CategoryCardComponent from "../../components/CategoryCardComponent";
 import TagComponent from "../../components/TagComponent";
 import startAnimation from "../../utils/fallingTags";
-import Icon from '../../assets/images/logo192.png';
 import { useGetCategoriesQuery } from "../../data/categories";
 import { useGetArticlesQuery } from "../../data/articles";
-// import { useGetTagsHomepageQuery } from "../../data/tags";
 import { useNavigate } from "react-router-dom";
 import { formatIsoDate } from "../../utils/date";
 import PropTypes from 'prop-types';
+import { useGetTagsHomepageQuery } from "../../data/tags";
 
 function CategoriesPage({ isLogged }) {
     const canvas = useRef();
     const navigate = useNavigate();
 
     const {data: categories} = useGetCategoriesQuery();
-    const {data: articles } = useGetArticlesQuery();
+    const {data: articles } = useGetArticlesQuery(1);
+    const {data: fallingTags } = useGetTagsHomepageQuery();
+    console.log(articles);
 
     useEffect(() => {
         startAnimation(canvas.current);
     }, [])
-    
-    const fallingTags = [
-        {key: 0, icon: Icon, text: 'React', textColor: 'white', bgColor: 'blue'},
-        {key: 1, icon: Icon, text: 'React', textColor: 'white', bgColor: 'red'},
-        {key: 2, icon: Icon, text: 'React', textColor: 'white', bgColor: 'green'},
-        {key: 3, icon: Icon, text: 'React', textColor: 'white', bgColor: 'black'},
-        {key: 4, icon: Icon, text: 'React', textColor: 'white', bgColor: 'purple'},
-      ]
+
     return (
         <div className="categories-view">
             <NavigationMenuComponent/>
@@ -51,7 +45,7 @@ function CategoriesPage({ isLogged }) {
                 <h2>ARTICLES</h2>
                 <article className="categories-container_articles">
                     <ul className="categories-container_articles--list">
-                    {articles && articles?.data.map(article =>
+                    {articles && articles?.data.data.map(article =>
                         <li style={{padding: '0.5rem', cursor: 'pointer'}}
                             key={article.id} 
                             onClick={() => {
@@ -83,8 +77,8 @@ function CategoriesPage({ isLogged }) {
             <section className="categories-right">
                 <article ref={canvas} className="categories-right--tags">
                     <h2>TOP TAGS</h2>
-                    {fallingTags && fallingTags.map(tagElement =>
-                        <TagComponent key={`tag${tagElement.key}`} icon={tagElement.icon} text={tagElement.text} textColor={tagElement.textColor} bgColor={tagElement.bgColor} position={'absolute'} />
+                    {fallingTags?.data && fallingTags?.data.map(tagElement =>
+                        <TagComponent key={`tag${tagElement.id}`} icon={tagElement.logo} text={tagElement.name} textColor={tagElement.color} bgColor={tagElement.bg_color} position={'absolute'} />
                     )}
                 </article>
                 <article className="categories-right--write">
