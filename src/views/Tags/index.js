@@ -1,40 +1,33 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
-import "./subcategoriespage.scss";
-import CategoryCardComponent from "../../components/CategoryCardComponent";
-import { useGetSubcategoryQuery } from "../../data/subcategories";
+import "./tagspage.scss";
+import TagCardComponent from "../../components/TagCardComponent";
+import { useGetTagsQuery } from "../../data/tags";
 import { useGetHomePageArticlesQuery } from "../../data/articles";
 import { useNavigate } from "react-router-dom";
+import { formatIsoDate } from "../../utils/date";
 
-function SubcategoriesPage() {
-  const { id } = useParams();
-  const { data: subcategories } = useGetSubcategoryQuery(id);
-
+function TagsPage() {
   const navigate = useNavigate();
 
+  const { data: tags } = useGetTagsQuery();
   const { data: articles } = useGetHomePageArticlesQuery();
 
   return (
-    <div className="subcategories-view">
+    <div className="tags-view">
       <NavigationMenuComponent />
-      <section className="subcategories-container">
-        <h2>SUBCATEGORIES {subcategories?.data[0].name.toUpperCase()}</h2>
-
-        <article className="subcategories-container_subcategories">
-          {subcategories?.data[1].map((subcategory) => (
-            <CategoryCardComponent
-              key={subcategory.id}
-              id={subcategory.id}
-              bannerBoolean={false}
-              title={subcategory.name}
-              bgColor="#5B6CFF"
-              categoryBoolean={false}
-            />
-          ))}
+      <section className="tags-container">
+        <h2>TOUS LES TAGS</h2>
+        <article className="tags-container_tags">
+          {tags &&
+            tags?.data.map((tag) => (
+              <TagCardComponent key={tag.id} tag={tag} />
+            ))}
         </article>
-        <h2>ARTICLES</h2>
-        <article className="subcategories-container_articles">
+      </section>
+      <section className="tags-right-articles-container">
+        <article className="tags-container_articles">
+          <h2>ARTICLES</h2>
           {articles &&
             articles?.data.map((article) => (
               <div
@@ -66,22 +59,14 @@ function SubcategoriesPage() {
                 </div>
                 <h3>{article.title}</h3>
                 <p>
-                  {article.subtitle} <span>{article.updated_at}</span>
+                  {article.subtitle} <span>{formatIsoDate(article.updated_at)}</span>
                 </p>
               </div>
             ))}
-        </article>
-      </section>
-      <section className="subcategories-right">
-        <article className="subcategories-right--tags">
-          <h2>TOP TAGS</h2>
-        </article>
-        <article className="subcategories-right--write">
-          <h2>WRITE AN ARTICLE</h2>
         </article>
       </section>
     </div>
   );
 }
 
-export default SubcategoriesPage;
+export default TagsPage;

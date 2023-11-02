@@ -1,12 +1,13 @@
 import React, { useEffect, useRef } from "react";
 import NavigationMenuComponent from "../../components/NavigationMenuComponent";
-import './categoriespage.scss';
+import "./categoriespage.scss";
 import CategoryCardComponent from "../../components/CategoryCardComponent";
 import TagComponent from "../../components/TagComponent";
-import startAnimation from '../../utils/fallingTags';
+import startAnimation from "../../utils/fallingTags";
 import Icon from '../../assets/images/logo192.png';
 import { useGetCategoriesQuery } from "../../data/categories";
 import { useGetArticlesQuery } from "../../data/articles";
+// import { useGetTagsHomepageQuery } from "../../data/tags";
 import { useNavigate } from "react-router-dom";
 import { formatIsoDate } from "../../utils/date";
 import PropTypes from 'prop-types';
@@ -89,7 +90,7 @@ function CategoriesPage({ isLogged }) {
                 <article className="categories-right--write">
                     <h2>Inspiré pour écrire un article ?</h2>
                     {isLogged && (
-                        <button onClick={() => navigate('/new-article')}>Créer un article</button>
+                        <button onClick={() => navigate('/new-post')}>Créer un article</button>
                     )}
                     {!isLogged && (
                         <button onClick={() => navigate('/authentication')}>Se connecter</button>

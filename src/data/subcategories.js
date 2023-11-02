@@ -7,6 +7,12 @@ export const subcategoriesApi = createApi({
     baseUrl: env.API_URL,
 }),
   endpoints: (builder) => ({
+    getSubcategory: builder.query({
+      query: id => ({
+        url: `subcategory/${id}`,
+        method: 'GET'
+      })
+    }),
     getSubcategories: builder.query({
       query: () => ({
         url: 'subcategories',
@@ -16,4 +22,4 @@ export const subcategoriesApi = createApi({
   }),
 })
 
-export const { useGetSubcategoriesQuery } = subcategoriesApi;
+export const { useGetSubcategoryQuery, useGetSubcategoriesQuery } = subcategoriesApi;
