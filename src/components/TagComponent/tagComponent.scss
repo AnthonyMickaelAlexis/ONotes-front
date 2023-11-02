@@ -9,6 +9,7 @@
   cursor: pointer;
 
   &>img {
-    width: 25px;
+    max-width: 25px;
+    max-height: 25px;
   }
 }

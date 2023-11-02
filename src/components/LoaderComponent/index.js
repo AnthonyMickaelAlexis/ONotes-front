@@ -3,6 +3,7 @@ import './loader.scss';
 
 function LoaderComponent() {
     return (
+      <div className='loader-component-svg'>
         <svg viewBox="0 0 100 100">
 	<g fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="6">
 		<path d="M 21 40 V 59">
@@ -61,6 +62,7 @@ function LoaderComponent() {
       repeatCount="indefinite" />
 	</g>
 </svg>
+</div>
     )
 }
 
