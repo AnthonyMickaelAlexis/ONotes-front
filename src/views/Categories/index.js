@@ -8,6 +8,7 @@ import { useGetCategoriesQuery } from "../../data/categories";
 import { useGetHomePageArticlesQuery } from "../../data/articles";
 import { useGetTagsHomepageQuery } from "../../data/tags";
 import { useNavigate } from "react-router-dom";
+import { formatIsoDate } from "../../utils/date";
 
 function CategoriesPage() {
   const canvas = useRef();
@@ -54,13 +55,14 @@ function CategoriesPage() {
                 title={category.name}
                 subTitle={category.subtitle}
                 bgColor="#5B6CFF"
+                categoryBoolean={true}
               />
             ))}
         </article>
         <h2>ARTICLES</h2>
         <article className="categories-container_articles">
           {articles &&
-            articles?.data.map((article) => (
+            articles?.data.data.map((article) => (
               <div
                 className="profile-view--articles_container__article"
                 style={{ padding: "0.5rem", cursor: "pointer" }}
@@ -90,7 +92,7 @@ function CategoriesPage() {
                 </div>
                 <h3>{article.title}</h3>
                 <p>
-                  {article.subtitle} <span>{article.updated_at}</span>
+                  {article.subtitle} <span>{formatIsoDate(article.updated_at)}</span>
                 </p>
               </div>
             ))}

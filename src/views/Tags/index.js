@@ -29,7 +29,7 @@ function TagsPage() {
         <article className="tags-container_articles">
           <h2>ARTICLES</h2>
           {articles &&
-            articles?.data.map((article) => (
+            articles?.data.data.map((article) => (
               <div
                 className="profile-view--articles_container__article"
                 style={{ padding: "0.5rem", cursor: "pointer" }}
