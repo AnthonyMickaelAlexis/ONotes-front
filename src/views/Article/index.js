@@ -44,9 +44,12 @@ function Article() {
             </p>
           }
           <div className="article-view-header-author-date">
-            <p className="article-view-header-author">Par <span>{user?.pseudo || `${user?.firstname} ${user?.lastname}`}</span></p>
+            <p className="article-view-header-author">
+              Par <span>{user?.pseudo || `${user?.firstname} ${user?.lastname}`}</span>
+              {user?.avatar && <div><img src={user?.avatar} /></div>}
+            </p>
             <p className="article-view-header-date">
-              Le {formatIsoDate(created_at) || "Date not found"}
+              Le {formatIsoDate(created_at)}
             </p>
           </div>
           <div className="article-view-header-tags">
