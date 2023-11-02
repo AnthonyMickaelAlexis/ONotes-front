@@ -13,10 +13,17 @@ export const authApi = createApi({
       }),
     }),
     signUp: builder.mutation({
-      query: ({ firstname, lastname, pseudo, email, password, password_confirmation }) => ({
+      query: (data) => ({
         url: 'register',
         method: 'POST',
-        body: { firstname, lastname, pseudo, email, password, password_confirmation }
+        body: {
+          firstname: data.firstname,
+          lastname: data.lastname,
+          ...(data.pseudo !== '') && {pseudo: data.pseudo},
+          email: data.email,
+          password: data.password,
+          password_confirmation: data.password_confirmation
+        }
       }),
     }),
   }),
