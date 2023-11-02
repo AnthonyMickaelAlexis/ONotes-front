@@ -1,8 +1,11 @@
 import React from "react";
-import "./article.scss";
+import NavigationMenuComponent from "../../components/NavigationMenuComponent";
 import { useParams } from "react-router-dom";
+import ReactQuill from "react-quill";
+import TagComponent from "../../components/TagComponent";
 import { useGetArticleQuery } from "../../data/articles";
 import { formatIsoDate } from "../../utils/date";
+import "./article.scss";
 
 function Article() {
   const { id } = useParams();
@@ -15,31 +18,52 @@ function Article() {
   if (articleLoading) return <h2>Loading...</h2>;
   if (articleError) return <h2>Error...</h2>;
 
-//   article.data.tag.map((tg) => console.log(tg.name));
-
-  const { title, banner, user, created_at, tag, text_content } =
-    article?.data || {};
+  const { title, subtitle, banner, resume, user, created_at, tag, text_content } =
+    article?.data[0] || {};
+  const category = article?.data[1][0].category.name;
+  const subcategory = article?.data[1][0].name;
 
   return (
-    <div>
-      <div className="article-title">{title || "Article title not found"}</div>
-      <div className="article-banner">
-        <img src={banner} alt="Banner" className="banner" />
+    <div className="article-view">
+      <NavigationMenuComponent />
+      <div className="article-view-title-and-subtitle">
+        <h1>{title}</h1>
+        <h3>{subtitle}</h3>
       </div>
-      <div className="article-container">
-        <div className="article-header">
-          <div className="article-tag">
-            <div>{tag?.map((tg) => {tg.name})|| "TODO article tag"}</div>
+      {banner &&
+        <img className="article-view-banner" src={banner} alt="Bannière" />
+      }
+      <div className="article-view-container">
+        {resume &&
+          <div className="article-view-resume">{resume}</div>
+        }
+        <div className={`article-view-header ${!resume ? 'article-view-header-with-radius' : ''}`}>
+          {category && subcategory &&
+            <p className="article-view-header-categories">
+              {category} / {subcategory}
+            </p>
+          }
+          <div className="article-view-header-author-date">
+            <p className="article-view-header-author">Par <span>{user?.pseudo || `${user?.firstname} ${user?.lastname}`}</span></p>
+            <p className="article-view-header-date">
+              Le {formatIsoDate(created_at) || "Date not found"}
+            </p>
+          </div>
+          <div className="article-view-header-tags">
+            {tag?.map((tg, index) => 
+              <TagComponent
+                key={`tag-${index}`}
+                id={tg.id}
+                icon={tg.logo}
+                text={tg.name}
+                textColor={tg.color}
+                bgColor={tg.bg_color}
+              />
+            )}
           </div>
         </div>
-        <div className="article-author-date">
-          <div className="article-author">{user?.pseudo || "TODO author"}</div>
-          <div className="article-date">
-            {formatIsoDate(created_at) || "Date not found"}
-          </div>
-        </div>
-        <div className="article-text-content">
-          {text_content || "Article not found"}
+        <div className="article-view-editor">
+          <ReactQuill theme="snow" modules={{ toolbar: false }} readOnly="true" value={text_content} />
         </div>
       </div>
     </div>

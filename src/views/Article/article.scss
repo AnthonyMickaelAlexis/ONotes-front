@@ -1,83 +1,155 @@
-.article-title {
-    width: 100%;
-    margin-bottom: 1.25rem;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 1000;
-    line-height: 1.2;
-}
-
-.article-banner {
+.article-view {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: auto;
+  padding: .5rem .5rem .5rem 3.5rem;
 
-}
+  &-title-and-subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
 
-.article-banner-img {
-    max-height: 18rem;
+    &>h1 {
+      margin-bottom: .5rem;
+      text-align: center;
+    }
+
+    &>h3 {
+      background-color: rgba(255, 255, 255, .4);
+      border-radius: 50px;
+      padding: 0 1rem 0 1rem;
+      font-style: italic;
+    }
+  }
+
+  &-banner {
+    margin: -2.5rem 0 1rem 0;
+    max-height: 15rem;
     max-width: 100%;
-}
+  }
 
-.article-container {
-    padding: 1.4rem;
-    margin: 1rem 2rem;
-    background-color: #ffffff;
-    border-radius: 20px;
-    box-shadow: 2px 2px 4px 2px rgba(157, 157, 157, 0.96);
-  
-    .article-tag {
+  &-editor>.quill>.ql-container {
+    border: none;
+
+    &>.ql-editor {
+      margin-top: 1rem;
+      padding: 0;
+    }
+  }
+
+  &-container {
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 1rem);
+    margin-bottom: 1rem;
+  }
+
+  &-resume {
+    width: calc(100% - 1rem);
+    text-align: justify;
+    padding: .5rem .5rem 1.5rem .5rem;
+    font-style: italic;
+  }
+
+  &-header {
+    background-color: #eee;
+    width: 100%;
+    border: 1px solid #ccc;
+    padding-bottom: 1rem;
+
+    &-categories {
+      padding: 1rem;
+    }
+
+    &-author-date {
       display: flex;
-      flex-wrap: wrap;
       flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 0.625rem;
-      margin-bottom: 1.25rem;
-      background-color: #f9f9f9;
-    }
-  
-    .article-header {
-      height: 3.125rem;
-      background-color: #ffffff;
-      margin-bottom: 1.25rem;
-    }
-  
-    .article-author-date {
-      display: flex;
       justify-content: space-between;
-      margin-bottom: 1.25rem;
-      background-color: #F9F9F9;
-      padding: 2rem;
-  
-      .article-author {
+      width: 100%;
+    }
+
+    &-author {
+      padding-left: 1rem;
+
+      &>span {
         font-weight: bold;
       }
     }
-  
-    .article-text-content {
-      line-height: 1.5;
-      white-space: pre-line;
-    }
-  }
-  
-  @media (min-width: 600px) {
-    .article-container {
-        padding: 1.4rem;
-        max-width: 50rem;
-        margin: 2.5rem auto;
-        background-color: #ffffff;
-        border-radius: 20px;
-        box-shadow: 2px 2px 4px 2px rgba(157, 157, 157, 0.96);
+
+    &-date {
+      padding-right: 1rem;
     }
 
-    .article-banner {
-        max-height: 18rem;
-    }
-
-    .article-banner-img {
-        max-height: 18rem;
-        max-width: 100%;
+    &-tags {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: .5rem;
+      width: calc(100% - 2rem);
+      padding: 1rem 1rem 0 1rem;
     }
   }
+}
+
+@media (min-width: 600px) {
+  .article-view {
+    &-title-and-subtitle {
+      width: 80%;
+
+      &>h1 {
+        max-width: 80%;
+        margin-bottom: 2rem;
+      }
+
+      &>h3 {
+        max-width: 70%;
+      }
+    }
+
+    &-banner {
+      margin: -4rem 0 2rem 0;
+    }
+
+    &-header {
+      border-top: 1px solid #ccc;
+      border-right: none;
+      border-bottom: 1px solid #ccc;
+      border-left: none;
+    }
+
+    &-header-with-radius {
+      border-radius: 20px 20px 0 0;
+    }
+
+    &-editor>.quill>.ql-container>.ql-editor {
+      margin: 1rem;
+      padding: 2rem;
+    }
+
+    &-container {
+      width: calc(100% - 4rem);
+      border: 1px solid #ccc;
+      border-radius: 20px;
+      box-shadow: 2px 2px 4px 2px rgba(157, 157, 157, 0.96);
+    }
+
+    &-resume {
+      width: calc(100% - 4rem);
+      padding: 1rem 2rem 3rem 2rem;
+    }
+  }
+}
+
+@media (min-width: 700px) {
+  .article-view {
+    padding: 0 0 0 3.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .article-view {
+    padding: 0 0 0 15.5rem;
+  }
+}
