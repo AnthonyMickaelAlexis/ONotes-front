@@ -39,7 +39,7 @@ function Auth() {
         }
         { authType === 'signUp' &&
           <>
-            <p onClick={() => setAuthType('signIn')}><strong>Connectez-vous ici</strong> si vous avez déjà un compte&nbsp;!</p>
+            <p data-cy="signin-connectionbutton" onClick={() => setAuthType('signIn')}><strong>Connectez-vous ici</strong> si vous avez déjà un compte&nbsp;!</p>
             <SignUpComponent setIsLoading={setIsLoading} isLoading={isLoading} />
           </>
         }

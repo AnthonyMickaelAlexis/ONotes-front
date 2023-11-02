@@ -15,7 +15,7 @@ function Header({ isLogged }) {
         <img src={logo}  alt="Logo" className="logo" onClick={() => navigate('/')}/>
       </div>
       <div className="right-section">
-        {!isLogged && <button className="login-button" onClick={() => navigate('/authentication')}>Connexion/Inscription</button>}
+        {!isLogged && <button data-cy="header-connectionbutton" className="login-button" onClick={() => navigate('/authentication')}>Connexion/Inscription</button>}
         {isLogged && <button className="login-button" onClick={() => {
           cookie && removeCookie('token');
           navigate('/');
