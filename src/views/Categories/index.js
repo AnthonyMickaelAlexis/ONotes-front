@@ -6,15 +6,17 @@ import TagComponent from "../../components/TagComponent";
 import startAnimation from '../../utils/fallingTags';
 import Icon from '../../assets/images/logo192.png';
 import { useGetCategoriesQuery } from "../../data/categories";
-import { useGetHomePageArticlesQuery } from "../../data/articles";
+import { useGetArticlesQuery } from "../../data/articles";
 import { useNavigate } from "react-router-dom";
+import { formatIsoDate } from "../../utils/date";
+import PropTypes from 'prop-types';
 
-function CategoriesPage() {
+function CategoriesPage({ isLogged }) {
     const canvas = useRef();
     const navigate = useNavigate();
 
     const {data: categories} = useGetCategoriesQuery();
-    const {data: articles } = useGetHomePageArticlesQuery();
+    const {data: articles } = useGetArticlesQuery();
 
     useEffect(() => {
         startAnimation(canvas.current);
@@ -47,12 +49,12 @@ function CategoriesPage() {
                 </article>
                 <h2>ARTICLES</h2>
                 <article className="categories-container_articles">
+                    <ul className="categories-container_articles--list">
                     {articles && articles?.data.map(article =>
-                        <div className='profile-view--articles_container__article' 
-                            style={{padding: '0.5rem', cursor: 'pointer'}}
+                        <li style={{padding: '0.5rem', cursor: 'pointer'}}
                             key={article.id} 
                             onClick={() => {
-                           navigate(`/article/${article.id}`) 
+                                navigate(`/article/${article.id}`) 
                         }}>
                         <div style={{
                             width: '50px',
@@ -70,10 +72,11 @@ function CategoriesPage() {
                                 }} 
                             />
                         </div>
-                            <h3>{article.title}</h3>
-                            <p>{article.subtitle} <span>{article.updated_at}</span></p>
-                        </div>
+                            <h3>{article.title.length >= 10 ? article.title.substring(0,10) + '...' : article.title}</h3>
+                            <p>{article.subtitle} <span>Le {formatIsoDate(article.updated_at)}</span></p>
+                        </li>
                     )}
+                    </ul>
                 </article>
             </section>
             <section className="categories-right">
@@ -84,11 +87,21 @@ function CategoriesPage() {
                     )}
                 </article>
                 <article className="categories-right--write">
-                    <h2>WRITE AN ARTICLE</h2>
+                    <h2>Inspiré pour écrire un article ?</h2>
+                    {isLogged && (
+                        <button onClick={() => navigate('/new-article')}>Créer un article</button>
+                    )}
+                    {!isLogged && (
+                        <button onClick={() => navigate('/authentication')}>Se connecter</button>
+                    )}
                 </article>
             </section>
         </div>
     );
+}
+
+CategoriesPage.propTypes = {
+    isLogged: PropTypes.bool
 }
 
 export default CategoriesPage;

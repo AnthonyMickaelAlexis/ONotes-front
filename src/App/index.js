@@ -8,6 +8,7 @@ import ProfileView from '../views/Profile';
 import CategoriesPage from '../views/Categories';
 import { useCookies } from 'react-cookie';
 import SubcategoriesPage from '../views/Subcategories';
+import ArticlesPage from '../views/ArticlesAll';
 
 function App() {
   const location = useLocation();
@@ -31,8 +32,9 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
-          <Route path="/categories" element={ <CategoriesPage /> } />
+          <Route path="/categories" element={ <CategoriesPage isLogged={isLogged} /> } />
           <Route path="/subcategories" element={ <SubcategoriesPage /> } />
+          <Route path="/articles" element={ <ArticlesPage /> } />
           {isLogged && (
             <Route path="/profile" element={ <ProfileView /> } />
           )}

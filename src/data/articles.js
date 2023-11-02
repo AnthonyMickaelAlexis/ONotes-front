@@ -9,7 +9,13 @@ export const articlesApi = createApi({
       query: (id) => `article/${id}`,
     }),
     getArticles: builder.query({
-      query: () => 'articles'
+      query: () => ({
+        url: 'articles',
+        params: {
+          page: 1,
+          limit: 10,
+        },
+      }),
     }),
     getHomePageArticles: builder.query({
       query: () => 'articles/homepage'
