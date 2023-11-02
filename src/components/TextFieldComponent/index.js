@@ -3,7 +3,7 @@ import './textfieldcomponent.scss';
 import { PropTypes } from 'prop-types';
 import { useFormContext } from "react-hook-form";
 
-function TextFieldComponent({ fieldType, fieldName, label, passwordValue }) {
+function TextFieldComponent({ fieldType, fieldName, label, passwordValue, datacy }) {
   const { formState: {errors}, register } = useFormContext();
   let validation;
   
@@ -50,7 +50,7 @@ function TextFieldComponent({ fieldType, fieldName, label, passwordValue }) {
     <>
       <div className='text-field'>
         {label && <label htmlFor={fieldName}>{label}</label>}
-        <input name={fieldName} type={fieldType} defaultValue={""} {...register(fieldName, validation )} />
+        <input data-cy={datacy} name={fieldName} type={fieldType} defaultValue={""} {...register(fieldName, validation )} />
       </div>
       {errors && errors[fieldName] && <span>{errors[fieldName].message}</span>}
     </>
@@ -61,7 +61,8 @@ TextFieldComponent.propTypes = {
   fieldType: PropTypes.string.isRequired,
   fieldName: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
-  passwordValue: PropTypes.string
+  passwordValue: PropTypes.string,
+  datacy: PropTypes.string
 };
 
 export default TextFieldComponent;

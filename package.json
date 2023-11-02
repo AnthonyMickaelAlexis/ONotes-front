@@ -32,7 +32,12 @@
     "start": "react-dotenv && react-scripts start",
     "build": "react-dotenv && react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "cy:run": "cypress run",
+    "cy:open": "cypress open",
+    "cy:alle2etest": "cypress run --config-file cypress.config.js --spec 'cypress/e2e/*.cy.js'\"",
+    "cy:logindev": "cypress run --config-file cypress.config.js --spec 'cypress/e2e/RegisterAndLogin.cy.js'\"",
+    "cy:allintegrationtest": "cypress run --component"
   },
   "eslintConfig": {
     "extends": [
@@ -58,6 +63,8 @@
     ]
   },
   "devDependencies": {
+    "@cypress/react": "^8.0.0",
+    "cypress": "^13.3.3",
     "eslint": "^8.49.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-react": "^7.33.2",

@@ -45,11 +45,11 @@ function SignInComponent({ setIsLoading, isLoading }) {
   return (
     <FormProvider {...methods}>
     <form className='authentication-signin-form' onSubmit={handleSubmit(onSubmit)}>
-      <TextFieldComponent label="Email* :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} />
-      <TextFieldComponent label="Password* :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} />
+      <TextFieldComponent datacy="signin-email" label="Email* :" placeholder="Adresse email" fieldType="text" fieldName={"Email"} />
+      <TextFieldComponent datacy="signin-password" label="Password* :" placeholder="Mot de passe" fieldType="password" fieldName={"Password"} />
       <p className='authentication-signin-form-forgotten-password'>Mot de passe oublié ?</p>
       <div className='authentication-signin-form-button'>
-        <ButtonComponent buttonShowText="Se connecter"/>
+        <ButtonComponent datacy="signin-loginbutton" buttonShowText="Se connecter"/>
       </div>
     </form>
     </FormProvider>

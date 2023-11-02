@@ -40,14 +40,14 @@ function SignUpComponent() {
   return (
     <FormProvider {...methods}>
       <form className='authentication-signup-form' onSubmit={handleSubmit(onSubmit)}>
-        <TextField label="Prénom* :" fieldType="text" fieldName={"FirstName"} />
-        <TextField label="Nom* :" fieldType="text" fieldName={"LastName"} />
-        <TextField label="Pseudo :" fieldType="text" fieldName={"Username"} />
-        <TextField label="Email* :" fieldType="text" fieldName={"Email"} />
-        <TextField label="Mot de passe* :" fieldType="password" fieldName={"Password"} />
-        <TextField label="Confirmation du mot de passe* :" fieldType="password" fieldName={"ConfirmPassword"} passwordValue={passwordValue} />
+        <TextField datacy="signup-firstname" label="Prénom* :" fieldType="text" fieldName={"FirstName"} />
+        <TextField datacy="signup-lastname" label="Nom* :" fieldType="text" fieldName={"LastName"} />
+        <TextField datacy="signup-nickname" label="Pseudo :" fieldType="text" fieldName={"Username"} />
+        <TextField datacy="signup-email" label="Email* :" fieldType="text" fieldName={"Email"} />
+        <TextField datacy="signup-password" label="Mot de passe* :" fieldType="password" fieldName={"Password"} />
+        <TextField datacy="signup-confirmpassword" label="Confirmation du mot de passe* :" fieldType="password" fieldName={"ConfirmPassword"} passwordValue={passwordValue} />
         <div className='authentication-signup-form-button'>
-          <Button buttonShowText="S'enregistrer"/>
+          <Button datacy="signup-registerbutton" buttonShowText="S'enregistrer"/>
         </div>
       </form>
     </FormProvider>

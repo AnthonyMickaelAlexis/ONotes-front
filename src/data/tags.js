@@ -1,7 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import env from "react-dotenv";
 
-
 export const tagsApi = createApi({
   reducerPath: 'tagsApi',
   baseQuery: fetchBaseQuery({ 

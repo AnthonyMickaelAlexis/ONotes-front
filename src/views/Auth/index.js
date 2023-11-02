@@ -33,13 +33,13 @@ function Auth() {
         <h1>Bienvenue !</h1>
         { authType === 'signIn' &&
           <>
-            <p onClick={() => setAuthType('signUp')}><strong>Créez un compte gratuitement</strong> si vous n&apos;en avez pas déjà un&nbsp;!</p>
+            <p data-cy="signup-page" onClick={() => setAuthType('signUp')}><strong>Créez un compte gratuitement</strong> si vous n&apos;en avez pas déjà un&nbsp;!</p>
             <SignInComponent setIsLoading={setIsLoading}  isLoading={isLoading} />
           </>
         }
         { authType === 'signUp' &&
           <>
-            <p onClick={() => setAuthType('signIn')}><strong>Connectez-vous ici</strong> si vous avez déjà un compte&nbsp;!</p>
+            <p data-cy="signin-connectionbutton" onClick={() => setAuthType('signIn')}><strong>Connectez-vous ici</strong> si vous avez déjà un compte&nbsp;!</p>
             <SignUpComponent setIsLoading={setIsLoading} isLoading={isLoading} />
           </>
         }
