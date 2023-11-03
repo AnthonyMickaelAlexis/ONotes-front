@@ -109,6 +109,21 @@
             margin: 1rem;
             text-align: center;
         }
+        &>div {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            height: 4rem;
+            margin-top: 4rem;
+
+            &>p {
+                font-size: 1rem;
+                font-weight: 600;
+                color: #999999;
+                margin-bottom: 0.5rem;
+            }
+        }
     }
     
 }

@@ -17,11 +17,24 @@ function CategoriesPage({ isLogged }) {
 
     const {data: categories} = useGetCategoriesQuery();
     const {data: articles } = useGetArticlesQuery(1);
-    const {data: fallingTags } = useGetTagsHomepageQuery();
+    const {data: tags } = useGetTagsHomepageQuery();
+    const fallingTags =
+    tags && tags.data
+      ? tags.data.map((tag, index) => ({
+          id: tag.id,
+          key: index,
+          icon: tag.logo,
+          text: tag.name,
+          textColor: tag.color,
+          bgColor: tag.bg_color,
+        }))
+      : [];
 
     useEffect(() => {
-        startAnimation(canvas.current);
-    }, [])
+        if (fallingTags.length > 0) {
+            startAnimation(canvas.current);
+          }
+    }, [fallingTags])
 
     return (
         <div className="categories-view">
@@ -80,8 +93,16 @@ function CategoriesPage({ isLogged }) {
             <section className="categories-right">
                 <article ref={canvas} className="categories-right--tags">
                     <h2>TOP TAGS</h2>
-                    {fallingTags?.data && fallingTags?.data.map(tagElement =>
-                        <TagComponent key={`tag${tagElement.id}`} icon={tagElement.logo} text={tagElement.name} textColor={tagElement.color} bgColor={tagElement.bg_color} position={'absolute'} />
+                    {fallingTags && fallingTags?.map(tagElement =>
+                        <TagComponent
+                            key={`tag${tagElement.key}`}
+                            id={tagElement.id}
+                            icon={tagElement.icon}
+                            text={tagElement.text}
+                            textColor={tagElement.textColor}
+                            bgColor={tagElement.bgColor}
+                            position={"absolute"}
+                        />
                     )}
                 </article>
                 <article className="categories-right--write">

@@ -16,6 +16,7 @@ function ArticlesPage() {
     // const { data: articlesResult } = useGetArticlesQuery({page: page});
     const [articles, setArticles] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const [hasMore, setHasMore] = useState(true);
 
     const fetchFirst = async () => {
         setIsLoading(true);
@@ -38,6 +39,7 @@ function ArticlesPage() {
             axios.get(`${env.API_URL}articles?page=${page}`)
             .then((response) => {
                 setArticles((articles) => [...articles, ...response.data.data.data]);
+                response.data.data.data.length > 0 ? setHasMore(true) : setHasMore(false);
                 setPage(page + 1);
                 setIsLoading(false);
             })
@@ -55,15 +57,29 @@ function ArticlesPage() {
  
 
 
+    
+    const {data: tags } = useGetTagsHomepageQuery();
+    const fallingTags =
+    tags && tags.data
+    ? tags.data.map((tag, index) => ({
+            id: tag.id,
+            key: index,
+            icon: tag.logo,
+            text: tag.name,
+            textColor: tag.color,
+            bgColor: tag.bg_color,
+        }))
+        : [];
+
   useEffect(() => {
+      if (fallingTags.length > 0) {
+          startAnimation(canvas.current);
+          }
         fetchFirst();
-        startAnimation(canvas.current);
   }, [])
-  
-  const {data: fallingTags } = useGetTagsHomepageQuery();
 
   return (
-    <div className="articles-view">
+      <div className="articles-view">
         <NavigationMenuComponent />
         <section className="articles-view_container">
             <h2>Tous les articles</h2>
@@ -72,7 +88,7 @@ function ArticlesPage() {
                     <InfiniteScroll
                         dataLength={articles?.length}
                         next={fetchMore}
-                        hasMore={true}
+                        hasMore={hasMore}
                         loader={<LoaderComponent />}
                         scrollableTarget="scrollableDiv"
                     >
@@ -81,7 +97,7 @@ function ArticlesPage() {
                                 onClick={() => {
                                     navigate(`/article/${article.id}`)
                                 }}>
-                                <img src={article.banner} />
+                                <img src={`${article.banner}`} />
                                 <div className="articles-view_container--list_content">
                                     <h3>{article.title}<span> par {article.user.pseudo}</span></h3>
                                     <h4>{article.subtitle}</h4>
@@ -95,8 +111,20 @@ function ArticlesPage() {
         </section>
         <section className="articles-view_container-tags" ref={canvas}>
             <h2>TOP TAGS</h2>
-            {fallingTags?.data && fallingTags?.data.map(tagElement =>
-                <TagComponent key={`tag${tagElement.id}`} icon={tagElement.logo} text={tagElement.name} textColor={tagElement.color} bgColor={tagElement.bg_color} position={'absolute'} />
+            {fallingTags ? (
+            fallingTags.map((tagElement) => (
+                <TagComponent
+                key={`tag${tagElement.key}`}
+                id={tagElement.id}
+                icon={tagElement.icon}
+                text={tagElement.text}
+                textColor={tagElement.textColor}
+                bgColor={tagElement.bgColor}
+                position={"absolute"}
+                />
+            ))
+            ) : (
+            <div>not found</div>
             )}
         </section>
     </div>

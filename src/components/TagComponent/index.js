@@ -11,7 +11,7 @@ function TagComponent({ id, icon, text, textColor, bgColor, link, position }) {
   return (
     <div className='tag-component falling-tag' style={{backgroundColor: bgColor, position: `${position ? position : 'relative'}`}} onClick={goToRoute}>
       <img src={icon} />
-      <p style={{color: textColor}}>{text}</p>
+      <p style={{color: textColor, fontSize: '0.7rem'}}>{text.length > 5 ? text.substring(0,5) + '...' : text}</p>
     </div>
   )
 }
