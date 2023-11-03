@@ -155,12 +155,20 @@ function NewPost() {
     setDraftData({...draftData, 
       title, subtitle, excerpt, content, tags: nonCreatedTags
     });
+    return ({title, subtitle, excerpt, content, tags: nonCreatedTags});
   }
 
   // Store the draft in redux
   const saveDraftFunction = () => {
-    prepareDraft();
-    dispatch(saveDraft(draftData));
+    const data = prepareDraft();
+    dispatch(saveDraft({
+      ...draftData,
+      title: data.title,
+      subtitle: data.subtitle,
+      excerpt: data.excerpt,
+      content: data.content,
+      tags: data.tags
+    }));
     if (draftData.status === 'draft') send('draft');
     confirmationPopup.current.style.display = 'flex';
     setTimeout(() => {
@@ -215,10 +223,10 @@ function NewPost() {
   const [sendArticle, {isLoading: sendArticleLoading, isSuccess: sendArticleSuccess}] = useSendArticleMutation();
   
   const convertData = () => {
-    prepareDraft();
+    const data = prepareDraft();
     let tags;
-    if (draftData.tags.length > 0) {
-      tags = draftData.tags.map(tag => tag.value);
+    if (data.tags.length > 0) {
+      tags = data.tags.map(tag => tag.value);
     }
     let newTags;
     if (draftData.createdTags.length > 0) {
@@ -227,15 +235,14 @@ function NewPost() {
         ...(newTag.icon != null) && {logo: newTag.icon},
         color: newTag.textColor,
         bg_color: newTag.bgColor
-  
       }))
     }
     return {
       ...(draftData.postId !== null) && {postId: draftData.postId},
-      title: draftData.title,
-      ...(draftData.subtitle !== '') && {subtitle: draftData.subtitle},
-      ...(draftData.excerpt !== '') && {excerpt: draftData.excerpt},
-      content: draftData.content,
+      title: data.title,
+      ...(data.subtitle !== '') && {subtitle: data.subtitle},
+      ...(data.excerpt !== '') && {excerpt: data.excerpt},
+      content: data.content,
       ...(draftData.banner !== '') && {banner: draftData.banner},
       subCategory: draftData.subCategory.value,
       ...(tags !== null) && {tags},
