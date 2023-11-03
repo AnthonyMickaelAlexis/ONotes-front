@@ -14,6 +14,8 @@ function ProfileView() {
     const [cookies] = useCookies(['token']);
     const {data} = useGetUserProfileQuery({ token: cookies.token })
     
+    console.log("data", data);
+    const user = data?.data[0];
     const articles = data?.data[1];
     const fallingTags = data?.data[2];
     
@@ -23,7 +25,7 @@ function ProfileView() {
 
     return (
     <div className="profile-view">
-        <NavigationMenuComponent />
+        <NavigationMenuComponent user={user} />
         <section className='profile-view--left_section'>
             <article ref={canvas} className='profile-view--tag_container'>
                 <h2>VOS TAGS

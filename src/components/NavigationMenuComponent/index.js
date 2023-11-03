@@ -6,8 +6,9 @@ import inewspaper from '../../assets/icons/newspaper-icon.svg';
 import iwrite from "../../assets/icons/write-icon.svg";
 import './navigationMenu.scss';
 import NavigationButtonComponent from "../NavigationButtonComponent";
+import PropTypes from "prop-types";
 
-function NavigationMenuComponent() {
+function NavigationMenuComponent( { user }) {
     const menuItems = [
         {
             "key": 0,
@@ -81,13 +82,17 @@ function NavigationMenuComponent() {
                 <img src="https://picsum.photos/200" alt="profile" />
                 {isMenuOpen &&
                     <div className="navigation-menu--profile--infos">
-                        <p style={{fontWeight: '600'}}>Username</p>
-                        <p>Role@mail.com</p>
+                       <p style={{ fontWeight: '600' }}>{user?.pseudo ? user.pseudo : `${user?.firstname || ''} ${user?.lastname || ''}`.trim()}</p>
+                        <p>{user?.email}</p>
                     </div>
                 }
             </div>
         </div>
     )
 }
+
+NavigationMenuComponent.propTypes = {
+    user: PropTypes.string,
+  };
 
 export default NavigationMenuComponent;
