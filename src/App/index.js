@@ -15,6 +15,9 @@ import SubcategoriesPage from '../views/Subcategories';
 import ArticlesPage from '../views/ArticlesAll';
 import NotFound from '../views/Notfound';
 import TagPage from '../views/Tag';
+import Legal from '../views/Legal';
+import Terms from '../views/Terms';
+import Team from '../views/Team';
 
 function App() {
   const location = useLocation();
@@ -74,6 +77,9 @@ function App() {
           ].map((path, index) => (
             <Route key={index} path={path} element={<NewPost />} />
           ))}
+          <Route path="/legal" element={<Legal />} />
+          <Route path="/terms-of-service" element={<Terms />} />
+          <Route path="/team" element={<Team />} />
         </Routes>
       </Layout>
     </div>
