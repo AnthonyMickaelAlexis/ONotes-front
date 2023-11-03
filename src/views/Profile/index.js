@@ -59,10 +59,14 @@ function ProfileView() {
             </article>
         </section>
 
-        {data &&    ( 
+        {data && (
             <section className='profile-view--profile_card'>
                 <img src={data.data[0].avatar ? data.data[0].avatar : 'https://picsum.photos/200/300'} alt='profile' />
                 <h3>{data.data[0].pseudo}</h3>
+                <div>
+                    <p>{data.data[0].firstname} {data.data[0].lastname}</p>
+                    <p>{data.data[0].email}</p>
+                </div>
             </section>
             )
         }
