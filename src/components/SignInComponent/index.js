@@ -38,6 +38,9 @@ function SignInComponent({ setIsLoading, isLoading }) {
           setErrorMessage("Email ou mot de passe incorrect");
           setIsLoading(!isLoading);
         }
+        if (!cookies.token) {
+          setIsLoading(!isLoading);
+        }
       });
   };
 

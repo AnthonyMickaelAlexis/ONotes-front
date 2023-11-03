@@ -1,7 +1,6 @@
 import React from "react";
 import TagCardComponent from "../../src/components/TagCardComponent";
 import { BrowserRouter } from "react-router-dom";
-import { mount } from "@cypress/react";
 
 describe("Tests for TagCardComponent", () => {
   const mockTag = {
@@ -13,7 +12,7 @@ describe("Tests for TagCardComponent", () => {
 
   it("should render with tag information", () => {
     // Mount the component with a mock tag
-    mount(
+    cy.mount(
       <BrowserRouter>
         <TagCardComponent tag={mockTag} />
       </BrowserRouter>
