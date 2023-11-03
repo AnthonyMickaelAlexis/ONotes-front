@@ -83,7 +83,6 @@ function NavigationMenuComponent( { user }) {
                 {isMenuOpen &&
                     <div className="navigation-menu--profile--infos">
                        <p style={{ fontWeight: '600' }}>{user?.pseudo ? user.pseudo : `${user?.firstname || ''} ${user?.lastname || ''}`.trim()}</p>
-
                         <p>{user?.email}</p>
                     </div>
                 }
