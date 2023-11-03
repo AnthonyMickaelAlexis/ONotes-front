@@ -47,6 +47,7 @@ function TagsPage() {
                   }}
                 >
                   <img
+                  className="profile-view--articles_container__article-img"
                     src={article.user.avatar}
                     style={{
                       width: "50px",

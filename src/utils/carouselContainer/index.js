@@ -68,13 +68,13 @@ function CarouselContainer() {
           articles?.data.data.map((article) => (
             <SwiperSlide key={article.id}onClick={() => navigate(`article/${article.id}`)}>
               <div className="author-date-line">
-                <p className="author-carousel">{article.user.pseudo}</p>
+                <p className="author-carousel">{article.user.pseudo ? article.user.pseudo : `${article.user.firstname} ${article.user.lastname}`}</p>
                 <p className="date-carousel">
                   {formatIsoDate(article.created_at) || "Date not found"}
                 </p>
               </div>
-              <h2>{article.title}</h2>
-              <img src={article.banner} alt={article.title} />
+              <h2 className={article.banner ? "" : "title-without-image"}>{article.title}</h2>
+              {article.banner && <img src={article.banner} alt={article.title} />}
             </SwiperSlide>
           ))
         )}
