@@ -28,9 +28,7 @@ function SignUpComponent() {
       setCookie('token', data.access_token);
     })
     .catch((error) => {
-      if (error) {
-        alert('Erreur lors de l\'inscription')
-      }
+      console.log(error);
     })
     .finally(() => {
       if (cookies.token) {

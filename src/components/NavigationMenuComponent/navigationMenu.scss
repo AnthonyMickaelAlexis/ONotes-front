@@ -5,12 +5,11 @@
     padding-top: 13rem;
     padding-bottom: 5rem;
     width: 15rem;
-    height: calc(100vh - 15rem);
+    height: calc(100vh - 20rem);
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding-left: 1.5rem;
-    position: fixed;
 
     @media screen and (max-width: 900px) {
         width: 3rem;

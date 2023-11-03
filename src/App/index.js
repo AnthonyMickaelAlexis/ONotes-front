@@ -12,7 +12,6 @@ import CategoriesPage from '../views/Categories';
 import TagsPage from '../views/Tags';
 import { useCookies } from 'react-cookie';
 import SubcategoriesPage from '../views/Subcategories';
-import ArticlesPage from '../views/ArticlesAll';
 import NotFound from '../views/Notfound';
 import TagPage from '../views/Tag';
 import Legal from '../views/Legal';
@@ -58,8 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={ <Homepage isLogged={isLogged} /> } />
           <Route path="/authentication" element={ <Auth /> } />
-          <Route path="/categories" element={ <CategoriesPage isLogged={isLogged} /> } />
-          <Route path="/articles" element={ <ArticlesPage /> } />
+          <Route path="/categories" element={ <CategoriesPage /> } />
           <Route path="/subcategory/:id" element={ <SubcategoriesPage /> } />
           <Route path="/tags" element={ <TagsPage /> } />
           <Route path="/tag/:id" element={ <TagPage /> } />

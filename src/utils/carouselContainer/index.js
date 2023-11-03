@@ -15,7 +15,7 @@ function CarouselContainer() {
     data: articles,
     loading: articlesLoading,
     error: articlesError,
-  } = useGetArticlesQuery({ page: 1 });
+  } = useGetArticlesQuery();
   const [slidesPerView, setSlidesPerView] = useState(4);
   const [showPagination, setShowPagination] = useState(true);
   const navigate = useNavigate();
