@@ -30,7 +30,6 @@ function SignInComponent({ setIsLoading, isLoading }) {
       .then((data) => {
         setCookie("token", data.access_token);
         setIsLoading(!isLoading);
-        console.log(cookies);
         navigate("/profile");
       })
       .catch((error) => {
