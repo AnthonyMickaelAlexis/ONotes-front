@@ -18,7 +18,6 @@ function CategoriesPage({ isLogged }) {
     const {data: categories} = useGetCategoriesQuery();
     const {data: articles } = useGetArticlesQuery(1);
     const {data: fallingTags } = useGetTagsHomepageQuery();
-    console.log(articles);
 
     useEffect(() => {
         startAnimation(canvas.current);
@@ -42,7 +41,11 @@ function CategoriesPage({ isLogged }) {
                         />
                     ))}
                 </article>
-                <h2>ARTICLES</h2>
+                <h2>ARTICLES
+                    <button onClick={() => navigate('/articles')}>
+                        Tous les articles
+                    </button>
+                </h2>
                 <article className="categories-container_articles">
                     <ul className="categories-container_articles--list">
                     {articles && articles?.data.data.map(article =>

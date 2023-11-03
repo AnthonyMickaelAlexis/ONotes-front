@@ -21,6 +21,12 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        &>button {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
     &_categories {
         display: flex;
