@@ -6,6 +6,7 @@ import startAnimation from '../../utils/fallingTags';
 import { useGetUserProfileQuery } from '../../data/user';
 import { useCookies } from 'react-cookie';
 import { useNavigate } from 'react-router-dom';
+import { formatIsoDate } from '../../utils/date';
 
 function ProfileView() {
     const canvas = useRef();
@@ -51,8 +52,8 @@ function ProfileView() {
                     <div className='profile-view--articles_container__article' key={article.id} onClick={() => {
                        navigate(`/article/${article.id}`) 
                     }}>
-                        <h3>{article.title}</h3>
-                        <p>{article.subtitle} <span>{article.updated_at}</span></p>
+                        <h3>{article.title.length >= 10 ? article.title.substring(0,10) + '...' : article.title }</h3>
+                        <p>{article.subtitle.length >= 25 ? article.subtitle.substring(0,25) + '...' : article.subtitle } <span>{formatIsoDate(article.updated_at)}</span></p>
                     </div>
                 )}
             </article>

@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import idashboard from '../../assets/icons/dashboard-icon.svg';
 import icatgeories from '../../assets/icons/categories-icon.svg';
 import itags from '../../assets/icons/tags-icon.svg';
-import iparameters from '../../assets/icons/params-icon.svg';
+import inewspaper from '../../assets/icons/newspaper-icon.svg';
 import './navigationMenu.scss';
 import NavigationButtonComponent from "../NavigationButtonComponent";
 
@@ -34,11 +34,11 @@ function NavigationMenuComponent() {
         },
         {
             "key": 3,
-            "text": "Parameters",
-            "icon": iparameters,
+            "text": "Tous les articles",
+            "icon": inewspaper,
             "textColor": "#000",
             "bgColor": "#fff",
-            "link": "/parameters"
+            "link": "/articles"
         }
     ];
 

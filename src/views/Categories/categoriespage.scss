@@ -12,8 +12,8 @@
 
 }
 .categories-container {
-    width: 60%;
-    height: 100%;
+    width: 70%;
+    height: 105%;
     background-color: #fff;
     padding: 1.5rem;
     border-radius: 1rem;
@@ -21,6 +21,12 @@
         font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
+        display: flex;
+        justify-content: space-between;
+        &>button {
+            text-decoration: underline;
+            cursor: pointer;
+        }
     }
     &_categories {
         display: flex;
@@ -29,11 +35,14 @@
         margin-bottom: 2rem;
         &::-webkit-scrollbar {
             display: none;
-          }
+        }
+        @media screen and (max-width: 900px) {
+            height: 15rem;
+        }  
     }
 
     &_articles {
-        max-height: 35%;
+        height: 30%;
         overflow-y: scroll;
         &::-webkit-scrollbar {
             display: none;
@@ -42,21 +51,53 @@
             font-size: 1.5rem;
             font-weight: 700;
             margin-bottom: 2rem;
-        }   
+        }
+        &--list {
+            &>li {
+                display: flex;
+                align-items: center;
+                &>div {
+                    margin-right: 1rem;
+                }
+                &>h3 {
+                    margin: auto;
+                    font-size: 1rem;
+                    font-weight: 600;
+                    min-width: 3rem;
+                    max-width: 3rem;
+                }
+                &>p {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    font-size: 1rem;
+                    font-weight: 500;
+                    margin-left: 6rem;
+                    &>span {
+                        color: #999999;
+                        font-size: 0.8rem;
+                    }
+                }
+            }
+        }
     }
 }
 
 .categories-right {
     margin-left: 1rem;
-    width: 60%;
+    @media screen and (max-width: 900px) {
+        width: 70%;
+        margin-top: 2rem;
+    }
 
     &--tags {
         background-color: #fff;
         height: 10rem;
-        padding: 1.5rem 0 5rem 1.5rem;
-        border-radius: 1rem 0 0 1rem;
-        position: relative;
+        width: 80%;
+        padding: 1rem 1rem 2rem 1rem;
+        border-radius: 1rem;
         margin-bottom: 2rem;
+        position: relative;
         &>h2 {
             font-size: 1.5rem;
             font-weight: 700;
@@ -66,13 +107,32 @@
 
     &--write {
         background-color: #fff;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 80%;
         height: 50%;
-        padding: 1.5rem;
-        border-radius: 1rem 0 0 1rem;
+        padding: 1rem;
+        border-radius: 1rem;
         &>h2 {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: 700;
             margin-bottom: 2rem;
+            text-align: center;
+        }
+        &>button {
+            width: 70%;
+            height: 3rem;
+            background-color: #000;
+            color: #fff;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }
