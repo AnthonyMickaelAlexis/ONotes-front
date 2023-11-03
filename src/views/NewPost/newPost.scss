@@ -156,13 +156,15 @@
 
   &-actions {
     position: fixed;
+    box-sizing: border-box;
     bottom: 0;
-    left: 0;
+    left: 3.5rem;
     display: flex;
     justify-content: space-evenly;
     background-color: #f6f6f6;
     border-top: 1px solid #ccc;
-    width: 100%;
+    border-radius: 50px 50px 0 0;
+    width: calc(100% - 3.5rem);
     padding: .5rem;
 
     &-button {
@@ -338,11 +340,21 @@
         }
       }
     }
+
+    &-actions {
+      width: calc(100% - 3.5rem);
+      left: 3.5rem;
+    }
   }
 }
 
 @media (min-width: 900px) {
   .new-post {
     padding: 0 0 0 15.5rem;
+
+    &-actions {
+      width: calc(100% - 15.5rem);
+      left: 15.5rem;
+    }
   }
 }

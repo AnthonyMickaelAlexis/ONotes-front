@@ -92,7 +92,7 @@ function Homepage({ isLogged }) {
             icon={ArrowRight}
             textColor="white"
             bgColor="black"
-            link={!isLogged ? "/authentication" : "/profile"}
+            link={!isLogged ? "/categories" : "/profile"}
           />
         </section>
         <section className="homepage-part-2">
