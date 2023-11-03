@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import TextFieldComponent from "../TextFieldComponent";
-import ButtonComponent from "../ButtonComponent";
+import React, { useState } from 'react';
+import TextFieldComponent from '../TextFieldComponent';
+import ButtonComponent from '../ButtonComponent';
 import { useSignInMutation } from "../../data/auth";
-import { useForm, FormProvider } from "react-hook-form";
-import "./signInComponent.scss";
-import { useCookies } from "react-cookie";
-import { useNavigate } from "react-router";
-import PropTypes from "prop-types";
+import { useForm, FormProvider } from 'react-hook-form';
+import './signInComponent.scss';
+import { useCookies } from 'react-cookie';
+import { useNavigate } from 'react-router';
+import PropTypes from 'prop-types';
 
 function SignInComponent({ setIsLoading, isLoading }) {
   const [signInError, setSignInError] = useState(false);
@@ -15,31 +15,31 @@ function SignInComponent({ setIsLoading, isLoading }) {
   const navigate = useNavigate();
   const { handleSubmit } = methods;
 
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [cookies, setCookie] = useCookies(['token']);
 
   const [send] = useSignInMutation();
   const onSubmit = (e) => {
-    setIsLoading(!isLoading);
+    setIsLoading(!isLoading)
     setErrorMessage("");
     setSignInError(false);
     send({
       email: e.Email,
-      password: e.Password,
+      password: e.Password
     })
-      .unwrap()
-      .then((data) => {
-        setCookie("token", data.access_token);
-        setIsLoading(!isLoading);
-        navigate("/profile");
-      })
-      .catch((error) => {
-        if (error.status === 401) {
+    .unwrap()
+    .then((data) => {
+      setCookie('token', data.access_token);
+      setIsLoading(!isLoading)
+      navigate('/profile');
+    })
+    .catch((error) => {
+      if (error.status === 401) {
           setSignInError(true);
           setErrorMessage("Email ou mot de passe incorrect");
           setIsLoading(!isLoading);
         }
         if (!cookies.token) {
-          setIsLoading(!isLoading);
+          setIsLoading(!isLoading)
         }
       });
   };
@@ -84,6 +84,6 @@ function SignInComponent({ setIsLoading, isLoading }) {
 
 SignInComponent.propTypes = {
   setIsLoading: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  isLoading: PropTypes.bool.isRequired
 };
 export default SignInComponent;

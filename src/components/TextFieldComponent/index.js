@@ -1,6 +1,6 @@
-import React from "react";
-import "./textfieldcomponent.scss";
-import { PropTypes } from "prop-types";
+import React from 'react';
+import './textfieldcomponent.scss';
+import { PropTypes } from 'prop-types';
 import { useFormContext } from "react-hook-form";
 
 function TextFieldComponent({
@@ -18,7 +18,7 @@ function TextFieldComponent({
   } = useFormContext();
   let validation;
 
-  switch (fieldName) {
+  switch(fieldName) {
     case "Email":
       validation = {
         required: true,
