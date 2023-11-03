@@ -46,6 +46,7 @@ function NewPost() {
   const [deleteItem, setDeleteItem] = useState([0, '']);
   const confirmationPopup = useRef();
   const publishPopup = useRef();
+  const [sendArticleError, setSendArticleError] = useState(false);
 
   const {data: profile, isSuccess: profileFetched} = useGetUserProfileQuery({ token: cookies.token });
   const {data: post, isSuccess: postFetched} = useGetArticleQuery(postId, {skip: !postId});
@@ -207,13 +208,13 @@ function NewPost() {
   // Handle the publish confirmation popup
   const handlePublishPopup = (action) => {
     action === 'open' ? publishPopup.current.style.display = "flex" : publishPopup.current.style.display = "none";
+    if (sendArticleError === true) setSendArticleError(false);
   }
 
   // Send draft to API
-  const [sendArticle, {isLoading: sendArticleLoading, isSuccess: sendArticleSuccess, isError: sendArticleError}] = useSendArticleMutation();
+  const [sendArticle, {isLoading: sendArticleLoading, isSuccess: sendArticleSuccess}] = useSendArticleMutation();
   
   const convertData = () => {
-    const profileData = profile.data[0];
     prepareDraft();
     let tags;
     if (draftData.tags.length > 0) {
@@ -231,7 +232,6 @@ function NewPost() {
     }
     return {
       ...(draftData.postId !== null) && {postId: draftData.postId},
-      authorId: profileData.id,
       title: draftData.title,
       ...(draftData.subtitle !== '') && {subtitle: draftData.subtitle},
       ...(draftData.excerpt !== '') && {excerpt: draftData.excerpt},
@@ -248,9 +248,23 @@ function NewPost() {
   const send = (postStatus) => {
     const data = convertData();
     data.status = postStatus;
-    data.method = postId ? 'PUT' : 'POST';
-    setRedirectAfterSend(postStatus === 'published' ? true : false);
-    sendArticle(data) 
+    data.method = draftData.postId === null ? 'POST' : 'PUT';
+    if (postStatus === 'published') {
+      setDraftData({...draftData, status: 'published'});
+      setRedirectAfterSend(true);
+    } else {
+      setRedirectAfterSend(false);
+    }
+    sendArticle(data)
+    .unwrap()
+    .then(result => {
+      if (data.method === 'POST') {
+        setDraftData({...draftData, postId: result.data.id});
+      }
+    })
+    .catch(() => {
+      setSendArticleError(true);
+    })
   }
 
   useEffect(() => {

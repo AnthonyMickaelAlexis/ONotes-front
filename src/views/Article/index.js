@@ -45,7 +45,7 @@ function Article() {
           }
           <div className="article-view-header-author-date">
             <p className="article-view-header-author">
-              Par <span>{user?.pseudo || `${user?.firstname} ${user?.lastname}`}</span>
+              Par<span>{user?.pseudo || `${user?.firstname} ${user?.lastname}`}</span>
               {user?.avatar && <div><img src={user?.avatar} /></div>}
             </p>
             <p className="article-view-header-date">
