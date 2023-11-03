@@ -3,6 +3,7 @@ import idashboard from '../../assets/icons/dashboard-icon.svg';
 import icatgeories from '../../assets/icons/categories-icon.svg';
 import itags from '../../assets/icons/tags-icon.svg';
 import inewspaper from '../../assets/icons/newspaper-icon.svg';
+import iwrite from "../../assets/icons/write-icon.svg";
 import './navigationMenu.scss';
 import NavigationButtonComponent from "../NavigationButtonComponent";
 
@@ -39,7 +40,15 @@ function NavigationMenuComponent() {
             "textColor": "#000",
             "bgColor": "#fff",
             "link": "/articles"
-        }
+        },
+        {
+            key: 4,
+            text: "Rédiger un article",
+            icon: iwrite,
+            textColor: "#000",
+            bgColor: "#fff",
+            link: "/new-post",
+          }
     ];
 
     const [isMenuOpen, setIsMenuOpen] = React.useState(false);
