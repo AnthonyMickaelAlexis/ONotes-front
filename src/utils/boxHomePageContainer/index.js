@@ -19,7 +19,7 @@ const Box = () => (
             Discutez de tout, des langages de <b>programmation</b> à <b>l&apos;intelligence artificielle</b>, tout en profitant de l&apos;ambiance conviviale d&apos;un <b>bistro numérique.</b></p>
           <ImageWithHalo texttype="2" src={logo} alt="Sinok des goonies II" className="application-images"/>
         </span>
-      <h3>ON A MÊME NOTRE APPLI !</h3>
+      <h3>NOTRE APPLI EST EN COURS DE DEVELOPPEMENT</h3>
       <div>
         <img src={appli} alt="Application" className="application-images" id='appimage'/>
       </div>
