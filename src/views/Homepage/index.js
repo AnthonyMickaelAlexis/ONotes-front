@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, Fragment } from "react";
+import React, { useEffect, useRef } from "react";
 import "./homepage.scss";
 import Tag from "../../components/TagComponent";
 import startAnimation from "../../utils/fallingTags";
@@ -59,7 +59,7 @@ function Homepage({ isLogged }) {
   }, [fallingTags]);
 
   return (
-    <Fragment>
+    <>
       <div className="homepage">
         <div ref={halo1} className="homepage-halo1"></div>
         <div ref={halo2} className="homepage-halo2"></div>
@@ -80,9 +80,6 @@ function Homepage({ isLogged }) {
           <div>not found</div>
         )}
         <div ref={canvas} className="homepage-falling-tags-canvas"></div>
-        {/* HEADER */}
-
-        {/* HEADER END */}
         <section className="homepage-title-and-cta">
           <h1>Une application pour tout savoir sur tout !</h1>
           <p>
@@ -119,13 +116,9 @@ function Homepage({ isLogged }) {
             </div>
           </div>
         </section>
-
         <Box />
-
-        {/* FOOTER */}
       </div>
-      {/* FOOTER */}
-    </Fragment>
+    </>
   );
 }
 
