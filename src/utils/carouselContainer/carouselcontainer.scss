@@ -16,6 +16,16 @@
   color : #D3D3D3;
 }
 
+.title-without-image {
+  display: flex;
+  justify-content: center;
+  height: 12rem;
+  width: 16.5rem;
+  border-radius: 10%;
+  margin: 0.6rem;
+  flex-wrap: wrap;
+}
+
 .swiper-pagination {
   display: none;
 }
@@ -64,6 +74,7 @@
     font-size: 1rem;
     background-color: #eee;
     margin-left: 0.8rem;
+    margin-right: 0.5rem;
   }
 
 }
