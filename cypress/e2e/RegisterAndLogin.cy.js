@@ -34,6 +34,9 @@ context("Add new user and log to his account ", () => {
     cy.get('[data-cy="signin-email"]').click().type(user.email);
     cy.get('[data-cy="signin-password"]').click().type(user.password);
     cy.get('[data-cy="signin-loginbutton"]').click();
+
+    // check if the user is connected
+    cy.contains("VOS TAGS").contains("VOS ARTICLES");
   });
 });
 
