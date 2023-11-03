@@ -19,7 +19,6 @@ export const articlesApi = createApi({
         url: `article/${data.postId !== undefined ? data.postId : ''}`,
         method: data.method,
         body: {
-          user_id: data.authorId,
           title: data.title,
           ...(data.subtitle !== undefined) && {subtitle: data.subtitle},
           ...(data.excerpt !== undefined) && {resume: data.excerpt},

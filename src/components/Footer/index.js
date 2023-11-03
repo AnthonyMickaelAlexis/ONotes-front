@@ -7,7 +7,7 @@ function Footer() {
     <div className="footer">
       <div className="footer-content">
         <Link to='/legal'>Mentions légales</Link>
-        <Link to='/terms-of-service'>Conditions générales d'utilisation</Link>
+        <Link to='/terms-of-service'>Conditions générales d&apos;utilisation</Link>
         <Link to='/team'>Équipe</Link>
       </div>
     </div>
