@@ -27,7 +27,7 @@ function TagPage() {
         <h2>
           <TagCardComponent key={tagInfo.id} tag={tagInfo} />
         </h2>
-        <article className="tag-container_articles">
+        <article className="tag-container_articles--list">
           <h2>ARTICLES</h2>
           {articles ? (
             articles.map((article) => (
