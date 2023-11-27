@@ -1,0 +1,13 @@
+.tag-component {
+  display: flex;
+  align-items: center;
+  gap: .2em;
+  width: fit-content;
+  border-radius: 1rem;
+  padding: .5em .5em .5em .5em;
+  cursor: pointer;
+
+  &>img {
+    max-width: 1.5rem;
+  }
+}

@@ -1,0 +1,56 @@
+@use 'reset';
+@use 'vars';
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url("../assets/fonts/montserrat/Montserrat-Italic-VariableFont_wght.ttf");
+  src: url("../assets/fonts/montserrat/Montserrat-VariableFont_wght.ttf");
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Montserrat', 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  background-color: #F9F9F9;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.boxparagraph {
+  font-size: 1.2rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 1000;
+  line-height: 1.2;
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+
+@media (min-width: 600px) {
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+  }
+
+  h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+  }
+
+}

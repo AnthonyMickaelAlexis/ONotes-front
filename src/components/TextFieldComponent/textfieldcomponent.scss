@@ -1,0 +1,31 @@
+.text-field {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  max-width: 25rem;
+
+  &>label {
+    margin-bottom: .3rem;
+    font-size: .9rem;
+  }
+
+  &>input {
+    border: 1px solid lightgrey;
+    height: 2rem;
+    padding-left: 1rem;
+    margin-bottom: .7rem;
+    border-radius: 50px;
+    font-size: .9rem;
+
+    &:focus {
+      border: 1px solid black;
+      outline: 0;
+    }
+  }
+}
+
+.signin-error {
+  color: #bf1650;
+  font-weight: bold;
+}

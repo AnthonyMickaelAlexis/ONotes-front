@@ -1,0 +1,25 @@
+.navigation-button {
+  border-radius: 1rem;
+  margin-bottom: 0.5rem;
+
+  &-content {
+    display: flex;
+    align-items: center;
+    padding: .8em;
+    border-radius: 1rem;
+    gap: 1rem;
+    cursor: pointer;
+
+    &>p {
+      font-weight: 600;
+    }
+
+    &>img {
+      max-width: 1em;
+    }
+
+    &:hover {
+      filter: invert(90%);
+    }
+  }
+}
